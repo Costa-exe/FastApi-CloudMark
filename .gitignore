@@ -1,0 +1,6 @@
+#file json
+utils/info.json
+
+#pychache
+pycache/
+*.py[cod]
