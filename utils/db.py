@@ -30,7 +30,7 @@ class MySql:
     cls.conn.close()
 
   @classmethod
-  def closeConnectionInsert(cls):
+  def closeConnectionCommit(cls):
     cls.cursor.close()
     cls.conn.commit()
     cls.conn.close()
