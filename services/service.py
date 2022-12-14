@@ -3,6 +3,8 @@ from dto.clientDto import Client_dto
 
 class Service:
 
+    #companies services
+
     @classmethod
     def get_all_companies_service(cls):
         return Company_dto.get_all()
@@ -22,6 +24,8 @@ class Service:
     @classmethod
     def update_company(cls, id, item):
         return Company_dto.put(id, item)
+
+    #clients services    
 
     @classmethod
     def get_all_clients_service(cls):
