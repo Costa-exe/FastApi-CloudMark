@@ -12,7 +12,7 @@ usare nomenclatura 'update' per i metodi di put nel dao e 'put' nel dto.
 
 usare nomenclatura 'remove' per i metodi di delete nel dao e 'delete' nel dto.
 
-usare parametry di query come valore per ottenere risultati della ricerca. es. (/azienda/finByPk?numero_p_iva='valore').
+usare parametri di query come valore per ottenere risultati della ricerca. es. (/azienda/finByPk?numero_p_iva='valore').
 
 nomenclatura metodi esposti dal service = nome del metodo nel dto + Service.
 

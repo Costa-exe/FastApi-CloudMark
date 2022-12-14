@@ -1,6 +1,6 @@
-from dao.aziendaDao import AziendaDao
+from dao.companyDao import Company_dao
 
-class Azienda:
+class Company:
     
     def __init__(self, id_azienda, nome, p_iva, indirizzo, cap, iban, telefono, email, pec, fax):
         self.id_azienda = id_azienda
@@ -14,17 +14,17 @@ class Azienda:
         self.pec = pec
         self.fax = fax
 
-class AziendaDto:
+class Company_dto:
 
     @classmethod
-    def getAllAziende(cls):
+    def get_all(cls):
         aziende = []
-        results = AziendaDao.findAllAziende()
+        results = Company_dao.find_all()
         for result in results:
-                aziende.append(Azienda(*result))
+                aziende.append(Company(*result))
         return aziende
 
     @classmethod
-    def getAziendaById(cls, id : str):
-        result = AziendaDao.findAziendaById(id)
-        return Azienda(*result)
+    def get_by_id(cls, id : str):
+        result = Company_dao.find_by_id(id)
+        return Company(*result)
