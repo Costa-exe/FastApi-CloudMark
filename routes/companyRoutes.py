@@ -23,3 +23,11 @@ async def add_company(company : Company):
 async def update_company(company_id : str, new_data : Company):
     new_data_dict = new_data.dict()
     return Service.update_company(company_id, new_data_dict)
+
+@router.patch("/patch")
+async def patch_company(company_id : str, new_data : Company):
+    in_db_company = Service.get_company_by_id_service(company_id)
+    in_db_company_model = Company(**in_db_company.dict())
+    db_data_to_patch = new_data.dict(exclude_unset=True)
+    patched_db = in_db_company_model.copy(update=db_data_to_patch)
+    return Service.update_company(company_id, patched_db.dict())
