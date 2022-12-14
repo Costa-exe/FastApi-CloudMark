@@ -17,5 +17,5 @@ usare parametri di query come valore per ottenere risultati della ricerca. es. (
 nomenclatura metodi esposti dal service = nome del metodo nel dto + Service.
 
 definire funzioni aincrone nelle routes.
-il nome delle funzioni nelle routes sarà esattamente quello del service.
+il nome delle funzioni nelle routes sarà esattamente quello del service - service.
 

@@ -13,7 +13,7 @@ class Company_dao:
     @classmethod
     def find_by_id(cls, id):
         MySql.openConnection()
-        MySql.query(f"SELECT * FROM azienda WHERE id_azienda = {id}")
+        MySql.query(f"SELECT * FROM azienda WHERE id_azienda = '{id}'")
         results = MySql.getResults()
         MySql.closeConnection()
         return results
@@ -21,17 +21,31 @@ class Company_dao:
     @classmethod
     def remove_by_id(cls, id):
         MySql.openConnection()
-        MySql.query(f"DELETE FROM azienda WHERE id_azienda = {id}")
+        MySql.query(f"DELETE FROM azienda WHERE id_azienda = '{id}'")
         MySql.closeConnectionCommit()
 
     @classmethod
-    def update_by_id(cls, key, value, id):
+    def update_by_id(cls, id, item):
         MySql.openConnection()
-        MySql.query(f"UPDATE azienda SET {key} = {value} WHERE id_azienda = {id}")
+        MySql.query(f"""
+                    UPDATE azienda
+                    SET
+                    id_azienda = '{item['id_azienda']}',
+                    nome = '{item['nome']}',
+                    p_iva = '{item['p_iva']}',
+                    indirizzo = '{item['indirizzo']}',
+                    cap = '{item['cap']}',
+                    iban = '{item['iban']}',
+                    telefono = '{item['telefono']}',
+                    email = '{item['email']}',
+                    pec = '{item['pec']}',
+                    fax = '{item['fax']}'
+                    WHERE id_azienda = '{id}'
+                    """)
         MySql.closeConnectionCommit()
 
     @classmethod
-    def insert_new(cls, item):
+    def create_new(cls, item):
         MySql.openConnection()
         MySql.query(f"""
                     INSERT INTO azienda
@@ -56,7 +70,7 @@ class Company_dao:
                      '{item['telefono']}',
                      '{item['email']}',
                      '{item['pec']}',
-                     '{item['fax']}',)
+                     '{item['fax']}')
                     """)
         MySql.closeConnectionCommit()
     

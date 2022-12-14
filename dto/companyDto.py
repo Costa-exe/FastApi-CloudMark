@@ -18,13 +18,25 @@ class Company_dto:
 
     @classmethod
     def get_all(cls):
-        aziende = []
+        companies = []
         results = Company_dao.find_all()
         for result in results:
-                aziende.append(Company(*result))
-        return aziende
+                companies.append(Company(*result))
+        return companies
 
     @classmethod
     def get_by_id(cls, id : str):
         result = Company_dao.find_by_id(id)
-        return Company(*result)
+        return Company(*result[0])
+
+    @classmethod
+    def delete_by_id(cls, id : str):
+        return Company_dao.remove_by_id(id)
+
+    @classmethod
+    def post(cls, item):
+        return Company_dao.create_new(item)
+    
+    @classmethod
+    def put(cls, id, item):
+        return Company_dao.update_by_id(id, item)
