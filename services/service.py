@@ -63,11 +63,11 @@ class Service:
         return Company_Client_dto.get_by_company_id(id)
 
     @classmethod
-    def delete_comapny_client_by_client_id_service(cls, id: str):
+    def delete_company_client_by_client_id_service(cls, id: str):
         return Company_Client_dto.delete_by_client_id(id)
 
     @classmethod
-    def delete_comapny_client_by_comapany_id_service(cls, id: str):
+    def delete_company_client_by_company_id_service(cls, id: str):
         return Company_Client_dto.delete_by_company_id(id)
 
     @classmethod
@@ -75,11 +75,11 @@ class Service:
         return Company_Client_dto.post(item)
 
     @classmethod
-    def update_comapny_client_by_client_id(cls, id, item):
+    def update_company_client_by_client_id(cls, id, item):
         return Company_Client_dto.put_by_client_id(id, item)
     
     @classmethod
-    def update_comapny_company_by_client_id(cls, id, item):
+    def update_company_client_by_company_id(cls, id, item):
         return Company_Client_dto.put_by_company_id(id, item)
 
 
