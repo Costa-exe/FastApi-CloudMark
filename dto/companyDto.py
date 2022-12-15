@@ -13,8 +13,8 @@ class Company_dto:
 
     @classmethod
     def get_by_id(cls, id : str):
-        result = Company_dao.find_by_id(id)
-        return Company(**result[0])
+            result = Company_dao.find_by_id(id)
+            return Company(**result[0])
 
     @classmethod
     def delete_by_id(cls, id : str):

@@ -6,12 +6,9 @@ router = APIRouter(prefix="/clients", tags=["Clients API"])
 
 @router.get("")
 async def get_clients(client_id : str | None = None):
-    try:
         if client_id:
             return Service.get_client_by_id_service(client_id)
         return Service.get_all_clients_service()
-    except Exception as e:
-        return e
 
 @router.delete("/delete")
 async def delete_client(client_id: str):
