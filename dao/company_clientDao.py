@@ -15,7 +15,7 @@ class Company_Client_dao:
     def find_by_client_id(cls, id : str):
         MySql.openConnection()
         MySql.query(f"SELECT * FROM azienda_cliente WHERE id_cliente = '{id}'")
-        results = MySql.getResults()
+        results = MySql.getResult()
         MySql.closeConnection()
         return results
     
@@ -23,7 +23,7 @@ class Company_Client_dao:
     def find_by_company_id(cls, id : str):
         MySql.openConnection()
         MySql.query(f"SELECT * FROM azienda_cliente WHERE id_azienda = '{id}'")
-        results = MySql.getResults()
+        results = MySql.getResult()
         MySql.closeConnection()
         return results
 

@@ -21,6 +21,10 @@ class MySql:
     cls.cursor.execute(string)
 
   @classmethod
+  def getResult(cls):
+    return cls.cursor.fetchone()
+
+  @classmethod
   def getResults(cls):
     return cls.cursor.fetchall()
 

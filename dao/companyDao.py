@@ -15,7 +15,7 @@ class Company_dao:
     def find_by_id(cls, id : str):
         MySql.openConnection()
         MySql.query(f"SELECT * FROM azienda WHERE id_azienda = '{id}'")
-        results = MySql.getResults()
+        results = MySql.getResult()
         MySql.closeConnection()
         return results
 

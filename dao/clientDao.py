@@ -15,7 +15,7 @@ class Client_dao:
     def find_by_id(cls, id : str):
         MySql.openConnection()
         MySql.query(f"SELECT * FROM cliente WHERE id_cliente = '{id}'")
-        results = MySql.getResults()
+        results = MySql.getResult()
         MySql.closeConnection()
         return results
 

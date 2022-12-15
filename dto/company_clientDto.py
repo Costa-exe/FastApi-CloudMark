@@ -14,12 +14,12 @@ class Company_Client_dto:
     @classmethod
     def get_by_client_id(cls, id : str):
         result = Company_Client_dao.find_by_client_id(id)
-        return Company_Client(**result[0])
+        return Company_Client(**result)
 
     @classmethod
     def get_by_company_id(cls, id : str):
         result = Company_Client_dao.find_by_company_id(id)
-        return Company_Client(**result[0])
+        return Company_Client(**result)
 
     @classmethod
     def delete_by_client_id(cls, id : str):

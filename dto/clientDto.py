@@ -14,7 +14,7 @@ class Client_dto:
     @classmethod
     def get_by_id(cls, id : str):
         result = Client_dao.find_by_id(id)
-        return Client(**result[0])
+        return Client(**result)
 
     @classmethod
     def delete_by_id(cls, id : str):
