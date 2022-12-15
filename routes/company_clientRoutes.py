@@ -30,3 +30,8 @@ async def put_company(filter : str , id : str, new_data : Company_Client):
     elif filter == "company":
         new_data_dict = new_data.dict()
         return Service.update_company_client_by_company_id(id, new_data_dict)
+
+@router.post("/add")
+async def add_company_client(company_client : Company_Client):
+    company_client_dict = company_client.dict()
+    return Service.create_new_company_client(company_client_dict)
