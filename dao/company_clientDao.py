@@ -12,7 +12,7 @@ class Company_Client_dao:
         return results
 
     @classmethod
-    def find_by_client_id(cls, id):
+    def find_by_client_id(cls, id : str):
         MySql.openConnection()
         MySql.query(f"SELECT * FROM azienda_cliente WHERE id_cliente = '{id}'")
         results = MySql.getResults()
@@ -20,7 +20,7 @@ class Company_Client_dao:
         return results
     
     @classmethod
-    def find_by_company_id(cls, id):
+    def find_by_company_id(cls, id : str):
         MySql.openConnection()
         MySql.query(f"SELECT * FROM azienda_cliente WHERE id_azienda = '{id}'")
         results = MySql.getResults()
@@ -28,19 +28,19 @@ class Company_Client_dao:
         return results
 
     @classmethod
-    def remove_by_client_id(cls, id):
+    def remove_by_client_id(cls, id : str):
         MySql.openConnection()
         MySql.query(f"DELETE FROM azienda_cliente WHERE id_cliente = '{id}'")
         MySql.closeConnectionCommit()
     
     @classmethod
-    def remove_by_company_id(cls, id):
+    def remove_by_company_id(cls, id : str):
         MySql.openConnection()
         MySql.query(f"DELETE FROM azienda_cliente WHERE id_azienda = '{id}'")
         MySql.closeConnectionCommit()
 
     @classmethod
-    def update_by_client_id(cls, id, item : Company_Client):
+    def update_by_client_id(cls, id : str, item : Company_Client):
         MySql.openConnection()
         MySql.query(f"""
                     UPDATE azienda_cliente
@@ -52,7 +52,7 @@ class Company_Client_dao:
         MySql.closeConnectionCommit()
 
     @classmethod
-    def update_by_company_id(cls, id, item : Company_Client):
+    def update_by_company_id(cls, id : str, item : Company_Client):
         MySql.openConnection()
         MySql.query(f"""
                     UPDATE azienda_cliente

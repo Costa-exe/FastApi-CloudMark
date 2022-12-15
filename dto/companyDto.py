@@ -21,9 +21,9 @@ class Company_dto:
         return Company_dao.remove_by_id(id)
 
     @classmethod
-    def post(cls, item):
+    def post(cls, item : Company):
         return Company_dao.create_new(item)
     
     @classmethod
-    def put(cls, id, item):
+    def put(cls, id : str, item : Company):
         return Company_dao.update_by_id(id, item)

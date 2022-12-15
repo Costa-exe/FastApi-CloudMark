@@ -30,13 +30,13 @@ class Company_Client_dto:
         return Company_Client_dao.remove_by_company_id(id)
 
     @classmethod
-    def post(cls, item):
+    def post(cls, item : Company_Client):
         return Company_Client_dao.create_new(item)
 
     @classmethod
-    def put_by_client_id(cls, id, item):
+    def put_by_client_id(cls, id : str, item : Company_Client):
         return Company_Client_dao.update_by_client_id(id, item)
     
     @classmethod
-    def put_by_company_id(cls, id, item):
+    def put_by_company_id(cls, id : str, item : Company_Client):
         return Company_Client_dao.update_by_company_id(id, item)

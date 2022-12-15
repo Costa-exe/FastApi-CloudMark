@@ -21,9 +21,9 @@ class Client_dto:
         return Client_dao.remove_by_id(id)
 
     @classmethod
-    def post(cls, item):
+    def post(cls, item : Client):
         return Client_dao.create_new(item)
 
     @classmethod
-    def put(cls, id, item):
+    def put(cls, id : str, item : Client):
         return Client_dao.update_by_id(id, item)

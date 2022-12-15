@@ -12,7 +12,7 @@ class Client_dao:
         return results
 
     @classmethod
-    def find_by_id(cls, id):
+    def find_by_id(cls, id : str):
         MySql.openConnection()
         MySql.query(f"SELECT * FROM cliente WHERE id_cliente = '{id}'")
         results = MySql.getResults()
@@ -20,13 +20,13 @@ class Client_dao:
         return results
 
     @classmethod
-    def remove_by_id(cls, id):
+    def remove_by_id(cls, id : str):
         MySql.openConnection()
         MySql.query(f"DELETE FROM cliente WHERE id_cliente = '{id}'")
         MySql.closeConnectionCommit()
 
     @classmethod
-    def update_by_id(cls, id, item : Client):
+    def update_by_id(cls, id : str, item : Client):
         MySql.openConnection()
         MySql.query(f"""
                     UPDATE cliente

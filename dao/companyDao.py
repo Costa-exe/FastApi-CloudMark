@@ -12,7 +12,7 @@ class Company_dao:
         return results
 
     @classmethod
-    def find_by_id(cls, id):
+    def find_by_id(cls, id : str):
         MySql.openConnection()
         MySql.query(f"SELECT * FROM azienda WHERE id_azienda = '{id}'")
         results = MySql.getResults()
@@ -20,13 +20,13 @@ class Company_dao:
         return results
 
     @classmethod
-    def remove_by_id(cls, id):
+    def remove_by_id(cls, id : str):
         MySql.openConnection()
         MySql.query(f"DELETE FROM azienda WHERE id_azienda = '{id}'")
         MySql.closeConnectionCommit()
 
     @classmethod
-    def update_by_id(cls, id, item : Company):
+    def update_by_id(cls, id : str, item : Company):
         MySql.openConnection()
         MySql.query(f"""
                     UPDATE azienda
