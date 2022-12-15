@@ -8,13 +8,13 @@ class Company_dto:
         companies = []
         results = Company_dao.find_all()
         for result in results:
-                companies.append(Company(**result))
+                companies.append(result)
         return companies
 
     @classmethod
     def get_by_id(cls, id : str):
             result = Company_dao.find_by_id(id)
-            return Company(**result)
+            return result
 
     @classmethod
     def delete_by_id(cls, id : str):
