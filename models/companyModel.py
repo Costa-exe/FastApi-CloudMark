@@ -20,55 +20,55 @@ class Company(BaseModel):
         return v
 
     @validator('nome')
-    def validate_id(cls, v):
+    def validate_nome(cls, v):
         assert len(v) <= 90, f'maximum length for {v} is 90 characters.'
         assert len(v) > 0, f'{v} must contain at least 1 character.'
         return v
 
     @validator('p_iva')
-    def validate_id(cls, v):
+    def validate_p_iva(cls, v):
         assert len(v) <= 11, f'maximum length for {v} is 11 characters.'
         assert len(v) > 0, f'{v} must contain at least 1 character.'
         return v
 
     @validator('indirizzo')
-    def validate_id(cls, v):
+    def validate_indirizzo(cls, v):
         assert len(v) <= 90, f'maximum length for {v} is 90 characters.'
         assert len(v) > 0, f'{v} must contain at least 1 character.'
         return v
 
     @validator('cap')
-    def validate_id(cls, v):
+    def validate_cap(cls, v):
         assert len(v) <= 5, f'maximum length for {v} is 5 characters.'
         assert len(v) > 0, f'{v} must contain at least 1 character.'
         return v
 
     @validator('iban')
-    def validate_id(cls, v):
+    def validate_iban(cls, v):
         assert len(v) <= 27, f'maximum length for {v} is 27 characters.'
         assert len(v) > 0, f'{v} must contain at least 1 character.'
         return v
 
     @validator('telefono')
-    def validate_id(cls, v):
+    def validate_telefono(cls, v):
         assert len(v) <= 15, f'maximum length for {v} is 15 characters.'
         assert len(v) > 0, f'{v} must contain at least 1 character.'
         return v
 
     @validator('email')
-    def validate_id(cls, v):
+    def validate_email(cls, v):
         assert len(v) <= 90, f'maximum length for {v} is 90 characters.'
         assert len(v) > 0, f'{v} must contain at least 1 character.'
         return v
 
     @validator('pec')
-    def validate_id(cls, v):
+    def validate_pec(cls, v):
         assert len(v) <= 45, f'maximum length for {v} is 45 characters.'
         assert len(v) > 0, f'{v} must contain at least 1 character.'
         return v
 
     @validator('fax')
-    def validate_id(cls, v):
+    def validate_fax(cls, v):
         assert len(v) <= 15, f'maximum length for {v} is 15 characters.'
         assert len(v) > 0, f'{v} must contain at least 1 character.'
         return v
