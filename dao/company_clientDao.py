@@ -1,4 +1,5 @@
 from utils.db import MySql
+from models.company_clientModel import Company_Client
 
 class Company_Client_dao:
 
@@ -39,32 +40,32 @@ class Company_Client_dao:
         MySql.closeConnectionCommit()
 
     @classmethod
-    def update_by_client_id(cls, id, item):
+    def update_by_client_id(cls, id, item : Company_Client):
         MySql.openConnection()
         MySql.query(f"""
                     UPDATE azienda_cliente
                     SET
-                    id_azienda = '{item['id_azienda']}',
-                    id_cliente = '{item['id_cliente']}'
+                    id_azienda = '{item.id_azienda}',
+                    id_cliente = '{item.id_cliente}'
                     WHERE id_cliente = '{id}'
                     """)
         MySql.closeConnectionCommit()
 
     @classmethod
-    def update_by_company_id(cls, id, item):
+    def update_by_company_id(cls, id, item : Company_Client):
         MySql.openConnection()
         MySql.query(f"""
                     UPDATE azienda_cliente
                     SET
-                    id_azienda = '{item['id_azienda']}',
-                    id_cliente = '{item['id_cliente']}'
+                    id_azienda = '{item.id_azienda}',
+                    id_cliente = '{item.id_cliente}'
                     WHERE id_azienda = '{id}'
                     """)
         MySql.closeConnectionCommit()
 
 
     @classmethod
-    def create_new(cls, item):
+    def create_new(cls, item : Company_Client):
         MySql.openConnection()
         MySql.query(f"""
                     INSERT INTO azienda_cliente
@@ -72,8 +73,8 @@ class Company_Client_dao:
                      id_azienda,
                      id_cliente)
                     VALUES
-                    ('{item['id_azienda']}',
-                    '{item['id_cliente']}'
+                    ('{item.id_azienda}',
+                    '{item.id_cliente}'
                      )
                     """)
         MySql.closeConnectionCommit()

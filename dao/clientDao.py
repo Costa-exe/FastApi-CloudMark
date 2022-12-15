@@ -1,4 +1,5 @@
 from utils.db import MySql
+from models.clientModel import Client
 
 class Client_dao:
 
@@ -25,27 +26,27 @@ class Client_dao:
         MySql.closeConnectionCommit()
 
     @classmethod
-    def update_by_id(cls, id, item):
+    def update_by_id(cls, id, item : Client):
         MySql.openConnection()
         MySql.query(f"""
                     UPDATE cliente
                     SET
-                    id_cliente = '{item['id_cliente']}',
-                    nome = '{item['nome']}',
-                    p_iva = '{item['p_iva']}',
-                    indirizzo = '{item['indirizzo']}',
-                    cap = '{item['cap']}',
-                    iban = '{item['iban']}',
-                    telefono = '{item['telefono']}',
-                    email = '{item['email']}',
-                    pec = '{item['pec']}',
-                    fax = '{item['fax']}'
+                    id_cliente = '{item.id_cliente}',
+                    nome = '{item.nome}',
+                    p_iva = '{item.p_iva}',
+                    indirizzo = '{item.indirizzo}',
+                    cap = '{item.cap}',
+                    iban = '{item.iban}',
+                    telefono = '{item.telefono}',
+                    email = '{item.email}',
+                    pec = '{item.pec}',
+                    fax = '{item.fax}'
                     WHERE id_cliente = '{id}'
                     """)
         MySql.closeConnectionCommit()
 
     @classmethod
-    def create_new(cls, item):
+    def create_new(cls, item : Client):
         MySql.openConnection()
         MySql.query(f"""
                     INSERT INTO cliente
@@ -61,15 +62,15 @@ class Client_dao:
                      pec,
                      fax)
                     VALUES
-                    ('{item['id_cliente']}',
-                     '{item['nome']}',
-                     '{item['p_iva']}',
-                     '{item['indirizzo']}',
-                     '{item['cap']}',
-                     '{item['iban']}',
-                     '{item['telefono']}',
-                     '{item['email']}',
-                     '{item['pec']}',
-                     '{item['fax']}')
+                    ('{item.id_cliente}',
+                     '{item.nome}',
+                     '{item.p_iva}',
+                     '{item.indirizzo}',
+                     '{item.cap}',
+                     '{item.iban}',
+                     '{item.telefono}',
+                     '{item.email}',
+                     '{item.pec}',
+                     '{item.fax}')
                     """)
         MySql.closeConnectionCommit()

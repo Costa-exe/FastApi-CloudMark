@@ -16,10 +16,8 @@ async def delete_client(client_id: str):
 
 @router.post("/add")
 async def add_client(client : Client):
-    client_dict = client.dict()
-    return Service.create_new_client(client_dict)
+    return Service.create_new_client(client)
 
 @router.put("/update")
 async def update_client(client_id : str, new_data : Client):
-    new_data_dict = new_data.dict()
-    return Service.update_client(client_id, new_data_dict)
+    return Service.update_client(client_id, new_data)

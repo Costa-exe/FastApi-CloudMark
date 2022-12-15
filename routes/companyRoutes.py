@@ -16,10 +16,8 @@ async def delete_company(company_id: str):
 
 @router.post("/add")
 async def add_company(company : Company):
-    company_dict = company.dict()
-    return Service.create_new_company(company_dict)
+    return Service.create_new_company(company)
 
 @router.put("/update")
 async def update_company(company_id : str, new_data : Company):
-    new_data_dict = new_data.dict()
-    return Service.update_company(company_id, new_data_dict)
+    return Service.update_company(company_id, new_data)
