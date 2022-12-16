@@ -60,7 +60,7 @@ class EmployeeDao:
                      id_tipo_contratto
                      )
                     VALUES
-                    ('{item.id_cliente}',
+                    ('{item.id_dipendente}',
                      '{item.nome}',
                      '{item.cognome}',
                      '{item.cf}',
