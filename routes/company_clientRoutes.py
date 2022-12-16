@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from services.service import Service
 from models.company_clientModel import Company_Client
 
@@ -6,6 +6,8 @@ router = APIRouter(prefix="/companies_clients", tags=["Companies_Clients API"])
 
 @router.get("")
 async def get_companies_clients():
+    if Service.get_all_company_client_service() == []:
+        raise HTTPException(status_code=404, detail=f"No Items Found")
     return Service.get_all_company_client_service()
 
 @router.get("/getById")

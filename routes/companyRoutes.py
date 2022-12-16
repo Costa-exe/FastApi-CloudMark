@@ -6,18 +6,18 @@ router = APIRouter(prefix="/companies", tags=["Companies API"])
 
 @router.get("")
 async def get_companies(company_id : str | None = None):
+    if company_id:
+        if Service.get_company_by_id_service(company_id) == None:
+            raise HTTPException(status_code=404, detail=f"Item with key 'id_azienda'='{company_id}' not found")
+    else:
+        if Service.get_all_companies_service() == []:
+            raise HTTPException(status_code=404, detail=f"No Items Found")
+    try:
         if company_id:
-            if Service.get_company_by_id_service(company_id) == None:
-                raise HTTPException(status_code=404, detail=f"Item with key 'id_azienda'='{company_id}' not found")
-        else:
-            if Service.get_all_companies_service() == []:
-                raise HTTPException(status_code=404, detail=f"No Items Found")
-        try:
-            if company_id:
-                return Service.get_company_by_id_service(company_id)
-            return Service.get_all_companies_service()
-        except Exception as e:
-            raise HTTPException(status_code=500, detail=e.msg)
+            return Service.get_company_by_id_service(company_id)
+        return Service.get_all_companies_service()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=e.msg)
 
 @router.delete("/delete")
 async def delete_company(company_id: str):
