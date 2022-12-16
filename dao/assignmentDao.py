@@ -12,9 +12,9 @@ class AssignmentDao:
         return res
     
     @classmethod
-    def find_by_id(cls, id_commessa: str):
+    def find_by_id(cls, id: str):
         MySql.open_connection()
-        MySql.query(f"SELECT * FROM commessa WHERE id_commessa = '{id_commessa}'")
+        MySql.query(f"SELECT * FROM commessa WHERE id_commessa = '{id}'")
         res = MySql.get_result()
         MySql.close_connection()
         return res
@@ -29,17 +29,17 @@ class AssignmentDao:
         MySql.close_connection_commit()
 
     @classmethod
-    def update(cls, id_commessa: str , Assignment: Assignment):
+    def update_by_id(cls, id: str , Assignment: Assignment):
         MySql.open_connection()
         MySql.query(
             f"UPDATE commessa SET descrizione = '{Assignment.descrizione}', id_cliente = '{Assignment.id_cliente}', id_azienda = '{Assignment.id_azienda}', data_inizio = '{Assignment.data_inizio}', data_fine = '{Assignment.data_fine}' \
-                WHERE id_commessa = '{id_commessa}'"
+                WHERE id_commessa = '{id}'"
         )
         MySql.close_connection_commit()
 
     @classmethod
-    def remove_by_id(cls, id_commessa: str):
+    def remove_by_id(cls, id: str):
         MySql.open_connection()
-        MySql.query(f"DELETE FROM commessa WHERE id_commessa = '{id_commessa}'")
+        MySql.query(f"DELETE FROM commessa WHERE id_commessa = '{id}'")
         MySql.close_connection_commit()
 

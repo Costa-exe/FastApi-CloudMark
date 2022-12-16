@@ -18,13 +18,14 @@ class AssignmentDto:
         return res
 
     @classmethod
-    def post(cls, Assignment: Assignment):
-        AssignmentDao.create(Assignment)
+    def post(cls, item: Assignment):
+        AssignmentDao.create(item)
 
     @classmethod
-    def put(cls, id_commessa: str, Assignment: Assignment):
-        AssignmentDao.update(id_commessa, Assignment)
+    def put(cls, id_commessa: str, item: Assignment):
+        AssignmentDao.update_by_id(id_commessa, item)
 
     @classmethod
     def delete(cls, id_commessa: str):
         AssignmentDao.remove_by_id(id_commessa)
+

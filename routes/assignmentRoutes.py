@@ -6,45 +6,47 @@ from models.assignment import Assignment
 router = APIRouter(prefix="/assignment", tags=["assignment"])
 
 @router.get("")
-async def get_all_assignments():
-    req = Service.get_all_assignments_service()
-    if req != None:
-        return req
-    elif req == None:
-        raise HTTPException(status_code=404, detail="No assignments found")
-    raise HTTPException(status_code=500 , detail="Something went wrong from our side, please try again later")
-
-@router.get("/{id_commessa}")
-async def get_assignment_by_id(id_commessa: str):
-    req = Service.get_assignment_by_id_service(id_commessa)
-    if req != None:
-        return req
-    elif req == None:
-        raise HTTPException(status_code=404, detail="Assignment not found")
-    raise HTTPException(status_code=500 , detail="Something went wrong from our side, please try again later")
-
-@router.post("")
-async def post_assignment(Assignment: Assignment):
-    Service.post_assignment_service(Assignment)
-    raise HTTPException(status_code=201, detail="Assignment created")
+async def get_assignments(id_commessa : str | None = None):
+    if id_commessa:
+        if Service.get_assignment_by_id_service(id_commessa) == None:
+            raise HTTPException(status_code=404, detail=f"Assignment with id: {id_commessa} not found")
+    else:
+        if Service.get_all_assignments_service() == []:
+            raise HTTPException(status_code=404, detail=f"No Assignments found")
+    try:
+        if id_commessa:
+            return Service.get_assignment_by_id_service(id_commessa)
+        return Service.get_all_assignments_service()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=e.msg)
     
+@router.post("")
+async def post_assignment(assignment : Assignment):
+    try:
+        Service.post_assignment_service(assignment)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=e.msg)
+    raise HTTPException(status_code=201, detail="Assignment Created Successfully")
 
-@router.put("/{id_commessa}")
-async def put_assignment(id_commessa: str, Assignment: Assignment):
-    req = Service.put_assignment_service(id_commessa, Assignment)
-    if  Assignment.id_commessa == id_commessa:
-        req
-        raise HTTPException(status_code=201, detail="Assignment updated")
-    elif req == None:
-        raise HTTPException(status_code=404, detail="Assignment not found")
-    raise HTTPException(status_code=500 , detail="Something went wrong from our side, please try again later")
+@router.put("")
+async def put_assignment(id_commessa : str, assignment : Assignment):
+    if Service.get_assignment_by_id_service(id_commessa) == None:
+        raise HTTPException(status_code=404, detail=f"Item with key 'id_commessa'='{id_commessa}' not found")
+    try:
+        Service.put_assignment_service(id_commessa, assignment)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=e.msg)
+    raise HTTPException(status_code=201, detail="Assignment Updated Successfully")
 
-@router.delete("/{id_commessa}")
+@router.delete("")
 async def delete_assignment(id_commessa: str):
-    req = Service.delete_assignment_service(id_commessa)
-    if id_commessa == id_commessa:
-        req
-        raise HTTPException(status_code=201, detail="Assignment deleted")
-    elif req == None:
-        raise HTTPException(status_code=404, detail="Assignment not found")
-    raise HTTPException(status_code=500 , detail="Something went wrong from our side, please try again later")
+    if Service.get_assignment_by_id_service(id_commessa) == None:
+        raise HTTPException(status_code=404, detail=f"Item with key 'id_commessa'='{id_commessa}' not found")
+    try:
+        Service.delete_assignment_service(id_commessa)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=e.msg)
+    raise HTTPException(status_code=201, detail="Assignment Deleted Successfully")
+
+
+
