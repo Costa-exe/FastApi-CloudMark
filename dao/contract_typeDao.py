@@ -1,4 +1,5 @@
 from utils.db import MySql
+from models.contract_typeModel import ContractType
 
 class Contract_typeDao:
     
@@ -11,7 +12,7 @@ class Contract_typeDao:
         return results
 
     @classmethod
-    def findById(cls, id_tipo_contratto):
+    def findById(cls, id_tipo_contratto :str):
         MySql.openConnection()
         MySql.query(f"SELECT * FROM tipo_contratto WHERE id_tipo_contratto = '{id_tipo_contratto}'")
         results = MySql.getResults()
@@ -19,7 +20,7 @@ class Contract_typeDao:
         return results
 
     @classmethod
-    def findByName(cls, nome_tipo_contratto):
+    def findByName(cls, nome_tipo_contratto : str):
         MySql.openConnection()
         MySql.query(f"SELECT * FROM tipo_contratto WHERE nome_tipo_contratto = '{nome_tipo_contratto}'")
         results = MySql.getResults()
@@ -27,45 +28,45 @@ class Contract_typeDao:
         return results
 
     @classmethod
-    def removeById(cls, id_tipo_contratto):
+    def removeById(cls, id_tipo_contratto : str):
         MySql.openConnection()
         MySql.query(f"DELETE FROM tipo_contratto WHERE id_tipo_contratto = '{id_tipo_contratto}'")
         MySql.closeConnectionCommit()
 
     @classmethod
-    def removeByName(cls, nome_tipo_contratto):
+    def removeByName(cls, nome_tipo_contratto : str):
         MySql.openConnection()
         MySql.query(f"DELETE FROM tipo_contratto WHERE nome_tipo_contratto = '{nome_tipo_contratto}'")
         MySql.closeConnectionCommit()
 
     @classmethod
-    def updateById(cls, id_tipo_contratto, item):
+    def updateById(cls, id_tipo_contratto : str, item : ContractType):
         MySql.openConnection()
         MySql.query(f"""
                     UPDATE tipo_contratto
                     SET
-                    id_tipo_contratto = '{item['id_tipo_contratto']}',
-                    nome_tipo_contratto = '{item['nome_tipo_contratto']}',
-                    descrizione = '{item['descrizione']}'
+                    id_tipo_contratto = '{item.id_tipo_contratto}',
+                    nome_tipo_contratto = '{item.nome_tipo_contratto}',
+                    descrizione = '{item.descrizione}'
                     WHERE id_tipo_contratto = '{id_tipo_contratto}'
                     """)
         MySql.closeConnectionCommit()
 
     @classmethod
-    def updateByName(cls, nome_tipo_contratto, item):
+    def updateByName(cls, nome_tipo_contratto : str, item : ContractType):
         MySql.openConnection()
         MySql.query(f"""
                     UPDATE tipo_contratto
                     SET
-                    id_tipo_contratto = '{item['id_tipo_contratto']}',
-                    nome_tipo_contratto = '{item['nome_tipo_contratto']}',
-                    descrizione = '{item['descrizione']}'
+                    id_tipo_contratto = '{item.id_tipo_contratto}',
+                    nome_tipo_contratto = '{item.nome_tipo_contratto}',
+                    descrizione = '{item.descrizione}'
                     WHERE id_tipo_contratto = '{nome_tipo_contratto}'
                     """)
         MySql.closeConnectionCommit()        
 
     @classmethod
-    def createNew(cls, item):
+    def createNew(cls, item : ContractType):
         MySql.openConnection()
         MySql.query(f"""
                     INSERT INTO tipo_contratto
@@ -74,9 +75,9 @@ class Contract_typeDao:
                      nome_tipo_contratto,
                      descrizione
                     VALUES
-                    ('{item['id_tipo_contratto']}',
-                     '{item['nome_tipo_contratto']}',
-                     '{item['descrizione']}')
+                    ('{item.id_tipo_contratto}',
+                     '{item.nome_tipo_contratto}',
+                     '{item.descrizione}')
                     """)
         MySql.closeConnectionCommit()
     

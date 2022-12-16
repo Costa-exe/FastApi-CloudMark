@@ -1,4 +1,5 @@
 from utils.db import MySql
+from models.employee_companyModel import EmployeeCompany
 
 class EmployeeCompanyDao:
     
@@ -11,7 +12,7 @@ class EmployeeCompanyDao:
         return results
 
     @classmethod
-    def findEmployeeId(cls, id_dipendente):
+    def findEmployeeId(cls, id_dipendente :str):
         MySql.openConnection()
         MySql.query(f"SELECT * FROM dipendente_azienda WHERE id_dipendente = '{id_dipendente}'")
         results = MySql.getResults()
@@ -19,7 +20,7 @@ class EmployeeCompanyDao:
         return results
 
     @classmethod
-    def findCompanyId(cls, id_azienda):
+    def findCompanyId(cls, id_azienda :str):
         MySql.openConnection()
         MySql.query(f"SELECT * FROM dipendente_azienda WHERE id_azienda = '{id_azienda}'")
         results = MySql.getResults()
@@ -27,49 +28,49 @@ class EmployeeCompanyDao:
         return results
 
     @classmethod
-    def removeByEmployeeId(cls, id_dipendente):
+    def removeByEmployeeId(cls, id_dipendente :str):
         MySql.openConnection()
         MySql.query(f"DELETE FROM dipendente_azienda WHERE id_dipendente = '{id_dipendente}'")
         MySql.closeConnectionCommit()
 
     @classmethod
-    def removeByCompanyId(cls, id_azienda):
+    def removeByCompanyId(cls, id_azienda :str):
         MySql.openConnection()
         MySql.query(f"DELETE FROM dipendente_azienda WHERE id_azienda = '{id_azienda}'")
         MySql.closeConnectionCommit()
 
     @classmethod
-    def updateByEmployeeId(cls, id_dipendente, item):
+    def updateByEmployeeId(cls, id_dipendente :str, item : EmployeeCompany):
         MySql.openConnection()
         MySql.query(f"""
                     UPDATE dipendente_azienda
                     SET
-                    id_dipendente = '{item['id_dipendente']}',
-                    id_azienda = '{item['id_azienda']}',
-                    data_inizio_rapporto = '{item['data_inizio_rapporto']}',
-                    matricola = '{item['matricola']}',
-                    data_fine_rapporto = '{item['data_fine_rapporto']}'
+                    id_dipendente = '{item.id_dipendente}',
+                    id_azienda = '{item.id_azienda}',
+                    data_inizio_rapporto = '{item.data_inizio_rapporto}',
+                    matricola = '{item.matricola}',
+                    data_fine_rapporto = '{item.data_fine_rapporto}'
                     WHERE id_dipendente = '{id_dipendente}'
                     """)
         MySql.closeConnectionCommit()
 
     @classmethod
-    def updateByCompanyId(cls, id_azienda, item):
+    def updateByCompanyId(cls, id_azienda :str, item : EmployeeCompany):
         MySql.openConnection()
         MySql.query(f"""
                     UPDATE dipendente_azienda
                     SET
-                    id_dipendente = '{item['id_dipendente']}',
-                    id_azienda = '{item['id_azienda']}',
-                    data_inizio_rapporto = '{item['data_inizio_rapporto']}',
-                    matricola = '{item['matricola']}',
-                    data_fine_rapporto = '{item['data_fine_rapporto']}'
+                    id_dipendente = '{item.id_dipendente}',
+                    id_azienda = '{item.id_azienda}',
+                    data_inizio_rapporto = '{item.data_inizio_rapporto}',
+                    matricola = '{item.matricola}',
+                    data_fine_rapporto = '{item.data_fine_rapporto}'
                     WHERE id_azienda = '{id_azienda}'
                     """)
         MySql.closeConnectionCommit()        
 
     @classmethod
-    def createNew(cls, item):
+    def createNew(cls, item : EmployeeCompany):
         MySql.openConnection()
         MySql.query(f"""
                     INSERT INTO dipendente_azienda
@@ -80,11 +81,11 @@ class EmployeeCompanyDao:
                      matricola,
                      data_fine_rapporto
                     VALUES
-                    ('{item['id_dipendente']}',
-                     '{item['id_azienda']}',
-                     '{item['data_inizio_rapporto']}',
-                     '{item['matricola']}',
-                     '{item['data_fine_rapporto']}')
+                    ('{item.id_dipendente}',
+                     '{item.id_azienda}',
+                     '{item.data_inizio_rapporto}',
+                     '{item.matricola}',
+                     '{item.data_fine_rapporto}')
                     """)
         MySql.closeConnectionCommit()
     
