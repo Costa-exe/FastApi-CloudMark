@@ -19,7 +19,7 @@ async def get_companies(company_id : str | None = None):
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
 
-@router.delete("/delete")
+@router.delete("")
 async def delete_company(company_id: str):
     if Service.get_company_by_id_service(company_id) == None:
         raise HTTPException(status_code=404, detail=f"Item with key 'id_azienda'='{company_id}' not found")
@@ -29,7 +29,7 @@ async def delete_company(company_id: str):
         raise HTTPException(status_code=500, detail=e.msg)
     raise HTTPException(status_code=201, detail="Item Deleted Successfully")
 
-@router.post("/add")
+@router.post("")
 async def add_company(company : Company):
     try:
         Service.create_new_company(company)
@@ -37,7 +37,7 @@ async def add_company(company : Company):
         raise HTTPException(status_code=500, detail=e.msg)
     raise HTTPException(status_code=201, detail="Item Added Successfully")
 
-@router.put("/update")
+@router.put("")
 async def update_company(company_id : str, new_data : Company):
     if Service.get_company_by_id_service(company_id) == None:
         raise HTTPException(status_code=404, detail=f"Item with key 'id_azienda'='{company_id}' not found")

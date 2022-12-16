@@ -19,7 +19,7 @@ async def get_clients(client_id : str | None = None):
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
 
-@router.delete("/delete")
+@router.delete("")
 async def delete_client(client_id: str):
     if Service.get_client_by_id_service(client_id) == None:
         raise HTTPException(status_code=404, detail=f"Item with key 'id_cliente'='{client_id}' not found")
@@ -29,7 +29,7 @@ async def delete_client(client_id: str):
         raise HTTPException(status_code=500, detail=e.msg)
     raise HTTPException(status_code=201, detail="Item Deleted Successfully")
 
-@router.post("/add")
+@router.post("")
 async def add_client(client : Client):
     try:
         Service.create_new_client(client)
@@ -37,7 +37,7 @@ async def add_client(client : Client):
         raise HTTPException(status_code=500, detail=e.msg)
     raise HTTPException(status_code=201, detail="Item Added Successfully")
 
-@router.put("/update")
+@router.put("")
 async def update_client(client_id : str, new_data : Client):
     if Service.get_client_by_id_service(client_id) == None:
         raise HTTPException(status_code=404, detail=f"Item with key 'id_cliente'='{client_id}' not found")

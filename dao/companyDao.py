@@ -1,33 +1,33 @@
 from utils.db import MySql
 from models.companyModel import Company
 
-class Company_dao:
+class CompanyDao:
 
     @classmethod
     def find_all(cls):
-        MySql.openConnection()
+        MySql.open_connection()
         MySql.query("SELECT * FROM azienda")
-        results = MySql.getResults()
-        MySql.closeConnection()
+        results = MySql.get_results()
+        MySql.close_connection()
         return results
 
     @classmethod
     def find_by_id(cls, id : str):
-        MySql.openConnection()
+        MySql.open_connection()
         MySql.query(f"SELECT * FROM azienda WHERE id_azienda = '{id}'")
-        results = MySql.getResult()
-        MySql.closeConnection()
+        results = MySql.get_result()
+        MySql.close_connection()
         return results
 
     @classmethod
     def remove_by_id(cls, id : str):
-        MySql.openConnection()
+        MySql.open_connection()
         MySql.query(f"DELETE FROM azienda WHERE id_azienda = '{id}'")
-        MySql.closeConnectionCommit()
+        MySql.close_connectionCommit()
 
     @classmethod
     def update_by_id(cls, id : str, item : Company):
-        MySql.openConnection()
+        MySql.open_connection()
         MySql.query(f"""
                     UPDATE azienda
                     SET
@@ -43,11 +43,11 @@ class Company_dao:
                     fax = '{item.fax}'
                     WHERE id_azienda = '{id}'
                     """)
-        MySql.closeConnectionCommit()
+        MySql.close_connectionCommit()
 
     @classmethod
-    def create_new(cls, item : Company):
-        MySql.openConnection()
+    def create(cls, item : Company):
+        MySql.open_connection()
         MySql.query(f"""
                     INSERT INTO azienda
                     (
@@ -73,5 +73,5 @@ class Company_dao:
                      '{item.pec}',
                      '{item.fax}')
                     """)
-        MySql.closeConnectionCommit()
+        MySql.close_connectionCommit()
     

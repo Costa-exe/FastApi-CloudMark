@@ -1,6 +1,6 @@
 from pydantic import BaseModel, validator
 
-class Company_Client(BaseModel):
+class CompanyClient(BaseModel):
 
     id_azienda : str
     id_cliente : str

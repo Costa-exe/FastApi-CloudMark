@@ -1,6 +1,9 @@
-from dto.companyDto import Company_dto
-from dto.clientDto import Client_dto
-from dto.company_clientDto import Company_Client_dto
+from dto.companyDto import CompanyDto
+from dto.clientDto import ClientDto
+from dto.companyClientDto import CompanyClientDto
+from models.clientModel import Client
+from models.companyModel import Company
+from models.companyClientModel import CompanyClient
 
 class Service:
 
@@ -8,79 +11,79 @@ class Service:
 
     @classmethod
     def get_all_companies_service(cls):
-        return Company_dto.get_all()
+        return CompanyDto.get_all()
 
     @classmethod
     def get_company_by_id_service(cls, id : str):
-        return Company_dto.get_by_id(id)
+        return CompanyDto.get_by_id(id)
 
     @classmethod
-    def delete_company_by_id_service(cls, id: str):
-        return Company_dto.delete_by_id(id)
+    def delete_company_by_id_service(cls, id : str):
+        return CompanyDto.delete(id)
 
     @classmethod
-    def create_new_company(cls, item):
-        return Company_dto.post(item)
+    def create_new_company(cls, item : Company):
+        return CompanyDto.post(item)
 
     @classmethod
-    def update_company(cls, id, item):
-        return Company_dto.put(id, item)
+    def update_company(cls, id : str, item : Company):
+        return CompanyDto.put(id, item)
 
     #clients services    
 
     @classmethod
     def get_all_clients_service(cls):
-        return Client_dto.get_all()
+        return ClientDto.get_all()
 
     @classmethod
     def get_client_by_id_service(cls, id : str):
-        return Client_dto.get_by_id(id)
+        return ClientDto.get_by_id(id)
 
     @classmethod
-    def delete_client_by_id_service(cls, id: str):
-        return Client_dto.delete_by_id(id)
+    def delete_client_by_id_service(cls, id : str):
+        return ClientDto.delete(id)
 
     @classmethod
-    def create_new_client(cls, item):
-        return Client_dto.post(item)
+    def create_new_client(cls, item : Client):
+        return ClientDto.post(item)
 
     @classmethod
-    def update_client(cls, id, item):
-        return Client_dto.put(id, item)
+    def update_client(cls, id : str, item : Client):
+        return ClientDto.put(id, item)
 
     #company_client services
 
     @classmethod
     def get_all_company_client_service(cls):
-        return Company_Client_dto.get_all()
+        return CompanyClientDto.get_all()
 
     @classmethod
     def get_company_client_by_client_id_service(cls, id : str):
-        return Company_Client_dto.get_by_client_id(id)
+        return CompanyClientDto.get_by_client_id(id)
 
     @classmethod
     def get_company_client_by_company_id_service(cls, id : str):
-        return Company_Client_dto.get_by_company_id(id)
+        return CompanyClientDto.get_by_company_id(id)
 
     @classmethod
     def delete_company_client_by_client_id_service(cls, id: str):
-        return Company_Client_dto.delete_by_client_id(id)
+        return CompanyClientDto.delete_by_client_id(id)
 
     @classmethod
-    def delete_company_client_by_company_id_service(cls, id: str):
-        return Company_Client_dto.delete_by_company_id(id)
+    def delete_company_client_by_company_id_service(cls, id : str):
+        return CompanyClientDto.delete_by_company_id(id)
 
     @classmethod
-    def create_new_company_client(cls, item):
-        return Company_Client_dto.post(item)
+    def create_new_company_client(cls, item : CompanyClient):
+        return CompanyClientDto.post(item)
 
     @classmethod
-    def update_company_client_by_client_id(cls, id, item):
-        return Company_Client_dto.put_by_client_id(id, item)
+    def update_company_client_by_client_id(cls, id : str, item : CompanyClient):
+        return CompanyClientDto.put_by_client_id(id, item)
     
     @classmethod
-    def update_company_client_by_company_id(cls, id, item):
-        return Company_Client_dto.put_by_company_id(id, item)
+    def update_company_client_by_company_id(cls, id : str, item : CompanyClient):
+        return CompanyClientDto.put_by_company_id(id, item)
 
 
     

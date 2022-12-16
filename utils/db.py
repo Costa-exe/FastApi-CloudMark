@@ -6,13 +6,13 @@ from pathlib import Path
 class MySql:
 
   @classmethod
-  def openConnection(cls):
+  def open_connection(cls):
     config = json.loads(Path(r"utils\info.json").read_text())
     try:
       cls.conn =  mysql.connect(**config)
       cls.cursor = cls.conn.cursor(dictionary=True)
     except mysql.Error as er:
-      print("Connessione fallita...")
+      print("Connection failed...")
     finally:
       return cls.conn.cursor()
   
@@ -21,20 +21,20 @@ class MySql:
     cls.cursor.execute(string)
 
   @classmethod
-  def getResult(cls):
+  def get_result(cls):
     return cls.cursor.fetchone()
 
   @classmethod
-  def getResults(cls):
+  def get_results(cls):
     return cls.cursor.fetchall()
 
   @classmethod
-  def closeConnection(cls):
+  def close_connection(cls):
     cls.cursor.close()
     cls.conn.close()
 
   @classmethod
-  def closeConnectionCommit(cls):
+  def close_connectionCommit(cls):
     cls.cursor.close()
     cls.conn.commit()
     cls.conn.close()
