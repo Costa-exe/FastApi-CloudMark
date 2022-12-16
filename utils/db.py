@@ -10,7 +10,7 @@ class MySql:
     config = json.loads(Path(r"utils\info.json").read_text())
     try:
       cls.conn =  mysql.connect(**config)
-      cls.cursor = cls.conn.cursor()
+      cls.cursor = cls.conn.cursor(dictionary=True)
     except mysql.Error as er:
       print("Connessione fallita...")
     finally:
@@ -19,6 +19,10 @@ class MySql:
   @classmethod
   def query(cls, string):
     cls.cursor.execute(string)
+
+  @classmethod
+  def getResult(cls):
+    return cls.cursor.fetchone()
 
   @classmethod
   def getResults(cls):
@@ -30,7 +34,7 @@ class MySql:
     cls.conn.close()
 
   @classmethod
-  def closeConnectionInsert(cls):
+  def closeConnectionCommit(cls):
     cls.cursor.close()
     cls.conn.commit()
     cls.conn.close()

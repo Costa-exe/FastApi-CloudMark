@@ -1,7 +1,7 @@
 from utils.db import MySql
 from models.contract_typeModel import ContractType
 
-class Contract_typeDao:
+class ContractTypeDao:
     
     @classmethod
     def findAll(cls):

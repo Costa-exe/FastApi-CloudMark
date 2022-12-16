@@ -8,18 +8,18 @@ class EmployeeCompanyDto:
         EmployeeCompany = []
         results = EmployeeCompanyDao.findAllEmployee_company()
         for result in results:
-                EmployeeCompany.append(EmployeeCompany(**result))
+                EmployeeCompany.append(result)
         return EmployeeCompany
 
     @classmethod
     def getEmployeeId(cls, id_dipendente : str):
         result = EmployeeCompanyDao.findEmployeeId(id_dipendente)
-        return EmployeeCompany(**result[0])
+        return result
 
     @classmethod
     def getCompanyId(cls, id_azienda : str):
         result = EmployeeCompanyDao.findEmployeeId(id_azienda)
-        return EmployeeCompany(**result[0])    
+        return result
 
     @classmethod
     def DeleteById(cls, id_dipendente : str):
@@ -30,15 +30,15 @@ class EmployeeCompanyDto:
         return EmployeeCompanyDao.removeByCompanyId(id_azienda)
 
     @classmethod
-    def put(cls, id_dipendente, item):
+    def put(cls, id_dipendente :str, item : EmployeeCompany):
         return EmployeeCompanyDao.updateByEmployeeId(id_dipendente, item)
 
     @classmethod
-    def put(cls, id_azienda, item):
+    def put(cls, id_azienda :str , item : EmployeeCompany):
         return EmployeeCompanyDao.updateByCompanyId(id_azienda, item)
 
     @classmethod
-    def post(cls, item):
+    def post(cls, item : EmployeeCompany):
         return EmployeeCompanyDao.createNew(item)    
 
 
