@@ -41,12 +41,12 @@ class Service:
         return EmployeeCompanyDto.getCompanyId(id_azienda)    
 
     @classmethod
-    def DeleteById(cls, id_dipendente: str):
-        return EmployeeCompanyDto.DeleteById(id_dipendente)
+    def DeleteByEmployeeId(cls, id_dipendente: str):
+        return EmployeeCompanyDto.DeleteByEmployeeId(id_dipendente)
 
     @classmethod
-    def DeleteByName(cls, id_azienda: str):
-        return EmployeeCompanyDto.DeleteById(id_azienda)    
+    def DeleteByCompanyId(cls, id_azienda: str):
+        return EmployeeCompanyDto.DeleteByCompanyId(id_azienda)    
 
     @classmethod
     def updateByEmployeeId(cls, id_dipendente, item):
@@ -81,7 +81,7 @@ class Service:
 
     @classmethod
     def DeleteByName(cls, nome_tipo_contratto: str):
-        return ContractTypeDto.DeleteById(nome_tipo_contratto)    
+        return ContractTypeDto.DeleteByName(nome_tipo_contratto)    
 
     @classmethod
     def updateById(cls, id_tipo_contratto, item):

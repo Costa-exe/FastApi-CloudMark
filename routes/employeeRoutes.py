@@ -30,9 +30,9 @@ async def delete_employee(employee_id: str):
     raise HTTPException(status_code=201, detail="Item Deleted Successfully")
 
 @router.post("")
-async def add_employee(employee : Employee):
+async def add_employee(employee_id : Employee):
     try:
-        Service.createNew(employee)
+        Service.createNew(employee_id)
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
     raise HTTPException(status_code=201, detail="Item Added Successfully")

@@ -22,11 +22,11 @@ class EmployeeCompanyDto:
         return result
 
     @classmethod
-    def DeleteById(cls, id_dipendente : str):
+    def DeleteByEmployeeId(cls, id_dipendente : str):
         return EmployeeCompanyDao.removeByEmployeeId(id_dipendente)
 
     @classmethod
-    def DeleteById(cls, id_azienda : str):
+    def DeleteByCompanyId(cls, id_azienda : str):
         return EmployeeCompanyDao.removeByCompanyId(id_azienda)
 
     @classmethod
