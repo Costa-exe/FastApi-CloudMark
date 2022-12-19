@@ -32,15 +32,15 @@ class ClientDao:
                     UPDATE cliente
                     SET
                     id_cliente = '{item.id_cliente}',
-                    nome = '{item.nome}',
-                    p_iva = '{item.p_iva}',
-                    indirizzo = '{item.indirizzo}',
-                    cap = '{item.cap}',
-                    iban = '{item.iban}',
-                    telefono = '{item.telefono}',
-                    email = '{item.email}',
-                    pec = '{item.pec}',
-                    fax = '{item.fax}'
+                    nome = IF('{item.nome}' = '', NULL, '{item.nome}'),
+                    p_iva = IF('{item.p_iva}' = '', NULL, '{item.p_iva}'),
+                    indirizzo = IF('{item.indirizzo}' = '', NULL, '{item.indirizzo}'),
+                    cap = IF('{item.cap}' = '', NULL, '{item.cap}'),
+                    iban = IF('{item.iban}' = '', NULL, '{item.iban}'),
+                    telefono = IF('{item.telefono}' = '', NULL, '{item.telefono}'),
+                    email = IF('{item.email}' = '', NULL, '{item.email}'),
+                    pec = IF('{item.pec}' = '', NULL, '{item.pec}'),
+                    fax = IF('{item.fax}' = '', NULL, '{item.fax}')
                     WHERE id_cliente = '{id}'
                     """)
         MySql.close_connection_commit()
@@ -63,14 +63,14 @@ class ClientDao:
                      fax)
                     VALUES
                     ('{item.id_cliente}',
-                     '{item.nome}',
-                     '{item.p_iva}',
-                     '{item.indirizzo}',
-                     '{item.cap}',
-                     '{item.iban}',
-                     '{item.telefono}',
-                     '{item.email}',
-                     '{item.pec}',
-                     '{item.fax}')
+                    IF('{item.nome}' = '', NULL, '{item.nome}'),
+                    IF('{item.p_iva}' = '', NULL, '{item.p_iva}'),
+                    IF('{item.indirizzo}' = '', NULL, '{item.indirizzo}'),
+                    IF('{item.cap}' = '', NULL, '{item.cap}'),
+                    IF('{item.iban}' = '', NULL, '{item.iban}'),
+                    IF('{item.telefono}' = '', NULL, '{item.telefono}'),
+                    IF('{item.email}' = '', NULL, '{item.email}'),
+                    IF('{item.pec}' = '', NULL, '{item.pec}'),
+                    IF('{item.fax}' = '', NULL, '{item.fax}')
                     """)
         MySql.close_connection_commit()
