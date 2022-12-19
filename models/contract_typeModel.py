@@ -1,10 +1,11 @@
 from pydantic import BaseModel, validator
+from typing import Optional
 
 class ContractType(BaseModel):
 
     id_tipo_contratto : str
     nome_tipo_contratto : str
-    descrizione : str 
+    descrizione : Optional[str] = ""
     
     @validator('id_tipo_contratto')
     def validate_id_tipo_contratto(cls, v):
@@ -21,5 +22,4 @@ class ContractType(BaseModel):
     @validator('descrizione')
     def validate_descrizione(cls, v):
         assert len(v) <= 255, "maximum length for ' descrizione' is 255 characters."
-        assert len(v) > 0, "' descrizione' must contain at least 1 character."
         return v        

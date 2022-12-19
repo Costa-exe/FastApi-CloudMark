@@ -1,14 +1,16 @@
 from pydantic import BaseModel,validator
+from typing import Optional
+
 
 class Employee(BaseModel):
 
     id_dipendente : str
-    nome : str
-    cognome : str 
+    nome : Optional [str] = ""
+    cognome : Optional [str] = "" 
     cf : str
     iban : str
-    telefono : str
-    email : str
+    telefono : Optional [str] = ""
+    email : Optional [str] = ""
     id_tipo_contratto : str
     
     @validator('id_dipendente')
@@ -20,13 +22,11 @@ class Employee(BaseModel):
     @validator('nome')
     def validate_nome(cls, v):
         assert len(v) <= 45, "maximum length for 'nome' is 45 characters."
-        assert len(v) > 0, "'nome' must contain at least 1 character."
         return v 
 
     @validator('cognome')
     def validate_cognome(cls, v):
         assert len(v) <= 45, "maximum length for 'cognome' is 45 characters."
-        assert len(v) > 0, "'cognome' must contain at least 1 character."
         return v 
 
     @validator('cf')
@@ -50,11 +50,9 @@ class Employee(BaseModel):
     @validator('email')
     def validate_email(cls, v):
         assert len(v) <= 90, "maximum length for 'email' is 90 characters."
-        assert len(v) > 0, "'email' must contain at least 1 character."
         return v 
 
     @validator('telefono')
     def validate_telefono(cls, v):
         assert len(v) <= 45, "maximum length for 'telefono' is 45 characters."
-        assert len(v) > 0, "'telefono' must contain at least 1 character."
         return v                 

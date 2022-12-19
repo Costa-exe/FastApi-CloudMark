@@ -50,14 +50,14 @@ async def delete_by_id_name(filter : str, id: str):
 
 @router.put("")
 async def put_company(filter : str , id : str, new_data : ContractType):
-    if filter == "contract_id":
+    if filter == "id":
         if Service.get_by_id(id) == None:
             raise HTTPException(status_code=404, detail=f"Item with key 'id_tipo_contratto'='{id}' not found")
         try:
             Service.update_by_id(id, new_data)
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
-    elif filter == "contract_name":
+    elif filter == "name":
         if Service.get_by_name(id) == None:
             raise HTTPException(status_code=404, detail=f"Item with key 'nome_tipo_contratto'='{id}' not found")
         try:
