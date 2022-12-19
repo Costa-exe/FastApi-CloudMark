@@ -3,7 +3,7 @@ from pydantic import BaseModel, validator
 import datetime  
 class Assignment(BaseModel):
     id_commessa: str
-    descrizione: Optional[str] = "NULL"
+    descrizione: Optional[str] = ""
     id_cliente: str
     id_azienda: str
     data_inizio: datetime.date
@@ -17,8 +17,9 @@ class Assignment(BaseModel):
     
     @validator('descrizione')
     def description(cls, v):
-        assert len(v) <= 255, 'must be less than 500 characters'
-        return v
+        if v:
+            assert len(v) <= 255, 'must be less than 500 characters'
+            return v
     
     @validator('id_cliente')
     def customer_id(cls, v):

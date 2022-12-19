@@ -9,13 +9,13 @@ class AssignmentDto:
         assignments = []
         res = AssignmentDao.find_all()
         for assignment in res:
-            assignments.append(assignment)
+            assignments.append(Assignment(**assignment))
         return assignments
 
     @classmethod
     def get_by_id(cls, id: str):
         res = AssignmentDao.find_by_id(id)
-        return res
+        return Assignment(**res)
 
     @classmethod
     def post(cls, item: Assignment):
