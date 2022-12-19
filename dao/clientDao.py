@@ -23,7 +23,7 @@ class ClientDao:
     def remove_by_id(cls, id : str):
         MySql.open_connection()
         MySql.query(f"DELETE FROM cliente WHERE id_cliente = '{id}'")
-        MySql.close_connectionCommit()
+        MySql.close_connection_commit()
 
     @classmethod
     def update_by_id(cls, id : str, item : Client):
@@ -43,7 +43,7 @@ class ClientDao:
                     fax = '{item.fax}'
                     WHERE id_cliente = '{id}'
                     """)
-        MySql.close_connectionCommit()
+        MySql.close_connection_commit()
 
     @classmethod
     def create(cls, item : Client):
@@ -73,4 +73,4 @@ class ClientDao:
                      '{item.pec}',
                      '{item.fax}')
                     """)
-        MySql.close_connectionCommit()
+        MySql.close_connection_commit()
