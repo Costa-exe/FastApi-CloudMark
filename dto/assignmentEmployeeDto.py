@@ -8,7 +8,7 @@ class AssignmentEmployeeDto:
         assignments = []
         res = AssignmentEmployeeDao.find_all()
         for assignment in res:
-            assignments.append(AssignmentEmployee(**assignment))
+            assignments.append(assignment)
         return assignments
 
     @classmethod

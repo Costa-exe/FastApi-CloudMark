@@ -1,10 +1,9 @@
 from typing import Optional
 from pydantic import BaseModel, validator
 import datetime  
-
 class Assignment(BaseModel):
     id_commessa: str
-    descrizione: Optional[str] = ""
+    descrizione: Optional[str] = "NULL"
     id_cliente: str
     id_azienda: str
     data_inizio: datetime.date
