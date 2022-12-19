@@ -4,44 +4,44 @@ from models.employee_companyModel import EmployeeCompany
 class EmployeeCompanyDao:
     
     @classmethod
-    def findAllEmployee_company(cls):
-        MySql.openConnection()
+    def find_all(cls):
+        MySql.open_connection()
         MySql.query("SELECT * FROM dipendente_azienda")
-        results = MySql.getResults()
-        MySql.closeConnection()
+        results = MySql.get_results()
+        MySql.close_connection()
         return results
 
     @classmethod
-    def findEmployeeId(cls, id_dipendente :str):
-        MySql.openConnection()
+    def find_by_employee_id(cls, id_dipendente :str):
+        MySql.open_connection()
         MySql.query(f"SELECT * FROM dipendente_azienda WHERE id_dipendente = '{id_dipendente}'")
-        results = MySql.getResults()
-        MySql.closeConnection()
+        results = MySql.get_results()
+        MySql.close_connection()
         return results
 
     @classmethod
-    def findCompanyId(cls, id_azienda :str):
-        MySql.openConnection()
+    def find_by_company_id(cls, id_azienda :str):
+        MySql.open_connection()
         MySql.query(f"SELECT * FROM dipendente_azienda WHERE id_azienda = '{id_azienda}'")
-        results = MySql.getResults()
-        MySql.closeConnection()
+        results = MySql.get_results()
+        MySql.close_connection()
         return results
 
     @classmethod
-    def removeByEmployeeId(cls, id_dipendente :str):
-        MySql.openConnection()
+    def remove_by_employee_id(cls, id_dipendente :str):
+        MySql.open_connection()
         MySql.query(f"DELETE FROM dipendente_azienda WHERE id_dipendente = '{id_dipendente}'")
-        MySql.closeConnectionCommit()
+        MySql.close_connectionCommit()
 
     @classmethod
-    def removeByCompanyId(cls, id_azienda :str):
-        MySql.openConnection()
+    def remove_by_company_id(cls, id_azienda :str):
+        MySql.open_connection()
         MySql.query(f"DELETE FROM dipendente_azienda WHERE id_azienda = '{id_azienda}'")
-        MySql.closeConnectionCommit()
+        MySql.close_connectionCommit()
 
     @classmethod
-    def updateByEmployeeId(cls, id_dipendente :str, item : EmployeeCompany):
-        MySql.openConnection()
+    def update_by_employee_id(cls, id_dipendente :str, item : EmployeeCompany):
+        MySql.open_connection()
         MySql.query(f"""
                     UPDATE dipendente_azienda
                     SET
@@ -52,11 +52,11 @@ class EmployeeCompanyDao:
                     data_fine_rapporto = '{item.data_fine_rapporto}'
                     WHERE id_dipendente = '{id_dipendente}'
                     """)
-        MySql.closeConnectionCommit()
+        MySql.close_connectionCommit()
 
     @classmethod
-    def updateByCompanyId(cls, id_azienda :str, item : EmployeeCompany):
-        MySql.openConnection()
+    def update_by_company_id(cls, id_azienda :str, item : EmployeeCompany):
+        MySql.open_connection()
         MySql.query(f"""
                     UPDATE dipendente_azienda
                     SET
@@ -67,11 +67,11 @@ class EmployeeCompanyDao:
                     data_fine_rapporto = '{item.data_fine_rapporto}'
                     WHERE id_azienda = '{id_azienda}'
                     """)
-        MySql.closeConnectionCommit()        
+        MySql.close_connectionCommit()        
 
     @classmethod
-    def createNew(cls, item : EmployeeCompany):
-        MySql.openConnection()
+    def create(cls, item : EmployeeCompany):
+        MySql.open_connection()
         MySql.query(f"""
                     INSERT INTO dipendente_azienda
                     (
@@ -87,7 +87,7 @@ class EmployeeCompanyDao:
                      '{item.matricola}',
                      '{item.data_fine_rapporto}')
                     """)
-        MySql.closeConnectionCommit()
+        MySql.close_connectionCommit()
     
 
 

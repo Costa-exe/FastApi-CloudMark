@@ -4,41 +4,41 @@ from models.employee_companyModel import EmployeeCompany
 class EmployeeCompanyDto:
 
     @classmethod
-    def getAllEmployee_company(cls):
+    def get_all(cls):
         EmployeeCompany = []
-        results = EmployeeCompanyDao.findAllEmployee_company()
+        results = EmployeeCompanyDao.find_all()
         for result in results:
                 EmployeeCompany.append(result)
         return EmployeeCompany
 
     @classmethod
-    def getEmployeeId(cls, id_dipendente : str):
-        result = EmployeeCompanyDao.findEmployeeId(id_dipendente)
+    def get_employee_id(cls, id_dipendente : str):
+        result = EmployeeCompanyDao.find_by_employee_id(id_dipendente)
         return result
 
     @classmethod
-    def getCompanyId(cls, id_azienda : str):
-        result = EmployeeCompanyDao.findEmployeeId(id_azienda)
+    def get_company_id(cls, id_azienda : str):
+        result = EmployeeCompanyDao.find_by_employee_id(id_azienda)
         return result
 
     @classmethod
-    def DeleteByEmployeeId(cls, id_dipendente : str):
-        return EmployeeCompanyDao.removeByEmployeeId(id_dipendente)
+    def delete_by_employee_id(cls, id_dipendente : str):
+        return EmployeeCompanyDao.remove_by_employee_id(id_dipendente)
 
     @classmethod
-    def DeleteByCompanyId(cls, id_azienda : str):
-        return EmployeeCompanyDao.removeByCompanyId(id_azienda)
+    def delete_by_company_id(cls, id_azienda : str):
+        return EmployeeCompanyDao.remove_by_company_id(id_azienda)
 
     @classmethod
     def put(cls, id_dipendente :str, item : EmployeeCompany):
-        return EmployeeCompanyDao.updateByEmployeeId(id_dipendente, item)
+        return EmployeeCompanyDao.update_by_employee_id(id_dipendente, item)
 
     @classmethod
     def put(cls, id_azienda :str , item : EmployeeCompany):
-        return EmployeeCompanyDao.updateByCompanyId(id_azienda, item)
+        return EmployeeCompanyDao.update_by_company_id(id_azienda, item)
 
     @classmethod
     def post(cls, item : EmployeeCompany):
-        return EmployeeCompanyDao.createNew(item)    
+        return EmployeeCompanyDao.create(item)    
 
 

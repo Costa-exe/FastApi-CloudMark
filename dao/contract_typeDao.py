@@ -4,44 +4,44 @@ from models.contract_typeModel import ContractType
 class ContractTypeDao:
     
     @classmethod
-    def findAll(cls):
-        MySql.openConnection()
+    def find_all(cls):
+        MySql.open_connection()
         MySql.query("SELECT * FROM tipo_contratto")
-        results = MySql.getResults()
-        MySql.closeConnection()
+        results = MySql.get_results()
+        MySql.close_connection()
         return results
 
     @classmethod
-    def findById(cls, id_tipo_contratto :str):
-        MySql.openConnection()
+    def find_by_id(cls, id_tipo_contratto :str):
+        MySql.open_connection()
         MySql.query(f"SELECT * FROM tipo_contratto WHERE id_tipo_contratto = '{id_tipo_contratto}'")
-        results = MySql.getResults()
-        MySql.closeConnection()
+        results = MySql.get_result()
+        MySql.close_connection()
         return results
 
     @classmethod
-    def findByName(cls, nome_tipo_contratto : str):
-        MySql.openConnection()
+    def find_by_name(cls, nome_tipo_contratto : str):
+        MySql.open_connection()
         MySql.query(f"SELECT * FROM tipo_contratto WHERE nome_tipo_contratto = '{nome_tipo_contratto}'")
-        results = MySql.getResults()
-        MySql.closeConnection()
+        results = MySql.get_result()
+        MySql.close_connection()
         return results
 
     @classmethod
-    def removeById(cls, id_tipo_contratto : str):
-        MySql.openConnection()
+    def remove_by_id(cls, id_tipo_contratto : str):
+        MySql.open_connection()
         MySql.query(f"DELETE FROM tipo_contratto WHERE id_tipo_contratto = '{id_tipo_contratto}'")
-        MySql.closeConnectionCommit()
+        MySql.close_connectionCommit()
 
     @classmethod
-    def removeByName(cls, nome_tipo_contratto : str):
-        MySql.openConnection()
+    def remove_by_name(cls, nome_tipo_contratto : str):
+        MySql.open_connection()
         MySql.query(f"DELETE FROM tipo_contratto WHERE nome_tipo_contratto = '{nome_tipo_contratto}'")
-        MySql.closeConnectionCommit()
+        MySql.close_connectionCommit()
 
     @classmethod
-    def updateById(cls, id_tipo_contratto : str, item : ContractType):
-        MySql.openConnection()
+    def update_by_id(cls, id_tipo_contratto : str, item : ContractType):
+        MySql.open_connection()
         MySql.query(f"""
                     UPDATE tipo_contratto
                     SET
@@ -50,11 +50,11 @@ class ContractTypeDao:
                     descrizione = '{item.descrizione}'
                     WHERE id_tipo_contratto = '{id_tipo_contratto}'
                     """)
-        MySql.closeConnectionCommit()
+        MySql.close_connectionCommit()
 
     @classmethod
-    def updateByName(cls, nome_tipo_contratto : str, item : ContractType):
-        MySql.openConnection()
+    def update_by_name(cls, nome_tipo_contratto : str, item : ContractType):
+        MySql.open_connection()
         MySql.query(f"""
                     UPDATE tipo_contratto
                     SET
@@ -63,11 +63,11 @@ class ContractTypeDao:
                     descrizione = '{item.descrizione}'
                     WHERE id_tipo_contratto = '{nome_tipo_contratto}'
                     """)
-        MySql.closeConnectionCommit()        
+        MySql.close_connectionCommit()        
 
     @classmethod
-    def createNew(cls, item : ContractType):
-        MySql.openConnection()
+    def create(cls, item : ContractType):
+        MySql.open_connection()
         MySql.query(f"""
                     INSERT INTO tipo_contratto
                     (
@@ -79,7 +79,7 @@ class ContractTypeDao:
                      '{item.nome_tipo_contratto}',
                      '{item.descrizione}')
                     """)
-        MySql.closeConnectionCommit()
+        MySql.close_connectionCommit()
     
 
 

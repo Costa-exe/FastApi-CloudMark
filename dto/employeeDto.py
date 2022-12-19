@@ -4,29 +4,29 @@ from models.employeeModel import Employee
 class EmployeeDto:
 
     @classmethod
-    def getAllEmployee(cls):
+    def get_all(cls):
         Employee = []
-        results = EmployeeDao.findAllEmployee()
+        results = EmployeeDao.find_all()
         for result in results:
                 Employee.append(result)
         return Employee
 
     @classmethod
-    def getById(cls, id_dipendente : str):
-        result = EmployeeDao.findById(id_dipendente)
+    def get_by_id(cls, id_dipendente : str):
+        result = EmployeeDao.find_by_id(id_dipendente)
         return result
 
     @classmethod
-    def DeleteById(cls, id_dipendente : str):
-        return EmployeeDao.removeById(id_dipendente)
+    def delete_by_id(cls, id_dipendente : str):
+        return EmployeeDao.remove_by_id(id_dipendente)
 
     @classmethod
     def post(cls, item : Employee):
-        return EmployeeDao.createNew(item)
+        return EmployeeDao.create(item)
 
     @classmethod
     def put(cls, id_dipendente :str , item : Employee):
-        return EmployeeDao.updateById(id_dipendente, item)
+        return EmployeeDao.update_by_id(id_dipendente, item)
 
 
 

@@ -5,30 +5,30 @@ class EmployeeDao:
 
 
     @classmethod
-    def findAllEmployee(cls):
-        MySql.openConnection()
+    def find_all(cls):
+        MySql.open_connection()
         MySql.query("SELECT * FROM dipendente")
-        results = MySql.getResults()
-        MySql.closeConnection()
+        results = MySql.get_results()
+        MySql.close_connection()
         return results
 
     @classmethod
-    def findById(cls, id_dipendente :str):
-        MySql.openConnection()
+    def find_by_id(cls, id_dipendente :str):
+        MySql.open_connection()
         MySql.query(f"SELECT * FROM dipendente WHERE id_dipendente = '{id_dipendente}'")
-        results = MySql.getResults()
-        MySql.closeConnection()
+        results = MySql.get_results()
+        MySql.close_connection()
         return results
 
     @classmethod
-    def removeById(cls, id_dipendente :str):
-        MySql.openConnection()
+    def remove_by_id(cls, id_dipendente :str):
+        MySql.open_connection()
         MySql.query(f"DELETE FROM dipendente WHERE id_dipendente = '{id_dipendente}'")
-        MySql.closeConnectionCommit()
+        MySql.close_connectionCommit()
 
     @classmethod
-    def updateById(cls, id_dipendente :str, item : Employee):
-        MySql.openConnection()
+    def update_by_id(cls, id_dipendente :str, item : Employee):
+        MySql.open_connection()
         MySql.query(f"""
                     UPDATE cliente
                     SET
@@ -42,11 +42,11 @@ class EmployeeDao:
                     id_tipo_contratto = '{item.id_tipo_contratto}'
                     WHERE id_cliente = '{id_dipendente}'
                     """)
-        MySql.closeConnectionCommit()
+        MySql.close_connectionCommit()
 
     @classmethod
-    def createNew(cls, item : Employee):
-        MySql.openConnection()
+    def create(cls, item : Employee):
+        MySql.open_connection()
         MySql.query(f"""
                     INSERT INTO dipendente
                     (
@@ -69,6 +69,6 @@ class EmployeeDao:
                      '{item.email}',
                      '{item.id_tipo_contratto}')
                     """)
-        MySql.closeConnectionCommit()
+        MySql.close_connectionCommit()
 
     
