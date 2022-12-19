@@ -8,13 +8,13 @@ class ClientDto:
         clients = []
         results = ClientDao.find_all()
         for result in results:
-                clients.append(result)
+                clients.append(Client(**result))
         return clients
 
     @classmethod
     def get_by_id(cls, id : str):
         result = ClientDao.find_by_id(id)
-        return result
+        return Client(**result)
 
     @classmethod
     def delete(cls, id : str):
