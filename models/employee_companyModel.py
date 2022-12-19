@@ -1,12 +1,13 @@
 from pydantic import BaseModel, validator
+import datetime  
 
 class EmployeeCompany(BaseModel):
 
     id_dipendente : str
     id_azienda : str
-    data_inizio_rapporto : str 
+    data_inizio_rapporto : datetime.date
     matricola : str
-    data_fine_rapporto: str
+    data_fine_rapporto: datetime.date
     
     @validator('id_dipendente')
     def validate_id_dipendente(cls, v):
