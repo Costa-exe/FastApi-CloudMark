@@ -13,8 +13,8 @@ class AssignmentDto:
         return assignments
 
     @classmethod
-    def get_by_id(cls, id_commessa: str):
-        res = AssignmentDao.find_by_id(id_commessa)
+    def get_by_id(cls, id: str):
+        res = AssignmentDao.find_by_id(id)
         return res
 
     @classmethod
@@ -22,10 +22,10 @@ class AssignmentDto:
         AssignmentDao.create(item)
 
     @classmethod
-    def put(cls, id_commessa: str, item: Assignment):
-        AssignmentDao.update_by_id(id_commessa, item)
+    def put(cls, id: str, item: Assignment):
+        AssignmentDao.update_by_id(id, item)
 
     @classmethod
-    def delete(cls, id_commessa: str):
-        AssignmentDao.remove_by_id(id_commessa)
+    def delete(cls, id: str):
+        AssignmentDao.remove_by_id(id)
 

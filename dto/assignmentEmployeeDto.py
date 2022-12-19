@@ -12,13 +12,13 @@ class AssignmentEmployeeDto:
         return assignments
 
     @classmethod
-    def get_by_assignment_id(cls, id_commessa: str):
-        res = AssignmentEmployeeDao.find_by_assignment_id(id_commessa)
+    def get_by_assignment_id(cls, id: str):
+        res = AssignmentEmployeeDao.find_by_assignment_id(id)
         return res
     
     @classmethod
-    def get_by_employee_id(cls, id_dipendente: str):
-        res = AssignmentEmployeeDao.find_by_employee_id(id_dipendente)
+    def get_by_employee_id(cls, id: str):
+        res = AssignmentEmployeeDao.find_by_employee_id(id)
         return res
 
     @classmethod
@@ -26,17 +26,17 @@ class AssignmentEmployeeDto:
         AssignmentEmployeeDao.create(item)
 
     @classmethod
-    def put_by_assignment_id(cls, id_commessa: str, item: AssignmentEmployee):
-        AssignmentEmployeeDao.update_by_assignment_id(id_commessa, item)
+    def put_by_assignment_id(cls, id: str, item: AssignmentEmployee):
+        AssignmentEmployeeDao.update_by_assignment_id(id, item)
         
     @classmethod
-    def put_by_employee_id(cls, id_dipendente: str, item: AssignmentEmployee):
-        AssignmentEmployeeDao.update_by_employee_id(id_dipendente, item)
+    def put_by_employee_id(cls, id: str, item: AssignmentEmployee):
+        AssignmentEmployeeDao.update_by_employee_id(id, item)
         
     @classmethod
-    def delete_by_assignment_id(cls, id_commessa: str):
-        AssignmentEmployeeDao.remove_by_assignment_id(id_commessa)
+    def delete_by_assignment_id(cls, id: str):
+        AssignmentEmployeeDao.remove_by_assignment_id(id)
         
     @classmethod
-    def delete_by_employee_id(cls, id_dipendente: str):
-        AssignmentEmployeeDao.remove_by_employee_id(id_dipendente)
+    def delete_by_employee_id(cls, id: str):
+        AssignmentEmployeeDao.remove_by_employee_id(id)
