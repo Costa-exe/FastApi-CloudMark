@@ -1,7 +1,6 @@
 from typing import Optional
 from pydantic import BaseModel, validator
 import datetime  
-
 class Assignment(BaseModel):
     id_commessa: str
     descrizione: Optional[str] = ""
@@ -18,8 +17,9 @@ class Assignment(BaseModel):
     
     @validator('descrizione')
     def description(cls, v):
-        assert len(v) <= 255, 'must be less than 500 characters'
-        return v
+        if v:
+            assert len(v) <= 255, 'must be less than 500 characters'
+            return v
     
     @validator('id_cliente')
     def customer_id(cls, v):

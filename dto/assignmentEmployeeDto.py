@@ -14,12 +14,12 @@ class AssignmentEmployeeDto:
     @classmethod
     def get_by_assignment_id(cls, id: str):
         res = AssignmentEmployeeDao.find_by_assignment_id(id)
-        return res
+        return AssignmentEmployee(**res)
     
     @classmethod
     def get_by_employee_id(cls, id: str):
         res = AssignmentEmployeeDao.find_by_employee_id(id)
-        return res
+        return AssignmentEmployee(**res)
 
     @classmethod
     def post(cls, item: AssignmentEmployee):

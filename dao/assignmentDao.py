@@ -24,7 +24,7 @@ class AssignmentDao:
         MySql.open_connection()
         MySql.query(
             f"INSERT INTO commessa (id_commessa, descrizione, id_cliente, id_azienda, data_inizio, data_fine) \
-            VALUES ('{Assignment.id_commessa}', '{Assignment.descrizione}', '{Assignment.id_cliente}', '{Assignment.id_azienda}', '{Assignment.data_inizio}', '{Assignment.data_fine}')"
+            VALUES ('{Assignment.id_commessa}', IF('{Assignment.descrizione}' = '', NULL, '{Assignment.descrizione}'), '{Assignment.id_cliente}', '{Assignment.id_azienda}', '{Assignment.data_inizio}', '{Assignment.data_fine}')"
         )
         MySql.close_connection_commit()
 
@@ -32,7 +32,7 @@ class AssignmentDao:
     def update_by_id(cls, id: str , Assignment: Assignment):
         MySql.open_connection()
         MySql.query(
-            f"UPDATE commessa SET descrizione = '{Assignment.descrizione}', id_cliente = '{Assignment.id_cliente}', id_azienda = '{Assignment.id_azienda}', data_inizio = '{Assignment.data_inizio}', data_fine = '{Assignment.data_fine}' \
+            f"UPDATE commessa SET descrizione = IF('{Assignment.descrizione}' = '', NULL, '{Assignment.descrizione}'), id_cliente = '{Assignment.id_cliente}', id_azienda = '{Assignment.id_azienda}', data_inizio = '{Assignment.data_inizio}', data_fine = '{Assignment.data_fine}' \
                 WHERE id_commessa = '{id}'"
         )
         MySql.close_connection_commit()
