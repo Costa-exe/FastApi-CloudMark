@@ -1,7 +1,6 @@
 from dto.employeeDto import EmployeeDto
 from dto.employee_companyDto import EmployeeCompanyDto
 from dto.contract_typeDto import ContractTypeDto
-
 from models.employeeModel import Employee
 from models.employee_companyModel import EmployeeCompany
 from models.contract_typeModel import ContractType

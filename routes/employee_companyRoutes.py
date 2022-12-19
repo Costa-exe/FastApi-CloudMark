@@ -14,54 +14,54 @@ async def get_employees_companies():
         raise HTTPException(status_code=500, detail=e.msg)
 
 @router.get("/getById")
-async def get_employees_companies_by_id(filter : str, id_dipendente, id_azienda : str):
+async def get_employees_companies_by_id(filter : str, id : str):
     if filter == "employee":
-        if Service.get_employee_id(id_dipendente) == None:
-            raise HTTPException(status_code=404, detail=f"Item with key 'id_dipendente'='{id_dipendente}' not found")
+        if Service.get_employee_id(id) == None:
+            raise HTTPException(status_code=404, detail=f"Item with key 'id_dipendente'='{id}' not found")
         try:
-            return Service.get_employee_id(id_dipendente)
+            return Service.get_employee_id(id)
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
     elif filter == "company":
-        if Service.get_company_id(id_azienda) == None:
-            raise HTTPException(status_code=404, detail=f"Item with key 'id_azienda'='{id_azienda}' not found")
+        if Service.get_company_id(id) == None:
+            raise HTTPException(status_code=404, detail=f"Item with key 'id_azienda'='{id}' not found")
         try:
-            return Service.get_company_id(id_azienda)
+            return Service.get_company_id(id)
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
 
 @router.delete("")
-async def delete_employees_company_by_id(filter : str, id_dipendente, id_azienda : str):
+async def delete_employees_company_by_id(filter : str, id : str):
     if filter == "employee":
-        if Service.get_employee_id(id_dipendente) == None:
-            raise HTTPException(status_code=404, detail=f"Item with key 'id_dipendente'='{id_dipendente}' not found")
+        if Service.get_employee_id(id) == None:
+            raise HTTPException(status_code=404, detail=f"Item with key 'id_dipendente'='{id}' not found")
         try:
-            Service.remove_by_employee_id(id_dipendente)
+            Service.remove_by_employee_id(id)
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
     elif filter == "company":
-        if Service.get_company_id(id_azienda) == None:
-            raise HTTPException(status_code=404, detail=f"Item with key 'id_azienda'='{id_azienda}' not found")
+        if Service.get_company_id(id) == None:
+            raise HTTPException(status_code=404, detail=f"Item with key 'id_azienda'='{id}' not found")
         try:
-            Service.remove_by_company_id(id_azienda)
+            Service.remove_by_company_id(id)
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
     raise HTTPException(status_code=201, detail="Item Deleted Successfully")
 
 @router.put("")
-async def put__employee_company(filter : str , id_dipendente, id_azienda : str, new_data : EmployeeCompany):
+async def put__employee_company(filter : str , id : str, new_data : EmployeeCompany):
     if filter == "employee":
-        if Service.get_employee_id(id_dipendente) == None:
-            raise HTTPException(status_code=404, detail=f"Item with key 'id_dipendente'='{id_dipendente}' not found")
+        if Service.get_employee_id(id) == None:
+            raise HTTPException(status_code=404, detail=f"Item with key 'id_dipendente'='{id}' not found")
         try:
-            Service.update_by_employee_id(id_dipendente, new_data)
+            Service.update_by_employee_id(id, new_data)
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
     elif filter == "company":
-        if Service.get_company_id(id_azienda) == None:
-            raise HTTPException(status_code=404, detail=f"Item with key 'id_azienda'='{id_azienda}' not found")
+        if Service.get_company_id(id) == None:
+            raise HTTPException(status_code=404, detail=f"Item with key 'id_azienda'='{id}' not found")
         try:
-            Service.update_by_company_id(id_azienda, new_data)
+            Service.update_by_company_id(id, new_data)
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
     raise HTTPException(status_code=201, detail="Item Updated Successfully")

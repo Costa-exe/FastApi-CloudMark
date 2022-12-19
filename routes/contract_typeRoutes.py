@@ -14,54 +14,54 @@ async def get_contract_type():
         raise HTTPException(status_code=500, detail=e.msg)
 
 @router.get("/getByIdName")
-async def get_by_id_name(filter : str, id_tipo_contratto, nome_tipo_contratto : str):
+async def get_by_id_name(filter : str, id : str):
     if filter == "id":
-        if Service.get_by_id(id_tipo_contratto) == None:
-            raise HTTPException(status_code=404, detail=f"Item with key 'id_tipo_contrato'='{id_tipo_contratto}' not found")
+        if Service.get_by_id(id) == None:
+            raise HTTPException(status_code=404, detail=f"Item with key 'id_tipo_contrato'='{id}' not found")
         try:
-            return Service.get_by_id(id_tipo_contratto)
+            return Service.get_by_id(id)
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
     elif filter == "name":
-        if Service.get_by_name(nome_tipo_contratto) == None:
-            raise HTTPException(status_code=404, detail=f"Item with key 'nome_tipo_contratto'='{nome_tipo_contratto}' not found")
+        if Service.get_by_name(id) == None:
+            raise HTTPException(status_code=404, detail=f"Item with key 'nome_tipo_contratto'='{id}' not found")
         try:
-            return Service.get_by_name(nome_tipo_contratto)
+            return Service.get_by_name(id)
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
 
 @router.delete("")
-async def delete_by_id_name(filter : str, id_tipo_contratto, nome_tipo_contratto : str):
-    if filter == "contract_id":
-        if Service.get_by_id(id_tipo_contratto) == None:
-            raise HTTPException(status_code=404, detail=f"Item with key 'id_tipo_contratto'='{id_tipo_contratto}' not found")
+async def delete_by_id_name(filter : str, id: str):
+    if filter == "id":
+        if Service.get_by_id(id) == None:
+            raise HTTPException(status_code=404, detail=f"Item with key 'id_tipo_contratto'='{id}' not found")
         try:
-            Service.remove_by_id(id_tipo_contratto)
+            Service.remove_by_id(id)
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
-    elif filter == "contract_name":
-        if Service.get_by_name(nome_tipo_contratto) == None:
-            raise HTTPException(status_code=404, detail=f"Item with key 'nome_tipo_cliente'='{nome_tipo_contratto}' not found")
+    elif filter == "name":
+        if Service.get_by_name(id) == None:
+            raise HTTPException(status_code=404, detail=f"Item with key 'nome_tipo_cliente'='{id}' not found")
         try:
-            Service.remove_by_name(nome_tipo_contratto)
+            Service.remove_by_name(id)
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
     raise HTTPException(status_code=201, detail="Item Deleted Successfully")
 
 @router.put("")
-async def put_company(filter : str , id_tipo_contratto, nome_tipo_contratto : str, new_data : ContractType):
+async def put_company(filter : str , id : str, new_data : ContractType):
     if filter == "contract_id":
-        if Service.get_by_id(id_tipo_contratto) == None:
-            raise HTTPException(status_code=404, detail=f"Item with key 'id_tipo_contratto'='{id_tipo_contratto}' not found")
+        if Service.get_by_id(id) == None:
+            raise HTTPException(status_code=404, detail=f"Item with key 'id_tipo_contratto'='{id}' not found")
         try:
-            Service.update_by_id(id_tipo_contratto, new_data)
+            Service.update_by_id(id, new_data)
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
     elif filter == "contract_name":
-        if Service.get_by_name(nome_tipo_contratto) == None:
-            raise HTTPException(status_code=404, detail=f"Item with key 'nome_tipo_contratto'='{nome_tipo_contratto}' not found")
+        if Service.get_by_name(id) == None:
+            raise HTTPException(status_code=404, detail=f"Item with key 'nome_tipo_contratto'='{id}' not found")
         try:
-            Service.update_by_name(nome_tipo_contratto, new_data)
+            Service.update_by_name(id, new_data)
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
     raise HTTPException(status_code=201, detail="Item Updated Successfully")
