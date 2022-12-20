@@ -40,7 +40,7 @@ class EmployeeDao:
     def update_by_id(cls, id :str, item : Employee):
         MySql.open_connection()
         MySql.query(f"""
-                    UPDATE cliente
+                    UPDATE dipendente
                     SET                                                                 
                     id_dipendente = '{item.id_dipendente}',
                     nome = IF('{item.nome}' = '', NULL, '{item.nome}'),
@@ -50,7 +50,7 @@ class EmployeeDao:
                     email = IF('{item.email}' = '', NULL, '{item.email}'),
                     telefono = IF('{item.telefono}' = '', NULL, '{item.telefono}'),
                     id_tipo_contratto = '{item.id_tipo_contratto}'
-                    WHERE id_cliente = '{id}'
+                    WHERE id_dipendente = '{id}'
                     """)
         MySql.close_connection_commit()
 
