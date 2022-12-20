@@ -1,5 +1,5 @@
-from dao.contract_typeDao import ContractTypeDao
-from models.contract_typeModel import ContractType
+from dao.contractTypeDao import ContractTypeDao
+from models.contractTypeModel import ContractType
 
 class ContractTypeDto:
 

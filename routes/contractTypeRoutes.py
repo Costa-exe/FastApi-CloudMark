@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from services.service import Service
-from models.contract_typeModel import ContractType
+from models.contractTypeModel import ContractType
 
 router = APIRouter(prefix="/contract_types", tags=["Contract_types API"])
 
