@@ -15,7 +15,7 @@ class EmployeeCompanyDao:
     def find_by_employee_id(cls, id :str):
         MySql.open_connection()
         MySql.query(f"SELECT * FROM dipendente_azienda WHERE id_dipendente = '{id}'")
-        results = MySql.get_results()
+        results = MySql.get_result()
         MySql.close_connection()
         return results
 
@@ -23,7 +23,7 @@ class EmployeeCompanyDao:
     def find_by_company_id(cls, id :str):
         MySql.open_connection()
         MySql.query(f"SELECT * FROM dipendente_azienda WHERE id_azienda = '{id}'")
-        results = MySql.get_results()
+        results = MySql.get_result()
         MySql.close_connection()
         return results
 
@@ -49,7 +49,7 @@ class EmployeeCompanyDao:
                     id_azienda = '{item.id_azienda}',
                     data_inizio_rapporto = '{item.data_inizio_rapporto}',
                     matricola = IF('{item.matricola}' = '', NULL, '{item.matricola}'),
-                    data_fine_raporto = IF('{item.data_fine_rapporto}' = '', NULL, '{item.data_fine_rapporto}'),
+                    data_fine_rapporto = IF('{item.data_fine_rapporto}' = '', NULL, '{item.data_fine_rapporto}')
                     WHERE id_dipendente = '{id}'
                     """)
         MySql.close_connection_commit()

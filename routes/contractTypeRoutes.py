@@ -9,7 +9,7 @@ async def get_contract_type():
     if Service.get_all_contract_type() == []:
         raise HTTPException(status_code=404, detail=f"No Items Found")
     try:
-        return Service.get_all()
+        return Service.get_all_contract_type()
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
 
@@ -23,10 +23,10 @@ async def get_by_id_name(filter : str, id : str):
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
     elif filter == "name":
-        if Service.get__contract_type_by_name(id) == None:
+        if Service.get_contract_type_by_name(id) == None:
             raise HTTPException(status_code=404, detail=f"Item with key 'nome_tipo_contratto'='{id}' not found")
         try:
-            return Service.get__contract_type_by_name(id)
+            return Service.get_contract_type_by_name(id)
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
 
@@ -40,7 +40,7 @@ async def delete_by_id_name(filter : str, id: str):
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
     elif filter == "name":
-        if Service.get__contract_type_by_name(id) == None:
+        if Service.get_contract_type_by_name(id) == None:
             raise HTTPException(status_code=404, detail=f"Item with key 'nome_tipo_cliente'='{id}' not found")
         try:
             Service.remove_contract_type_by_name(id)
@@ -58,7 +58,7 @@ async def put_company(filter : str , id : str, new_data : ContractType):
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
     elif filter == "name":
-        if Service.get__contract_type_by_name(id) == None:
+        if Service.get_contract_type_by_name(id) == None:
             raise HTTPException(status_code=404, detail=f"Item with key 'nome_tipo_contratto'='{id}' not found")
         try:
             Service.update_contract_type_by_name(id, new_data)

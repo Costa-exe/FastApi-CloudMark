@@ -49,7 +49,7 @@ async def delete_employees_company_by_id(filter : str, id : str):
     raise HTTPException(status_code=201, detail="Item Deleted Successfully")
 
 @router.put("")
-async def put__employee_company(filter : str , id : str, new_data : EmployeeCompany):
+async def put_employee_company(filter : str , id : str, new_data : EmployeeCompany):
     if filter == "employee":
         if Service.get_employee_company_by_employee_id(id) == None:
             raise HTTPException(status_code=404, detail=f"Item with key 'id_dipendente'='{id}' not found")
@@ -67,7 +67,7 @@ async def put__employee_company(filter : str , id : str, new_data : EmployeeComp
     raise HTTPException(status_code=201, detail="Item Updated Successfully")
 
 @router.post("")
-async def add__employee_company(employee_company : EmployeeCompany):
+async def add_employee_company(employee_company : EmployeeCompany):
     try:
         Service.create_employee_company(employee_company)
     except Exception as e:

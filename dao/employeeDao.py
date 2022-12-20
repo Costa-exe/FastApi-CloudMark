@@ -16,7 +16,7 @@ class EmployeeDao:
     def find_by_id(cls, id :str):
         MySql.open_connection()
         MySql.query(f"SELECT * FROM dipendente WHERE id_dipendente = '{id}'")
-        results = MySql.get_results()
+        results = MySql.get_result()
         MySql.close_connection()
         return results
 
