@@ -3,11 +3,17 @@ from dto.clientDto import ClientDto
 from dto.companyClientDto import CompanyClientDto
 from dto.assignmentDto import AssignmentDto
 from dto.assignmentEmployeeDto import AssignmentEmployeeDto
+from dto.employeeDto import EmployeeDto
+from dto.employee_companyDto import EmployeeCompanyDto
+from dto.contract_typeDto import ContractTypeDto
 from models.clientModel import Client
 from models.companyModel import Company
 from models.companyClientModel import CompanyClient
 from models.assignment import Assignment
 from models.assignmentEmployee import AssignmentEmployee
+from models.employeeModel import Employee
+from models.employee_companyModel import EmployeeCompany
+from models.contract_typeModel import ContractType
 
 class Service:
 
@@ -144,6 +150,94 @@ class Service:
     @classmethod
     def delete_assignments_employee_by_employee_id_service(cls, id: str):
         return AssignmentEmployeeDto.delete_by_employee_id(id)
+     
+     #Employee
+
+    @classmethod
+    def get_all_employees(cls):
+        return EmployeeDto.get_all()
+
+    @classmethod
+    def get_employee_by_id(cls, id : str):
+        return EmployeeDto.get_by_id(id)
+
+    @classmethod
+    def remove_employee_by_id(cls, id: str):
+        return EmployeeDto.delete_by_id(id)
+
+    @classmethod
+    def update_employee_by_id(cls, id, item : Employee):
+        return EmployeeDto.put(id, item)
+    
+    @classmethod
+    def create_employee(cls, item : Employee):
+        return EmployeeDto.post(item)
 
 
-  
+    #Employee-company    
+
+    @classmethod
+    def get_all_employee_company(cls):
+        return EmployeeCompanyDto.get_all()
+
+    @classmethod
+    def get_employee_company_by_employee_id(cls, id : str):
+        return EmployeeCompanyDto.get_by_employee_id(id)
+
+    @classmethod
+    def get_employee_company_by_company_id(cls, id : str):
+        return EmployeeCompanyDto.get_by_company_id(id)    
+
+    @classmethod
+    def remove_employee_company_by_employee_id(cls, id: str):
+        return EmployeeCompanyDto.delete_by_employee_id(id)
+
+    @classmethod
+    def remove_employee_company_by_company_id(cls, id: str):
+        return EmployeeCompanyDto.delete_by_company_id(id)    
+
+    @classmethod
+    def update_employee_company_by_employee_id(cls, id, item : EmployeeCompany):
+        return EmployeeCompanyDto.put_by_employee_id(id, item)
+
+    @classmethod
+    def update_employee_company_by_company_id(cls, id, item : EmployeeCompany):
+        return EmployeeCompanyDto.put_by_company_id(id, item)
+
+    @classmethod
+    def create_employee_company(cls, item : EmployeeCompany):
+        return EmployeeCompanyDto.post(item)    
+
+    #Contract-type   
+
+    @classmethod
+    def get_all_contract_type(cls):
+        return ContractTypeDto.get_all()
+
+    @classmethod
+    def get_contract_type_by_id(cls, id : str):
+        return ContractTypeDto.get_by_id(id)
+
+    @classmethod
+    def get__contract_type_by_name(cls, nome : str):
+        return ContractTypeDto.get_by_name(nome)    
+
+    @classmethod
+    def remove_contract_type_by_id(cls, id: str):
+        return ContractTypeDto.delete_by_id(id)
+
+    @classmethod
+    def remove_contract_type_by_name(cls, nome: str):
+        return ContractTypeDto.delete_by_name(nome)    
+
+    @classmethod
+    def update_contract_type_by_id(cls, id, item : ContractType):
+        return ContractTypeDto.put_by_id(id, item)
+
+    @classmethod
+    def update_contract_type_by_name(cls, nome, item : ContractType):
+        return ContractTypeDto.put_by_name(nome, item)
+
+    @classmethod
+    def create_contract_type(cls, item : ContractType):
+        return ContractTypeDto.post(item)        
