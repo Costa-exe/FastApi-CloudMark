@@ -71,6 +71,6 @@ class ClientDao:
                     IF('{item.telefono}' = '', NULL, '{item.telefono}'),
                     IF('{item.email}' = '', NULL, '{item.email}'),
                     IF('{item.pec}' = '', NULL, '{item.pec}'),
-                    IF('{item.fax}' = '', NULL, '{item.fax}')
+                    IF('{item.fax}' = '', NULL, '{item.fax}'))
                     """)
         MySql.close_connection_commit()

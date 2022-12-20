@@ -154,90 +154,90 @@ class Service:
      #Employee
 
     @classmethod
-    def get_all(cls):
+    def get_all_employees(cls):
         return EmployeeDto.get_all()
 
     @classmethod
-    def get_by_id(cls, id_dipendente : str):
-        return EmployeeDto.get_by_id(id_dipendente)
+    def get_employee_by_id(cls, id : str):
+        return EmployeeDto.get_by_id(id)
 
     @classmethod
-    def remove_by_id(cls, id_dipendente: str):
-        return EmployeeDto.delete_by_id(id_dipendente)
+    def remove_employee_by_id(cls, id: str):
+        return EmployeeDto.delete_by_id(id)
 
     @classmethod
-    def update_by_id(cls, id_dipendente, item):
-        return EmployeeDto.put(id_dipendente, item)
+    def update_employee_by_id(cls, id, item : Employee):
+        return EmployeeDto.put(id, item)
     
     @classmethod
-    def create(cls, item):
+    def create_employee(cls, item : Employee):
         return EmployeeDto.post(item)
 
 
     #Employee-company    
 
     @classmethod
-    def get_all(cls):
+    def get_all_employee_company(cls):
         return EmployeeCompanyDto.get_all()
 
     @classmethod
-    def get_employee_id(cls, id_dipendente : str):
-        return EmployeeCompanyDto.get_employee_id(id_dipendente)
+    def get_employee_company_by_employee_id(cls, id : str):
+        return EmployeeCompanyDto.get_by_employee_id(id)
 
     @classmethod
-    def get_company_id(cls, id_azienda : str):
-        return EmployeeCompanyDto.get_company_id(id_azienda)    
+    def get_employee_company_by_company_id(cls, id : str):
+        return EmployeeCompanyDto.get_by_company_id(id)    
 
     @classmethod
-    def remove_by_employee_id(cls, id_dipendente: str):
-        return EmployeeCompanyDto.delete_by_employee_id(id_dipendente)
+    def remove_employee_company_by_employee_id(cls, id: str):
+        return EmployeeCompanyDto.delete_by_employee_id(id)
 
     @classmethod
-    def remove_by_company_id(cls, id_azienda: str):
-        return EmployeeCompanyDto.delete_by_company_id(id_azienda)    
+    def remove_employee_company_by_company_id(cls, id: str):
+        return EmployeeCompanyDto.delete_by_company_id(id)    
 
     @classmethod
-    def update_by_employee_id(cls, id_dipendente, item):
-        return EmployeeCompanyDto.put(id_dipendente, item)
+    def update_employee_company_by_employee_id(cls, id, item : EmployeeCompany):
+        return EmployeeCompanyDto.put_by_employee_id(id, item)
 
     @classmethod
-    def update_by_company_id(cls, id_azienda, item):
-        return EmployeeCompanyDto.put(id_azienda, item)
+    def update_employee_company_by_company_id(cls, id, item : EmployeeCompany):
+        return EmployeeCompanyDto.put_by_company_id(id, item)
 
     @classmethod
-    def create(cls, item):
+    def create_employee_company(cls, item : EmployeeCompany):
         return EmployeeCompanyDto.post(item)    
 
     #Contract-type   
 
     @classmethod
-    def get_all(cls):
+    def get_all_contract_type(cls):
         return ContractTypeDto.get_all()
 
     @classmethod
-    def get_by_id(cls, id_tipo_contratto : str):
-        return ContractTypeDto.get_by_id(id_tipo_contratto)
+    def get_contract_type_by_id(cls, id : str):
+        return ContractTypeDto.get_by_id(id)
 
     @classmethod
-    def get_by_name(cls, nome_tipo_contratto : str):
-        return ContractTypeDto.get_by_name(nome_tipo_contratto)    
+    def get__contract_type_by_name(cls, nome : str):
+        return ContractTypeDto.get_by_name(nome)    
 
     @classmethod
-    def remove_by_id(cls, id_tipo_contratto: str):
-        return ContractTypeDto.delete_by_id(id_tipo_contratto)
+    def remove_contract_type_by_id(cls, id: str):
+        return ContractTypeDto.delete_by_id(id)
 
     @classmethod
-    def remove_by_name(cls, nome_tipo_contratto: str):
-        return ContractTypeDto.delete_by_name(nome_tipo_contratto)    
+    def remove_contract_type_by_name(cls, nome: str):
+        return ContractTypeDto.delete_by_name(nome)    
 
     @classmethod
-    def update_by_id(cls, id_tipo_contratto, item):
-        return ContractTypeDto.put(id_tipo_contratto, item)
+    def update_contract_type_by_id(cls, id, item : ContractType):
+        return ContractTypeDto.put_by_id(id, item)
 
     @classmethod
-    def update_by_name(cls, nome_tipo_contratto, item):
-        return ContractTypeDto.put(nome_tipo_contratto, item)
+    def update_contract_type_by_name(cls, nome, item : ContractType):
+        return ContractTypeDto.put_by_name(nome, item)
 
     @classmethod
-    def create(cls, item):
+    def create_contract_type(cls, item : ContractType):
         return ContractTypeDto.post(item)        
