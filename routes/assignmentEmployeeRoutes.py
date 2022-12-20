@@ -19,14 +19,14 @@ async def get_assignment_employee_by_id(filter: str, id: str):
         if Service.get_assignments_employee_by_assignment_id_service(id) == None:
             raise HTTPException(status_code=404, detail=f"Assignment with id: {id} not found")
         try:
-            return Service.get_assignments_employee_by_assignment_id_service(id)
+            return AssignmentEmployee(**Service.get_assignments_employee_by_assignment_id_service(id))
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
     elif filter == "employee":
         if Service.get_assignments_employee_by_employee_id_service(id) == None:
             raise HTTPException(status_code=404, detail=f"Employee with id: {id} not found")
         try:
-            return Service.get_assignments_employee_by_employee_id_service(id)
+            return AssignmentEmployee(**Service.get_assignments_employee_by_employee_id_service(id))
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
         
