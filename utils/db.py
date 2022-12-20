@@ -12,7 +12,7 @@ class MySql:
       cls.conn =  mysql.connect(**config)
       cls.cursor = cls.conn.cursor(dictionary=True)
     except mysql.Error as er:
-      print("Connessione fallita...")
+      print("Connection failed... " + er)
     finally:
       return cls.conn.cursor()
   
@@ -20,13 +20,14 @@ class MySql:
   def query(cls, string):
     cls.cursor.execute(string)
 
-  @classmethod
-  def get_result(cls):
-    return cls.cursor.fetchone()
 
   @classmethod
   def get_results(cls):
     return cls.cursor.fetchall()
+  
+  @classmethod
+  def get_result(cls):
+    return cls.cursor.fetchone()
 
   @classmethod
   def close_connection(cls):
@@ -34,7 +35,7 @@ class MySql:
     cls.conn.close()
 
   @classmethod
-  def close_connectionCommit(cls):
+  def close_connection_commit(cls):
     cls.cursor.close()
     cls.conn.commit()
     cls.conn.close()
