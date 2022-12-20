@@ -14,7 +14,7 @@ class EmployeeCompanyDto:
     @classmethod
     def get_by_employee_id(cls, id : str):
         result = EmployeeCompanyDao.find_by_employee_id(id)
-        return EmployeeCompany(**result)
+        return result
 
     @classmethod
     def get_by_company_id(cls, id : str):

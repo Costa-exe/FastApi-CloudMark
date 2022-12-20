@@ -19,14 +19,14 @@ async def get_employees_companies_by_id(filter : str, id : str):
         if Service.get_employee_company_by_employee_id(id) == None:
             raise HTTPException(status_code=404, detail=f"Item with key 'id_dipendente'='{id}' not found")
         try:
-            return Service.get_employee_company_by_employee_id(id)
+            return EmployeeCompany(**Service.get_employee_company_by_employee_id(id))
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
     elif filter == "company":
         if Service.get_employee_company_by_company_id(id) == None:
             raise HTTPException(status_code=404, detail=f"Item with key 'id_azienda'='{id}' not found")
         try:
-            return Service.get_employee_company_by_company_id(id)
+            return EmployeeCompany(**Service.get_employee_company_by_company_id(id))
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
 

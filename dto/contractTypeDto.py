@@ -21,7 +21,6 @@ class ContractTypeDto:
         result = ContractTypeDao.find_by_name(name)
         return result
 
-
     @classmethod
     def delete_by_id(cls, id : str):
         return ContractTypeDao.remove_by_id(id)

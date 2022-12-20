@@ -14,7 +14,7 @@ async def get_employees(id : str | None = None):
             raise HTTPException(status_code=404, detail=f"No Items Found")
     try:
         if id:
-            return Service.get_employee_by_id(id)
+            return Employee(**Service.get_employee_by_id(id))
         return Service.get_all_employees()
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
