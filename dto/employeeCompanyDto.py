@@ -1,5 +1,5 @@
-from dao.employee_companyDao import EmployeeCompanyDao
-from models.employee_companyModel import EmployeeCompany
+from dao.employeeCompanyDao import EmployeeCompanyDao
+from models.employeeCompanyModel import EmployeeCompany
 
 class EmployeeCompanyDto:
 

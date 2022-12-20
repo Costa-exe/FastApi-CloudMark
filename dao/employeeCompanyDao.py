@@ -1,5 +1,5 @@
 from utils.db import MySql
-from models.employee_companyModel import EmployeeCompany
+from models.employeeCompanyModel import EmployeeCompany
 
 class EmployeeCompanyDao:
     

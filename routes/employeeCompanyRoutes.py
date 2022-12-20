@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from services.service import Service
-from models.employee_companyModel import EmployeeCompany
+from models.employeeCompanyModel import EmployeeCompany
 
 router = APIRouter(prefix="/employees_companies", tags=["Employees_Companies API"])
 

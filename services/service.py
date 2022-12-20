@@ -4,16 +4,16 @@ from dto.companyClientDto import CompanyClientDto
 from dto.assignmentDto import AssignmentDto
 from dto.assignmentEmployeeDto import AssignmentEmployeeDto
 from dto.employeeDto import EmployeeDto
-from dto.employee_companyDto import EmployeeCompanyDto
-from dto.contract_typeDto import ContractTypeDto
+from dto.employeeCompanyDto import EmployeeCompanyDto
+from dto.contractTypeDto import ContractTypeDto
 from models.clientModel import Client
 from models.companyModel import Company
 from models.companyClientModel import CompanyClient
 from models.assignment import Assignment
 from models.assignmentEmployee import AssignmentEmployee
 from models.employeeModel import Employee
-from models.employee_companyModel import EmployeeCompany
-from models.contract_typeModel import ContractType
+from models.employeeCompanyModel import EmployeeCompany
+from models.contractTypeModel import ContractType
 
 class Service:
 
