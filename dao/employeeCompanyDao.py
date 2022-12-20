@@ -64,7 +64,7 @@ class EmployeeCompanyDao:
                     id_azienda = '{item.id_azienda}',
                     data_inizio_rapporto = '{item.data_inizio_rapporto}',
                     matricola = IF('{item.matricola}' = '', NULL, '{item.matricola}'),
-                    data_fine_raporto = IF('{item.data_fine_rapporto}' = '', NULL, '{item.data_fine_rapporto}')
+                    data_fine_rapporto = IF('{item.data_fine_rapporto}' = '', NULL, '{item.data_fine_rapporto}')
                     WHERE id_azienda = '{id}'
                     """)
         MySql.close_connection_commit()        
