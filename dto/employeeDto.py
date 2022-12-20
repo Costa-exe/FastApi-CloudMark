@@ -14,7 +14,7 @@ class EmployeeDto:
     @classmethod
     def get_by_id(cls, id : str):
         result = EmployeeDao.find_by_id(id)
-        return Employee(**result)
+        return result
 
     @classmethod
     def delete_by_id(cls, id : str):

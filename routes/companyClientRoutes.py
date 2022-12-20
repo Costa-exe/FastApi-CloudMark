@@ -19,14 +19,14 @@ async def get_company_client_by_id(filter : str, id : str):
         if Service.get_company_client_by_client_id_service(id) == None:
             raise HTTPException(status_code=404, detail=f"Item with key 'id_cliente'='{id}' not found")
         try:
-            return Service.get_company_client_by_client_id_service(id)
+            return CompanyClient(**Service.get_company_client_by_client_id_service(id))
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
     elif filter == "company":
         if Service.get_company_client_by_company_id_service(id) == None:
             raise HTTPException(status_code=404, detail=f"Item with key 'id_cliente'='{id}' not found")
         try:
-            return Service.get_company_client_by_company_id_service(id)
+            return CompanyClient(**Service.get_company_client_by_company_id_service(id))
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
 
