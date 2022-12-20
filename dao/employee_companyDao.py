@@ -48,8 +48,8 @@ class EmployeeCompanyDao:
                     id_dipendente = '{item.id_dipendente}',
                     id_azienda = '{item.id_azienda}',
                     data_inizio_rapporto = '{item.data_inizio_rapporto}',
-                    matricola = '{item.matricola}',
-                    data_fine_rapporto = '{item.data_fine_rapporto}'
+                    matricola = IF('{item.matricola}' = '', NULL, '{item.matricola}'),
+                    data_fine_raporto = IF('{item.data_fine_rapporto}' = '', NULL, '{item.data_fine_rapporto}'),
                     WHERE id_dipendente = '{id_dipendente}'
                     """)
         MySql.close_connectionCommit()
@@ -63,8 +63,8 @@ class EmployeeCompanyDao:
                     id_dipendente = '{item.id_dipendente}',
                     id_azienda = '{item.id_azienda}',
                     data_inizio_rapporto = '{item.data_inizio_rapporto}',
-                    matricola = '{item.matricola}',
-                    data_fine_rapporto = '{item.data_fine_rapporto}'
+                    matricola = IF('{item.matricola}' = '', NULL, '{item.matricola}'),
+                    data_fine_raporto = IF('{item.data_fine_rapporto}' = '', NULL, '{item.data_fine_rapporto}')
                     WHERE id_azienda = '{id_azienda}'
                     """)
         MySql.close_connectionCommit()        
@@ -84,8 +84,8 @@ class EmployeeCompanyDao:
                     ('{item.id_dipendente}',
                      '{item.id_azienda}',
                      '{item.data_inizio_rapporto}',
-                     '{item.matricola}',
-                     '{item.data_fine_rapporto}')
+                    IF('{item.matricola}' = '', NULL, '{item.matricola}'),
+                    IF('{item.data_fine_rapporto}' = '', NULL, '{item.data_fine_rapporto}')
                     """)
         MySql.close_connectionCommit()
     

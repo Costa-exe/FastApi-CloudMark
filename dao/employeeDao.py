@@ -31,14 +31,14 @@ class EmployeeDao:
         MySql.open_connection()
         MySql.query(f"""
                     UPDATE cliente
-                    SET
+                    SET                                                                 
                     id_dipendente = '{item.id_dipendente}',
-                    nome = '{item.nome}',
-                    cognome = '{item.cognome}',
+                    nome = IF('{item.nome}' = '', NULL, '{item.nome}'),
+                    cognome = IF('{item.cognome}' = '', NULL, '{item.cognome}'),
                     cf = '{item.cf}',                   
                     iban = '{item.iban}',
-                    telefono = '{item.telefono}',
-                    email = '{item.email}',
+                    email = IF('{item.email}' = '', NULL, '{item.email}'),
+                    telefono = IF('{item.telefono}' = '', NULL, '{item.telefono}'),
                     id_tipo_contratto = '{item.id_tipo_contratto}'
                     WHERE id_cliente = '{id_dipendente}'
                     """)
@@ -61,12 +61,12 @@ class EmployeeDao:
                      )
                     VALUES
                     ('{item.id_dipendente}',
-                     '{item.nome}',
-                     '{item.cognome}',
+                    IF('{item.nome}' = '', NULL, '{item.nome}'),
+                    IF('{item.cognome}' = '', NULL, '{item.cognome}'),
                      '{item.cf}',
                      '{item.iban}',
-                     '{item.telefono}',
-                     '{item.email}',
+                    IF('{item.telefono}' = '', NULL, '{item.telefono}'),
+                    IF('{item.email}' = '', NULL, '{item.email}'),
                      '{item.id_tipo_contratto}')
                     """)
         MySql.close_connectionCommit()
