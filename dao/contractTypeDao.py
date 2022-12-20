@@ -1,5 +1,5 @@
 from utils.db import MySql
-from models.contract_typeModel import ContractType
+from models.contractTypeModel import ContractType
 
 class ContractTypeDao:
     
