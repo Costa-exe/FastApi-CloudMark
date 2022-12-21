@@ -28,6 +28,14 @@ class EmployeeCompanyDao:
         return results
 
     @classmethod
+    def find_specific(cls, id1 : str, id2 : str):
+        MySql.open_connection()
+        MySql.query(f"SELECT * FROM dipendente_azienda WHERE id_dipendente = '{id1}' and id_azienda = '{id2}'")
+        result = MySql.get_result()
+        MySql.close_connection()
+        return result   
+
+    @classmethod
     def remove_by_employee_id(cls, id :str):
         MySql.open_connection()
         MySql.query(f"DELETE FROM dipendente_azienda WHERE id_dipendente = '{id}'")
@@ -40,7 +48,13 @@ class EmployeeCompanyDao:
         MySql.close_connection_commit()
 
     @classmethod
-    def update_by_employee_id(cls, id :str, item : EmployeeCompany):
+    def remove_specific(cls, id1 : str, id2 : str):
+        MySql.open_connection()
+        MySql.query(f"DELETE FROM dipendente_azienda WHERE id_dipendente = '{id1}' and id_azienda = '{id2}'")
+        MySql.close_connection_commit()
+
+    @classmethod
+    def update_by_employee_id(cls, id1 :str, id2 :str, item : EmployeeCompany):
         MySql.open_connection()
         MySql.query(f"""
                     UPDATE dipendente_azienda
@@ -50,12 +64,12 @@ class EmployeeCompanyDao:
                     data_inizio_rapporto = '{item.data_inizio_rapporto}',
                     matricola = IF('{item.matricola}' = '', NULL, '{item.matricola}'),
                     data_fine_raporto = IF('{item.data_fine_rapporto}' = '', NULL, '{item.data_fine_rapporto}'),
-                    WHERE id_dipendente = '{id}'
+                    WHERE id_dipendente = '{id1}' and id_azienda = '{id2}'
                     """)
         MySql.close_connection_commit()
 
     @classmethod
-    def update_by_company_id(cls, id :str, item : EmployeeCompany):
+    def update(cls, id1 :str, id2 : str, item : EmployeeCompany):
         MySql.open_connection()
         MySql.query(f"""
                     UPDATE dipendente_azienda
@@ -65,7 +79,7 @@ class EmployeeCompanyDao:
                     data_inizio_rapporto = '{item.data_inizio_rapporto}',
                     matricola = IF('{item.matricola}' = '', NULL, '{item.matricola}'),
                     data_fine_raporto = IF('{item.data_fine_rapporto}' = '', NULL, '{item.data_fine_rapporto}')
-                    WHERE id_azienda = '{id}'
+                    WHERE id_dipendente = '{id1}' and id_azienda = '{id2}'
                     """)
         MySql.close_connection_commit()        
 

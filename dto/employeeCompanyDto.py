@@ -22,6 +22,11 @@ class EmployeeCompanyDto:
         return result
 
     @classmethod
+    def get_specific(cls, id1 : str, id2 : str):
+        result = EmployeeCompany.find_specific(id1, id2)
+        return result
+
+    @classmethod
     def delete_by_employee_id(cls, id : str):
         return EmployeeCompanyDao.remove_by_employee_id(id)
 
@@ -30,15 +35,14 @@ class EmployeeCompanyDto:
         return EmployeeCompanyDao.remove_by_company_id(id)
 
     @classmethod
-    def put_by_employee_id(cls, id :str, item : EmployeeCompany):
-        return EmployeeCompanyDao.update_by_employee_id(id, item)
+    def delete_specific(cls, id1 : str, id2 : str):
+        return EmployeeCompany.remove_specific(id1, id2)
 
     @classmethod
-    def put_by_company_id(cls, id :str , item : EmployeeCompany):
-        return EmployeeCompanyDao.update_by_company_id(id, item)
+    def put(cls, id1 : str, id2 : str, item : EmployeeCompany):
+        return EmployeeCompanyDao.update(id1, id2, item)
 
     @classmethod
     def post(cls, item : EmployeeCompany):
-        return EmployeeCompanyDao.create(item)    
-
+        return EmployeeCompanyDao.create(item)
 
