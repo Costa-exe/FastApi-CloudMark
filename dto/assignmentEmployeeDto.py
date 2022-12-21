@@ -10,6 +10,11 @@ class AssignmentEmployeeDto:
         for assignment in res:
             assignments.append(AssignmentEmployee(**assignment))
         return assignments
+    
+    @classmethod
+    def get_specific(cls, id1 : str, id2 : str):
+        result = AssignmentEmployeeDao.find_specific(id1, id2)
+        return result
 
     @classmethod
     def get_by_assignment_id(cls, id: str):
@@ -26,12 +31,8 @@ class AssignmentEmployeeDto:
         AssignmentEmployeeDao.create(item)
 
     @classmethod
-    def put_by_assignment_id(cls, id: str, item: AssignmentEmployee):
-        AssignmentEmployeeDao.update_by_assignment_id(id, item)
-        
-    @classmethod
-    def put_by_employee_id(cls, id: str, item: AssignmentEmployee):
-        AssignmentEmployeeDao.update_by_employee_id(id, item)
+    def put(cls, id1 : str, id2 : str, item : AssignmentEmployee):
+        return AssignmentEmployeeDao.update(id1, id2, item)
         
     @classmethod
     def delete_by_assignment_id(cls, id: str):
@@ -40,3 +41,7 @@ class AssignmentEmployeeDto:
     @classmethod
     def delete_by_employee_id(cls, id: str):
         AssignmentEmployeeDao.remove_by_employee_id(id)
+        
+    @classmethod
+    def delete_specific(cls, id1 : str, id2 : str):
+        return AssignmentEmployeeDao.remove_specific(id1, id2)

@@ -20,7 +20,6 @@ class MySql:
   def query(cls, string):
     cls.cursor.execute(string)
 
-
   @classmethod
   def get_results(cls):
     return cls.cursor.fetchall()
