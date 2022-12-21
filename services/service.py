@@ -76,6 +76,10 @@ class Service:
         return CompanyClientDto.get_by_company_id(id)
 
     @classmethod
+    def get_specific_company_client(cls, id1 : str, id2 : str):
+        return CompanyClientDto.get_specific(id1, id2)
+
+    @classmethod
     def delete_company_client_by_client_id_service(cls, id: str):
         return CompanyClientDto.delete_by_client_id(id)
 

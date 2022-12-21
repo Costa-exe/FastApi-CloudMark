@@ -16,19 +16,28 @@ async def get_companies_clients():
 @router.get("/getById")
 async def get_company_client_by_id(filter : str, id : str):
     if filter == "client":
-        if Service.get_company_client_by_client_id_service(id) == None:
+        if Service.get_company_client_by_client_id_service(id) == []:
             raise HTTPException(status_code=404, detail=f"Item with key 'id_cliente'='{id}' not found")
         try:
-            return CompanyClient(**Service.get_company_client_by_client_id_service(id))
+            return Service.get_company_client_by_client_id_service(id)
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
     elif filter == "company":
-        if Service.get_company_client_by_company_id_service(id) == None:
+        if Service.get_company_client_by_company_id_service(id) == []:
             raise HTTPException(status_code=404, detail=f"Item with key 'id_cliente'='{id}' not found")
         try:
-            return CompanyClient(**Service.get_company_client_by_company_id_service(id))
+            return Service.get_company_client_by_company_id_service(id)
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
+
+@router.get("/getSpecific")
+async def get_specific_company_client(id_azienda : str, id_cliente : str):
+    if Service.get_specific_company_client(id_azienda, id_cliente) == None:
+        raise HTTPException(status_code=404, detail=f"Item with key 'id_azienda'='{id_azienda}' and 'id_cliente'='{id_cliente}' not found")
+    try:
+        return CompanyClient(**Service.get_specific_company_client(id_azienda, id_cliente))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=e.msg)    
 
 @router.delete("")
 async def delete_company_client_by_id(filter : str, id : str):

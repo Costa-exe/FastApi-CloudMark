@@ -13,12 +13,23 @@ class CompanyClientDto:
 
     @classmethod
     def get_by_client_id(cls, id : str):
-        result = CompanyClientDao.find_by_client_id(id)
-        return result
+        companies_clients = []
+        results = CompanyClientDao.find_by_client_id(id)
+        for result in results:
+            companies_clients.append(CompanyClient(**result))
+        return companies_clients
 
     @classmethod
     def get_by_company_id(cls, id : str):
-        result = CompanyClientDao.find_by_company_id(id)
+        companies_clients = []
+        results = CompanyClientDao.find_by_company_id(id)
+        for result in results:
+            companies_clients.append(CompanyClient(**result))
+        return companies_clients
+
+    @classmethod
+    def get_specific(cls, id1 : str, id2 : str):
+        result = CompanyClientDao.find_specific(id1, id2)
         return result
 
     @classmethod
