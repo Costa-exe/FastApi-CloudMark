@@ -47,14 +47,14 @@ async def delete_employees_company_by_id(filter : str, id : str):
         if Service.get_employee_company_by_employee_id(id) == None:
             raise HTTPException(status_code=404, detail=f"Item with key 'id_dipendente'='{id}' not found")
         try:
-            Service.remove_employee_company_by_employee_id(id)
+            Service.delete_employee_company_by_employee_id(id)
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
     elif filter == "company":
         if Service.get_employee_company_by_company_id(id) == None:
             raise HTTPException(status_code=404, detail=f"Item with key 'id_azienda'='{id}' not found")
         try:
-            Service.remove_employee_company_by_company_id(id)
+            Service.delete_employee_company_by_company_id(id)
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
     raise HTTPException(status_code=201, detail="Item Deleted Successfully")

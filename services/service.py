@@ -205,7 +205,7 @@ class Service:
         return EmployeeCompanyDto.delete_by_company_id(id)    
 
     @classmethod
-    def delete_employee_company_type_service(cls, id : str):
+    def delete_specific_employee_company_service(cls, id : str):
         return ContractTypeDto.delete_specific(id)    
 
     @classmethod
