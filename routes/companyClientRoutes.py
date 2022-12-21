@@ -68,7 +68,7 @@ async def delete_specific_company_client(id_azienda : str, id_cliente : str):
     raise HTTPException(status_code=201, detail="Item Deleted Successfully")
 
 @router.put("")
-async def put_company(id_azienda : str, id_cliente : str, new_data : CompanyClient):
+async def put_company_client(id_azienda : str, id_cliente : str, new_data : CompanyClient):
     if Service.get_specific_company_client_service(id_azienda, id_cliente) == None:
         raise HTTPException(status_code=404, detail=f"Item with keys 'id_azienda'='{id_azienda}' and 'id_cliente'='{id_cliente}' not found")
     try:
