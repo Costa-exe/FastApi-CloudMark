@@ -194,7 +194,7 @@ class Service:
 
     @classmethod
     def get_specific_employee_company_service(cls, id1 : str, id2 : str):
-        return ContractTypeDto.get_specific(id1, id2)
+        return EmployeeCompanyDto.get_specific(id1, id2)
 
     @classmethod
     def delete_employee_company_by_employee_id(cls, id: str):
@@ -205,8 +205,8 @@ class Service:
         return EmployeeCompanyDto.delete_by_company_id(id)    
 
     @classmethod
-    def delete_specific_employee_company_service(cls, id : str):
-        return ContractTypeDto.delete_specific(id)    
+    def delete_specific_employee_company_service(cls, id1 :str, id2 : str):
+        return EmployeeCompanyDto.delete_specific(id1, id2)    
 
     @classmethod
     def update_employee_company_service(cls, id1 : str, id2 : str, item : EmployeeCompany):
@@ -243,8 +243,8 @@ class Service:
         return ContractTypeDto.delete_by_name(nome) 
 
     @classmethod
-    def delete_specific_contract_type_service(cls, id : str):
-        return ContractTypeDto.delete_specific(id)   
+    def delete_specific_contract_type_service(cls, id1 : str, id2 : str):
+        return ContractTypeDto.delete_specific(id1, id2)   
 
     @classmethod
     def create_new_contract_type_service(cls, item : ContractType):

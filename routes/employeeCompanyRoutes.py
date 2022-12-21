@@ -16,14 +16,14 @@ async def get_employees_companies():
 @router.get("/getById")
 async def get_employees_companies_by_id(filter : str, id : str):
     if filter == "employee":
-        if Service.get_employee_company_by_employee_id(id) == None:
+        if Service.get_employee_company_by_employee_id(id) == []:
             raise HTTPException(status_code=404, detail=f"Item with key 'id_dipendente'='{id}' not found")
         try:
             return Service.get_employee_company_by_employee_id(id)
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
     elif filter == "company":
-        if Service.get_employee_company_by_company_id(id) == None:
+        if Service.get_employee_company_by_company_id(id) == []:
             raise HTTPException(status_code=404, detail=f"Item with key 'id_azienda'='{id}' not found")
         try:
             return Service.get_employee_company_by_company_id(id)
@@ -33,25 +33,25 @@ async def get_employees_companies_by_id(filter : str, id : str):
 
 @router.get("/getSpecific")
 async def get_specific_employees_companies(id_dipendente : str, id_azienda : str):
-    if Service.get_specific_contract_type_service(id_dipendente, id_azienda) == None:
+    if Service.get_specific_employee_company_service(id_dipendente, id_azienda) == None:
         raise HTTPException(status_code=404, detail=f"Item with keys 'id_dipendente'='{id_dipendente}' and 'id_azienda'='{id_azienda}' not found")
     try:
-        return EmployeeCompany(**Service.get_specific_contract_type_service(id_dipendente, id_azienda))
+        return EmployeeCompany(**Service.get_specific_employee_company_service(id_dipendente, id_azienda))
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)  
 
 
-@router.delete("")
+@router.delete("/deleteById")
 async def delete_employees_company_by_id(filter : str, id : str):
     if filter == "employee":
-        if Service.get_employee_company_by_employee_id(id) == None:
+        if Service.get_employee_company_by_employee_id(id) == []:
             raise HTTPException(status_code=404, detail=f"Item with key 'id_dipendente'='{id}' not found")
         try:
             Service.delete_employee_company_by_employee_id(id)
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
     elif filter == "company":
-        if Service.get_employee_company_by_company_id(id) == None:
+        if Service.get_employee_company_by_company_id(id) == []:
             raise HTTPException(status_code=404, detail=f"Item with key 'id_azienda'='{id}' not found")
         try:
             Service.delete_employee_company_by_company_id(id)

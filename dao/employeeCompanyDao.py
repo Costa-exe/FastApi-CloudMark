@@ -53,20 +53,6 @@ class EmployeeCompanyDao:
         MySql.query(f"DELETE FROM dipendente_azienda WHERE id_dipendente = '{id1}' and id_azienda = '{id2}'")
         MySql.close_connection_commit()
 
-    @classmethod
-    def update_by_employee_id(cls, id1 :str, id2 :str, item : EmployeeCompany):
-        MySql.open_connection()
-        MySql.query(f"""
-                    UPDATE dipendente_azienda
-                    SET
-                    id_dipendente = '{item.id_dipendente}',
-                    id_azienda = '{item.id_azienda}',
-                    data_inizio_rapporto = '{item.data_inizio_rapporto}',
-                    matricola = IF('{item.matricola}' = '', NULL, '{item.matricola}'),
-                    data_fine_raporto = IF('{item.data_fine_rapporto}' = '', NULL, '{item.data_fine_rapporto}'),
-                    WHERE id_dipendente = '{id1}' and id_azienda = '{id2}'
-                    """)
-        MySql.close_connection_commit()
 
     @classmethod
     def update(cls, id1 :str, id2 : str, item : EmployeeCompany):
@@ -78,7 +64,7 @@ class EmployeeCompanyDao:
                     id_azienda = '{item.id_azienda}',
                     data_inizio_rapporto = '{item.data_inizio_rapporto}',
                     matricola = IF('{item.matricola}' = '', NULL, '{item.matricola}'),
-                    data_fine_raporto = IF('{item.data_fine_rapporto}' = '', NULL, '{item.data_fine_rapporto}')
+                    data_fine_rapporto = IF('{item.data_fine_rapporto}' = '', NULL, '{item.data_fine_rapporto}')
                     WHERE id_dipendente = '{id1}' and id_azienda = '{id2}'
                     """)
         MySql.close_connection_commit()        

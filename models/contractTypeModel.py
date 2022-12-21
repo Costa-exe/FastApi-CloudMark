@@ -21,5 +21,6 @@ class ContractType(BaseModel):
 
     @validator('descrizione')
     def validate_descrizione(cls, v):
-        assert len(v) <= 255, "maximum length for ' descrizione' is 255 characters."
-        return v        
+        if v : 
+            assert len(v) <= 255, "maximum length for ' descrizione' is 255 characters."
+            return v        

@@ -16,14 +16,14 @@ async def get_contract_type():
 @router.get("/getByIdName")
 async def get_by_id_name(filter : str, id : str):
     if filter == "id":
-        if Service.get_contract_type_by_id(id) == None:
+        if Service.get_contract_type_by_id(id) == []:
             raise HTTPException(status_code=404, detail=f"Item with key 'id_tipo_contrato'='{id}' not found")
         try:
             return Service.get_contract_type_by_id(id)
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
     elif filter == "name":
-        if Service.get_contract_type_by_name(id) == None:
+        if Service.get_contract_type_by_name(id) == []:
             raise HTTPException(status_code=404, detail=f"Item with key 'nome_tipo_contratto'='{id}' not found")
         try:
             return Service.get_contract_type_by_name(id)
@@ -42,14 +42,14 @@ async def get_specific_contract_type(id_tipo_contratto : str, nome_tipo_contratt
 @router.delete("")
 async def delete_by_id_name(filter : str, id: str):
     if filter == "id":
-        if Service.get_contract_type_by_id(id) == None:
+        if Service.get_contract_type_by_id(id) == []:
             raise HTTPException(status_code=404, detail=f"Item with key 'id_tipo_contratto'='{id}' not found")
         try:
             Service.delete_contract_type_by_id_service(id)
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
     elif filter == "name":
-        if Service.get__contract_type_by_name(id) == None:
+        if Service.get_contract_type_by_name(id) == []:
             raise HTTPException(status_code=404, detail=f"Item with key 'nome_tipo_cliente'='{id}' not found")
         try:
             Service.delete_contract_type_by_name_service(id)
