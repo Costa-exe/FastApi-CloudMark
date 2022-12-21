@@ -16,16 +16,6 @@ class EmployeeDao:
     def find_by_id(cls, id :str):
         MySql.open_connection()
         MySql.query(f"SELECT * FROM dipendente WHERE id_dipendente = '{id}'")
-        results = MySql.get_result()
-        MySql.close_connection()
-        return results
-
-    @classmethod
-    def find_working_employees(cls):
-        MySql.open_connection()
-        MySql.query(f"SELECT *\
-                    FROM dipendente d, dipendente_azienda da\
-                    WHERE d.id_dipendente = da.id_dipendente and da.data_fine_rapporto = NULL")
         results = MySql.get_results()
         MySql.close_connection()
         return results
@@ -40,7 +30,7 @@ class EmployeeDao:
     def update_by_id(cls, id :str, item : Employee):
         MySql.open_connection()
         MySql.query(f"""
-                    UPDATE dipendente
+                    UPDATE cliente
                     SET                                                                 
                     id_dipendente = '{item.id_dipendente}',
                     nome = IF('{item.nome}' = '', NULL, '{item.nome}'),
@@ -50,7 +40,7 @@ class EmployeeDao:
                     email = IF('{item.email}' = '', NULL, '{item.email}'),
                     telefono = IF('{item.telefono}' = '', NULL, '{item.telefono}'),
                     id_tipo_contratto = '{item.id_tipo_contratto}'
-                    WHERE id_dipendente = '{id}'
+                    WHERE id_cliente = '{id}'
                     """)
         MySql.close_connection_commit()
 

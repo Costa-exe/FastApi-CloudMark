@@ -76,10 +76,6 @@ class Service:
         return CompanyClientDto.get_by_company_id(id)
 
     @classmethod
-    def get_specific_company_client_service(cls, id1 : str, id2 : str):
-        return CompanyClientDto.get_specific(id1, id2)
-
-    @classmethod
     def delete_company_client_by_client_id_service(cls, id: str):
         return CompanyClientDto.delete_by_client_id(id)
 
@@ -88,16 +84,16 @@ class Service:
         return CompanyClientDto.delete_by_company_id(id)
 
     @classmethod
-    def delete_specific_company_client_service(cls, id1 : str, id2 : str):
-        return CompanyClientDto.delete_specific(id1, id2)
-
-    @classmethod
-    def create_new_company_client_service(cls, item : CompanyClient):
+    def create_new_company_client(cls, item : CompanyClient):
         return CompanyClientDto.post(item)
 
     @classmethod
-    def update_company_client_service(cls, id1 : str, id2 : str, item : CompanyClient):
-        return CompanyClientDto.put(id1, id2, item)
+    def update_company_client_by_client_id(cls, id : str, item : CompanyClient):
+        return CompanyClientDto.put_by_client_id(id, item)
+    
+    @classmethod
+    def update_company_client_by_company_id(cls, id : str, item : CompanyClient):
+        return CompanyClientDto.put_by_company_id(id, item)
         
     # Assignment
     
@@ -197,21 +193,25 @@ class Service:
         return EmployeeCompanyDto.get_by_company_id(id)    
 
     @classmethod
-    def remove_employee_company_by_employee_id(cls, id: str):
+    def get_specific_employee_company_service(cls, id1 : str, id2 : str):
+        return EmployeeCompanyDto.get_specific(id1, id2)
+
+    @classmethod
+    def delete_employee_company_by_employee_id(cls, id: str):
         return EmployeeCompanyDto.delete_by_employee_id(id)
 
     @classmethod
-    def remove_employee_company_by_company_id(cls, id: str):
+    def delete_employee_company_by_company_id(cls, id: str):
         return EmployeeCompanyDto.delete_by_company_id(id)    
 
     @classmethod
-    def update_employee_company_by_employee_id(cls, id, item : EmployeeCompany):
-        return EmployeeCompanyDto.put_by_employee_id(id, item)
+    def delete_specific_employee_company_service(cls, id1 :str, id2 : str):
+        return EmployeeCompanyDto.delete_specific(id1, id2)    
 
     @classmethod
-    def update_employee_company_by_company_id(cls, id, item : EmployeeCompany):
-        return EmployeeCompanyDto.put_by_company_id(id, item)
-
+    def update_employee_company_service(cls, id1 : str, id2 : str, item : EmployeeCompany):
+        return EmployeeCompanyDto.put(id1, id2, item)
+    
     @classmethod
     def create_employee_company(cls, item : EmployeeCompany):
         return EmployeeCompanyDto.post(item)    
@@ -219,7 +219,7 @@ class Service:
     #Contract-type   
 
     @classmethod
-    def get_all_contract_type(cls):
+    def get_all_contract_type_service(cls):
         return ContractTypeDto.get_all()
 
     @classmethod
@@ -231,21 +231,25 @@ class Service:
         return ContractTypeDto.get_by_name(nome)    
 
     @classmethod
-    def remove_contract_type_by_id(cls, id: str):
+    def get_specific_contract_type_service(cls, id1 : str, id2 : str):
+        return ContractTypeDto.get_specific(id1, id2)
+
+    @classmethod
+    def delete_contract_type_by_id_service(cls, id: str):
         return ContractTypeDto.delete_by_id(id)
 
     @classmethod
-    def remove_contract_type_by_name(cls, nome: str):
-        return ContractTypeDto.delete_by_name(nome)    
+    def delete_contract_type_by_name_service(cls, nome: str):
+        return ContractTypeDto.delete_by_name(nome) 
 
     @classmethod
-    def update_contract_type_by_id(cls, id, item : ContractType):
-        return ContractTypeDto.put_by_id(id, item)
+    def delete_specific_contract_type_service(cls, id1 : str, id2 : str):
+        return ContractTypeDto.delete_specific(id1, id2)   
 
     @classmethod
-    def update_contract_type_by_name(cls, nome, item : ContractType):
-        return ContractTypeDto.put_by_name(nome, item)
+    def create_new_contract_type_service(cls, item : ContractType):
+        return ContractTypeDto.post(item)
 
     @classmethod
-    def create_contract_type(cls, item : ContractType):
-        return ContractTypeDto.post(item)        
+    def update_contract_type_service(cls, id1 : str, id2 : str, item : ContractType):
+        return ContractTypeDto.put(id1, id2, item)

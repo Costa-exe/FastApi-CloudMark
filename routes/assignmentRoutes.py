@@ -15,7 +15,7 @@ async def get_assignments(id_commessa : str | None = None):
             raise HTTPException(status_code=404, detail=f"No Assignments found")
     try:
         if id_commessa:
-            return Assignment(**Service.get_assignment_by_id_service(id_commessa))
+            return Service.get_assignment_by_id_service(id_commessa)
         return Service.get_all_assignments_service()
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)

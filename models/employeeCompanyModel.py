@@ -21,9 +21,9 @@ class EmployeeCompany(BaseModel):
         assert len(v) <= 80, "maximum length for 'id_azienda' is 80 characters."
         assert len(v) > 0, "'id_azienda' must contain at least 1 character."
         return v       
-
+          
     @validator('matricola')
     def validate_matricola(cls, v):
-        assert len(v) <= 45, "maximum length for 'matricola' is 45 characters."
-        return v                
-
+        if v:
+            assert len(v) <= 45, "maximum length for 'matricola' is 45 characters."
+            return v                

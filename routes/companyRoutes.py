@@ -14,7 +14,7 @@ async def get_companies(id_azienda : str | None = None):
             raise HTTPException(status_code=404, detail=f"No Items Found")
     try:
         if id_azienda:
-            return Company(**Service.get_company_by_id_service(id_azienda))
+            return Service.get_company_by_id_service(id_azienda)
         return Service.get_all_companies_service()
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)

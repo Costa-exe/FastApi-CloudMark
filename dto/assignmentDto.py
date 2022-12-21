@@ -15,7 +15,7 @@ class AssignmentDto:
     @classmethod
     def get_by_id(cls, id: str):
         res = AssignmentDao.find_by_id(id)
-        return res
+        return Assignment(**res)
 
     @classmethod
     def post(cls, item: Assignment):
