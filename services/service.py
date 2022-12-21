@@ -88,8 +88,8 @@ class Service:
         return CompanyClientDto.delete_by_company_id(id)
 
     @classmethod
-    def delete_specific_company_client_service(cls, id : str):
-        return CompanyClientDto.delete_specific(id)
+    def delete_specific_company_client_service(cls, id1 : str, id2 : str):
+        return CompanyClientDto.delete_specific(id1, id2)
 
     @classmethod
     def create_new_company_client_service(cls, item : CompanyClient):
