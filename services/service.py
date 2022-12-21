@@ -128,6 +128,10 @@ class Service:
         return AssignmentEmployeeDto.get_all()
     
     @classmethod
+    def get_specific_assignments_employee(cls, id1 : str, id2 : str):
+        return AssignmentEmployeeDto.get_specific(id1, id2)
+    
+    @classmethod
     def get_assignments_employee_by_assignment_id_service(cls, id: str):
         return AssignmentEmployeeDto.get_by_assignment_id(id)
     
@@ -140,12 +144,12 @@ class Service:
         return AssignmentEmployeeDto.post(item)
     
     @classmethod
-    def put_assignments_employee_by_assignment_id_service(cls, id: str, item: AssignmentEmployee):
-        return AssignmentEmployeeDto.put_by_assignment_id(id, item)
+    def put_assignments_employee_service(cls, id1 : str, id2 : str, item : AssignmentEmployee):
+        return AssignmentEmployeeDto.put(id1, id2, item)
     
     @classmethod
-    def put_assignments_employee_by_employee_id_service(cls, id: str, item: AssignmentEmployee):
-        return AssignmentEmployeeDto.put_by_employee_id(id, item)
+    def delete_specific_assignments_employee(cls, id : str, id2 : str):
+        return AssignmentEmployeeDto.delete_specific(id, id2)
     
     @classmethod
     def delete_assignments_employee_by_assignment_id_service(cls, id: str):
@@ -155,7 +159,7 @@ class Service:
     def delete_assignments_employee_by_employee_id_service(cls, id: str):
         return AssignmentEmployeeDto.delete_by_employee_id(id)
      
-     #Employee
+    #Employee
 
     @classmethod
     def get_all_employees(cls):
