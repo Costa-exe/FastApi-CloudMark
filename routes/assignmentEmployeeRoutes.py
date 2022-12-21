@@ -57,7 +57,7 @@ async def put_assignment_employee(id_commessa : str, id_dipendente : str, new_da
         raise HTTPException(status_code=500, detail=e.msg)
     raise HTTPException(status_code=201, detail="Item Updated Successfully")
 
-@router.delete("")
+@router.delete("/deleteById")
 async def delete_assignment_employee(filter: str, id: str):
     if filter == "assignment":
         if Service.get_assignments_employee_by_assignment_id_service(id) == []:
