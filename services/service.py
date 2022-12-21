@@ -76,7 +76,7 @@ class Service:
         return CompanyClientDto.get_by_company_id(id)
 
     @classmethod
-    def get_specific_company_client(cls, id1 : str, id2 : str):
+    def get_specific_company_client_service(cls, id1 : str, id2 : str):
         return CompanyClientDto.get_specific(id1, id2)
 
     @classmethod
@@ -88,16 +88,16 @@ class Service:
         return CompanyClientDto.delete_by_company_id(id)
 
     @classmethod
-    def create_new_company_client(cls, item : CompanyClient):
+    def delete_specific_company_client_service(cls, id : str):
+        return CompanyClientDto.delete_specific(id)
+
+    @classmethod
+    def create_new_company_client_service(cls, item : CompanyClient):
         return CompanyClientDto.post(item)
 
     @classmethod
-    def update_company_client_by_client_id(cls, id : str, item : CompanyClient):
-        return CompanyClientDto.put_by_client_id(id, item)
-    
-    @classmethod
-    def update_company_client_by_company_id(cls, id : str, item : CompanyClient):
-        return CompanyClientDto.put_by_company_id(id, item)
+    def update_company_client_service(cls, id1 : str, id2 : str, item : CompanyClient):
+        return CompanyClientDto.put(id1, id2, item)
         
     # Assignment
     

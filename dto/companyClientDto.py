@@ -41,13 +41,13 @@ class CompanyClientDto:
         return CompanyClientDao.remove_by_company_id(id)
 
     @classmethod
+    def delete_specific(cls, id1 : str, id2 : str):
+        return CompanyClientDao.remove_specific(id1, id2)
+
+    @classmethod
     def post(cls, item : CompanyClient):
         return CompanyClientDao.create(item)
 
     @classmethod
-    def put_by_client_id(cls, id : str, item : CompanyClient):
-        return CompanyClientDao.update_by_client_id(id, item)
-    
-    @classmethod
-    def put_by_company_id(cls, id : str, item : CompanyClient):
-        return CompanyClientDao.update_by_company_id(id, item)
+    def put(cls, id1 : str, id2 : str, item : CompanyClient):
+        return CompanyClientDao.update(id1, id2, item)
