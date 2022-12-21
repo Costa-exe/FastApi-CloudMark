@@ -9,11 +9,7 @@ async def get_contract_type():
     if Service.get_all_contract_type_service() == []:
         raise HTTPException(status_code=404, detail=f"No Items Found")
     try:
-<<<<<<< Updated upstream
-        return Service.get_all()
-=======
         return Service.get_all_contract_type_service()
->>>>>>> Stashed changes
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
 
@@ -27,10 +23,10 @@ async def get_by_id_name(filter : str, id : str):
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
     elif filter == "name":
-        if Service.get__contract_type_by_name(id) == None:
+        if Service.get_contract_type_by_name(id) == None:
             raise HTTPException(status_code=404, detail=f"Item with key 'nome_tipo_contratto'='{id}' not found")
         try:
-            return Service.get__contract_type_by_name(id)
+            return Service.get_contract_type_by_name(id)
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
 
@@ -72,31 +68,13 @@ async def delete_specific_contract_type(id_tipo_contratto : str, nome_tipo_contr
     raise HTTPException(status_code=201, detail="Item Deleted Successfully")
 
 @router.put("")
-<<<<<<< Updated upstream
-async def put_company(filter : str , id : str, new_data : ContractType):
-    if filter == "id":
-        if Service.get_contract_type_by_id(id) == None:
-            raise HTTPException(status_code=404, detail=f"Item with key 'id_tipo_contratto'='{id}' not found")
-        try:
-            Service.update_contract_type_by_id(id, new_data)
-        except Exception as e:
-            raise HTTPException(status_code=500, detail=e.msg)
-    elif filter == "name":
-        if Service.get__contract_type_by_name(id) == None:
-            raise HTTPException(status_code=404, detail=f"Item with key 'nome_tipo_contratto'='{id}' not found")
-        try:
-            Service.update_contract_type_by_name(id, new_data)
-        except Exception as e:
-            raise HTTPException(status_code=500, detail=e.msg)
-=======
-async def put_contract_type(id_tipo_contratto : str, nome_tipo_contratto : str, new_data : ContractType):
+async def put_contract_type(id_tipo_contratto: str, nome_tipo_contratto : str, new_data : ContractType):
     if Service.get_specific_contract_type_service(id_tipo_contratto, nome_tipo_contratto) == None:
         raise HTTPException(status_code=404, detail=f"Item with keys 'id_tipo_contratto'='{id_tipo_contratto}' and 'nome_tipo_contratto'='{nome_tipo_contratto}' not found")
     try:
         Service.update_contract_type_service(id_tipo_contratto, nome_tipo_contratto, new_data)
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
->>>>>>> Stashed changes
     raise HTTPException(status_code=201, detail="Item Updated Successfully")
 
 

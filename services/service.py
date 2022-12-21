@@ -219,7 +219,7 @@ class Service:
         return ContractTypeDto.get_by_id(id)
 
     @classmethod
-    def get__contract_type_by_name(cls, nome : str):
+    def get_contract_type_by_name(cls, nome : str):
         return ContractTypeDto.get_by_name(nome)    
 
     @classmethod
