@@ -8,7 +8,7 @@ class EmployeeDto:
         Employees = []
         results = EmployeeDao.find_all()
         for result in results:
-                Employee.append(Employee(**result))
+                Employees.append(Employee(**result))
         return Employees
 
     @classmethod

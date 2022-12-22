@@ -16,7 +16,7 @@ class EmployeeDao:
     def find_by_id(cls, id :str):
         MySql.open_connection()
         MySql.query(f"SELECT * FROM dipendente WHERE id_dipendente = '{id}'")
-        results = MySql.get_results()
+        results = MySql.get_result()
         MySql.close_connection()
         return results
 
@@ -30,7 +30,7 @@ class EmployeeDao:
     def update_by_id(cls, id :str, item : Employee):
         MySql.open_connection()
         MySql.query(f"""
-                    UPDATE cliente
+                    UPDATE dipendente
                     SET                                                                 
                     id_dipendente = '{item.id_dipendente}',
                     nome = IF('{item.nome}' = '', NULL, '{item.nome}'),
@@ -39,8 +39,9 @@ class EmployeeDao:
                     iban = '{item.iban}',
                     email = IF('{item.email}' = '', NULL, '{item.email}'),
                     telefono = IF('{item.telefono}' = '', NULL, '{item.telefono}'),
-                    id_tipo_contratto = '{item.id_tipo_contratto}'
-                    WHERE id_cliente = '{id}'
+                    id_tipo_contratto = '{item.id_tipo_contratto}',
+                    data_nascita = '{item.data_nascita}'
+                    WHERE id_dipendente = '{id}'
                     """)
         MySql.close_connection_commit()
 
@@ -57,7 +58,8 @@ class EmployeeDao:
                      iban,
                      telefono,
                      email,
-                     id_tipo_contratto
+                     id_tipo_contratto,
+                     data_nascita
                      )
                     VALUES
                     ('{item.id_dipendente}',
@@ -67,8 +69,7 @@ class EmployeeDao:
                      '{item.iban}',
                     IF('{item.telefono}' = '', NULL, '{item.telefono}'),
                     IF('{item.email}' = '', NULL, '{item.email}'),
-                     '{item.id_tipo_contratto}')
+                     '{item.id_tipo_contratto}',
+                     '{item.data_nascita}')
                     """)
         MySql.close_connection_commit()
-
-    
