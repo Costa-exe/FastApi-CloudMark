@@ -1,7 +1,20 @@
 from fastapi import FastAPI
 from routes import companyClientRoutes, companyRoutes, clientRoutes, assignmentRoutes, assignmentEmployeeRoutes, contractTypeRoutes, employeeCompanyRoutes, employeeRoutes
+from fastapi.middleware.cors import CORSMiddleware
+
+origins = [
+    "http://localhost:4200"
+]
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 app.include_router(companyRoutes.router)
 app.include_router(clientRoutes.router)
