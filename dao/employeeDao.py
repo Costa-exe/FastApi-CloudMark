@@ -73,5 +73,3 @@ class EmployeeDao:
                      '{item.data_nascita}')
                     """)
         MySql.close_connection_commit()
-
-    

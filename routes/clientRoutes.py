@@ -14,7 +14,7 @@ async def get_clients(id_cliente : str | None = None):
             raise HTTPException(status_code=404, detail=f"No Items Found")
     try:
         if id_cliente:
-            return Service.get_client_by_id_service(id_cliente)
+            return Client(**Service.get_client_by_id_service(id_cliente))
         return Service.get_all_clients_service()
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
