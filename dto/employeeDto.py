@@ -9,7 +9,6 @@ class EmployeeDto:
         results = EmployeeDao.find_all()
         for result in results:
             Employees.append(Employee(**result))
-                Employees.append(Employee(**result))
         return Employees
 
     @classmethod
