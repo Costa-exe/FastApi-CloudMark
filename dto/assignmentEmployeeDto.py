@@ -18,13 +18,19 @@ class AssignmentEmployeeDto:
 
     @classmethod
     def get_by_assignment_id(cls, id: str):
+        results = []
         res = AssignmentEmployeeDao.find_by_assignment_id(id)
-        return AssignmentEmployee(**res)
+        for r in res:
+            results.append(AssignmentEmployee(**r))
+        return results
     
     @classmethod
     def get_by_employee_id(cls, id: str):
+        results = []
         res = AssignmentEmployeeDao.find_by_employee_id(id)
-        return AssignmentEmployee(**res)
+        for r in res:
+            results.append(AssignmentEmployee(**r))
+        return results
 
     @classmethod
     def post(cls, item: AssignmentEmployee):

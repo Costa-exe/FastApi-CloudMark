@@ -73,7 +73,7 @@ async def delete_assignment_employee(filter: str, id: str):
             Service.delete_assignments_employee_by_employee_id_service(id)
         except Exception as e:
             raise HTTPException(status_code=500, detail=e.msg)
-    raise HTTPException(status_code=200, detail="Assignment Employee Deleted Successfully")
+    raise HTTPException(status_code=201, detail="Assignment Employee Deleted Successfully")
 
 @router.delete("/deleteSpecific")
 async def delete_specific_assignment_employee(id_commessa : str, id_dipendente : str):

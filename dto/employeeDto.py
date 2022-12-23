@@ -8,13 +8,13 @@ class EmployeeDto:
         Employees = []
         results = EmployeeDao.find_all()
         for result in results:
-                Employee.append(Employee(**result))
+                Employees.append(Employee(**result))
         return Employees
 
     @classmethod
     def get_by_id(cls, id : str):
         result = EmployeeDao.find_by_id(id)
-        return Employee(**result)
+        return result
 
     @classmethod
     def delete_by_id(cls, id : str):

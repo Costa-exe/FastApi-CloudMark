@@ -39,7 +39,7 @@ async def get_specific_contract_type(id_tipo_contratto : str, nome_tipo_contratt
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)    
 
-@router.delete("")
+@router.delete("/deleteById")
 async def delete_by_id_name(filter : str, id: str):
     if filter == "id":
         if Service.get_contract_type_by_id(id) == []:
@@ -50,7 +50,7 @@ async def delete_by_id_name(filter : str, id: str):
             raise HTTPException(status_code=500, detail=e.msg)
     elif filter == "name":
         if Service.get_contract_type_by_name(id) == []:
-            raise HTTPException(status_code=404, detail=f"Item with key 'nome_tipo_cliente'='{id}' not found")
+            raise HTTPException(status_code=404, detail=f"Item with key 'nome_tipo_contratto'='{id}' not found")
         try:
             Service.delete_contract_type_by_name_service(id)
         except Exception as e:
