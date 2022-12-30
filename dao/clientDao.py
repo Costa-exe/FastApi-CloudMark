@@ -43,7 +43,7 @@ class ClientDao:
                         FROM commessa c, cliente cl
                         WHERE c.id_cliente = cl.id_cliente
                         and DATEDIFF(c.data_fine, CURDATE()) > 0
-                        and cl.p_ive like '{vat}%'
+                        and cl.p_iva like '{vat}%'
                         GROUP BY cl.p_iva;
                     """)
         results = MySql.get_results()
@@ -51,7 +51,7 @@ class ClientDao:
         return results
 
     @classmethod
-    def find_inactive_by_name(cls, vat : str):
+    def find_inactive_by_vat(cls, vat : str):
         MySql.open_connection()
         MySql.query(f"""
                         SELECT cl.nome, cl.p_iva, cl.email, if(1 > 0, 0, 0) as commesse_attive
@@ -61,7 +61,7 @@ class ClientDao:
                                                     WHERE c.id_cliente = cl.id_cliente
                                                     and DATEDIFF(c.data_fine, CURDATE()) > 0
                                                     GROUP BY cl.id_cliente)
-                        and cl.nome like '{vat}%'
+                        and cl.p_iva like '{vat}%'
                     """)
         results = MySql.get_results()
         MySql.close_connection()
@@ -127,7 +127,7 @@ class ClientDao:
         return results
 
     @classmethod
-    def find_active_details_by_name(cls, vat : str):
+    def find_active_details_by_vat(cls, vat : str):
         MySql.open_connection()
         MySql.query(f"""
                         SELECT cl.nome, cl.cap, cl.email, cl.p_iva, cl.telefono, count(*) as commesse_attive, cl.indirizzo
