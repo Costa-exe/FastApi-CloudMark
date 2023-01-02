@@ -289,3 +289,45 @@ class Service:
     @classmethod
     def get_assignment_details(cls, id : str):
         return ClientDto.get_assignment_details(id)
+
+    ## employee ##
+
+    @classmethod
+    def get_employees_by_name_surname(cls, name : str, surname : str):
+        return EmployeeDto.get_by_name_surname(name, surname)
+
+    @classmethod
+    def get_employees_by_surname(cls, surname : str):
+        return EmployeeDto.get_by_surname(surname)
+
+    @classmethod
+    def get_employees_by_name_and_surname(cls, name : str, surname : str):
+        return EmployeeDto.get_by_name_and_surname(name, surname)
+
+    @classmethod
+    def get_employees_by_cf(cls, cf : str):
+        return EmployeeDto.get_by_cf(cf)
+
+    @classmethod
+    def get_employees_by_matricola(cls, matricola : str):
+        return EmployeeDto.get_by_matricola(matricola)
+
+    @classmethod
+    def get_employees_inactive(cls):
+        return EmployeeDto.get_all_inactive()
+
+    @classmethod
+    def get_employees_active(cls):
+        return EmployeeDto.get_all_active()
+
+    @classmethod
+    def get_employees_deatils_by_name_surname(cls, name : str, surname : str):
+        return EmployeeDto.get_details_by_name_surname(name, surname)
+
+    @classmethod
+    def get_employees_full_details(cls, id : str):
+        return EmployeeDto.get_full_details(id)
+
+    @classmethod
+    def get_employees_info_assignments(cls, id : str):
+        return EmployeeDto.get_info_assignments(id)

@@ -75,6 +75,20 @@ class EmployeeDao:
         return results
 
     @classmethod
+    def find_by_name_and_surname(cls, name : str, surname : str):
+        MySql.open_connection()
+        MySql.query(f"""
+                    SELECT d.cognome, d.nome, d.id_dipendente as matricola, tc.nome_tipo_contratto as contratto,
+                    da.data_inizio_rapporto as assunzione
+                    FROM dipendente d, tipo_contratto tc, dipendente_azienda da
+                    WHERE d.id_dipendente = da.id_dipendente 
+                    and tc.id_tipo_contratto = d.id_tipo_contratto and d.cognome like '{surname}%' and d.nome like '{name}%'
+                    """)
+        results = MySql.get_results()
+        MySql.close_connection()
+        return results
+
+    @classmethod
     def find_by_cf(cls, cf : str):
         MySql.open_connection()
         MySql.query(f"""
@@ -142,7 +156,7 @@ class EmployeeDao:
                     and c.id_cliente = cl.id_cliente 
                     and d.id_dipendente = '{id}'
                     """)
-        results = MySql.get_result()
+        results = MySql.get_results()
         MySql.close_connection()
         return results
 

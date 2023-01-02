@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 from services.service import Service
 from models.employeeModel import Employee
 
-router = APIRouter(prefix="/Employees", tags=["Employees API"])
+router = APIRouter(prefix="/employees", tags=["Employees API"])
 
 @router.get("")
 async def get_employees(id : str | None = None):
@@ -18,6 +18,49 @@ async def get_employees(id : str | None = None):
         return Service.get_all_employees()
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
+
+@router.get("/getByNameSurname")
+async def get_by_name_surname(nome : str, cognome : str):
+    if Service.get_employees_by_name_surname(nome, cognome) == []:
+        raise HTTPException(status_code=404, detail=f"No Items Found")
+    try:
+        return Service.get_employees_by_name_surname(nome, cognome)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=e.msg)
+
+@router.get("/getAll")
+async def get_all(working : str):
+    if working == "no":
+        if Service.get_employees_inactive == []:
+            raise HTTPException(status_code=404, detail=f"No Items Found")
+    elif working == "yes":
+        if Service.get_employees_active == []:
+            raise HTTPException(status_code=404, detail=f"No Items Found")
+    try:
+        if working == "no":
+            return Service.get_employees_inactive()
+        return Service.get_employees_active()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=e.msg)
+
+@router.get("/getFullDetails")
+async def get_full_details(id_dipendente : str):
+    if Service.get_employees_full_details(id_dipendente) == None:
+        raise HTTPException(status_code=404, detail=f"Item with key 'id_dipendente'='{id_dipendente}' not found")
+    try:
+        return Service.get_employees_full_details(id_dipendente)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=e.msg)
+
+@router.get("/getInfoAssignments")
+async def get_info_assignments(id_dipendente : str):
+    if Service.get_employees_info_assignments(id_dipendente) == []:
+        raise HTTPException(status_code=404, detail=f"No Items Found")
+    try:
+        return Service.get_employees_info_assignments(id_dipendente)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=e.msg)
+
 
 @router.delete("")
 async def delete_employee(id: str):
