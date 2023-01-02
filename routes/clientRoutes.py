@@ -19,6 +19,51 @@ async def get_clients(id_cliente : str | None = None):
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
 
+@router.get("/AssignmentDetails")
+async def get_assignments_details(id_commessa : str):
+    if Service.get_assignment_details(id_commessa) == None:
+        raise HTTPException(status_code=404, detail=f"Item with key 'id_commessa'='{id_commessa}' not found")
+    try:
+        return Service.get_assignment_details(id_commessa)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=e.msg)
+
+@router.get("/getByNameVat")
+async def get_active_clients(value : str):
+    if Service.get_active_clients(value) == []:
+        raise HTTPException(status_code=404, detail=f"No Items Found")
+    try:
+        return Service.get_active_clients(value)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=e.msg)
+
+@router.get("/getActiveAssignments")
+async def get_active_assignments(p_iva: str):
+    if Service.get_active_assignments(p_iva) == []:
+        raise HTTPException(status_code=404, detail=f"No Items Found")
+    try:
+        return Service.get_active_assignments(p_iva)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=e.msg)
+
+@router.get("/getAll")
+async def get_all_active():
+    if Service.get_all_active_clients() == []:
+        raise HTTPException(status_code=404, detail=f"No Items Found")
+    try:
+        return Service.get_all_active_clients()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=e.msg)
+
+@router.get("/etByNameVatDetails")
+async def get_active_details(p_iva: str):
+    if Service.get_active_clients_details(p_iva) == []:
+        raise HTTPException(status_code=404, detail=f"No Items Found")
+    try:
+        return Service.get_active_clients_details(p_iva)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=e.msg)
+
 @router.delete("")
 async def delete_client(id_cliente: str):
     if Service.get_client_by_id_service(id_cliente) == None:
