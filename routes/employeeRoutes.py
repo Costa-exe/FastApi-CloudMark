@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from services.service import Service
 from models.employeeModel import Employee
+from models.employeeCompanyModel import EmployeeCompany
 
 router = APIRouter(prefix="/employees", tags=["Employees API"])
 
@@ -84,6 +85,15 @@ async def delete_employee(id: str):
 async def add_employee(employee : Employee):
     try:
         Service.create_employee(employee)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=e.msg)
+    raise HTTPException(status_code=201, detail="Item Added Successfully")
+
+@router.post("/insertEmployeeCompany")
+async def add_employee_company(employee : Employee, employeeCompany : EmployeeCompany):
+    try:
+        Service.create_employee(employee)
+        Service.create_employee_company(employeeCompany)
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
     raise HTTPException(status_code=201, detail="Item Added Successfully")
