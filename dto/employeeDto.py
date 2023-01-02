@@ -12,41 +12,17 @@ class EmployeeDto:
         return Employees
 
     @classmethod
-    def get_by_name_surname(cls, name : str, surname : str):
+    def get_by_name_surname(cls, name : str):
         Employees = []
-        results = EmployeeDao.find_by_name_surname(name, surname)
+        results = EmployeeDao.find_by_name_surname(name)
         for result in results:
                 Employees.append(result)
         return Employees
 
     @classmethod
-    def get_by_name_and_surname(cls, name : str, surname : str):
+    def get_by_multi(cls, value : str):
         Employees = []
-        results = EmployeeDao.find_by_name_and_surname(name, surname)
-        for result in results:
-                Employees.append(result)
-        return Employees
-
-    @classmethod
-    def get_by_surname(cls, surname : str):
-        Employees = []
-        results = EmployeeDao.find_by_surname(surname)
-        for result in results:
-                Employees.append(result)
-        return Employees
-
-    @classmethod
-    def get_by_cf(cls, cf : str):
-        Employees = []
-        results = EmployeeDao.find_by_cf(cf)
-        for result in results:
-                Employees.append(result)
-        return Employees
-
-    @classmethod
-    def get_by_matricola(cls, matricola : str):
-        Employees = []
-        results = EmployeeDao.find_by_matricola(matricola)
+        results = EmployeeDao.find_by_multi(value)
         for result in results:
                 Employees.append(result)
         return Employees
@@ -63,14 +39,6 @@ class EmployeeDto:
     def get_all_active(cls):
         Employees = []
         results = EmployeeDao.find_all_active()
-        for result in results:
-                Employees.append(result)
-        return Employees
-
-    @classmethod
-    def get_details_by_name_surname(cls, name : str, surname : str):
-        Employees = []
-        results = EmployeeDao.find_contract_details_by_name_surname(name, surname)
         for result in results:
                 Employees.append(result)
         return Employees

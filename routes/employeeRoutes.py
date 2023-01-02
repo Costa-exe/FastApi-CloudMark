@@ -20,11 +20,20 @@ async def get_employees(id : str | None = None):
         raise HTTPException(status_code=500, detail=e.msg)
 
 @router.get("/getByNameSurname")
-async def get_by_name_surname(nome : str, cognome : str):
-    if Service.get_employees_by_name_surname(nome, cognome) == []:
+async def get_by_name_surname(nome_cognome : str):
+    if Service.get_employees_by_name_surname(nome_cognome) == []:
         raise HTTPException(status_code=404, detail=f"No Items Found")
     try:
-        return Service.get_employees_by_name_surname(nome, cognome)
+        return Service.get_employees_by_name_surname(nome_cognome)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=e.msg)
+
+@router.get("/getByMultiFields")
+async def get_by_multi(value : str):
+    if Service.get_employees_by_multi(value) == []:
+        raise HTTPException(status_code=404, detail=f"No Items Found")
+    try:
+        return Service.get_employees_by_multi(value)
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
 
@@ -60,7 +69,6 @@ async def get_info_assignments(id_dipendente : str):
         return Service.get_employees_info_assignments(id_dipendente)
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
-
 
 @router.delete("")
 async def delete_employee(id: str):

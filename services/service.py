@@ -293,24 +293,12 @@ class Service:
     ## employee ##
 
     @classmethod
-    def get_employees_by_name_surname(cls, name : str, surname : str):
-        return EmployeeDto.get_by_name_surname(name, surname)
+    def get_employees_by_name_surname(cls, name : str):
+        return EmployeeDto.get_by_name_surname(name)
 
     @classmethod
-    def get_employees_by_surname(cls, surname : str):
-        return EmployeeDto.get_by_surname(surname)
-
-    @classmethod
-    def get_employees_by_name_and_surname(cls, name : str, surname : str):
-        return EmployeeDto.get_by_name_and_surname(name, surname)
-
-    @classmethod
-    def get_employees_by_cf(cls, cf : str):
-        return EmployeeDto.get_by_cf(cf)
-
-    @classmethod
-    def get_employees_by_matricola(cls, matricola : str):
-        return EmployeeDto.get_by_matricola(matricola)
+    def get_employees_by_multi(cls, value : str):
+        return EmployeeDto.get_by_multi(value)
 
     @classmethod
     def get_employees_inactive(cls):
@@ -319,10 +307,6 @@ class Service:
     @classmethod
     def get_employees_active(cls):
         return EmployeeDto.get_all_active()
-
-    @classmethod
-    def get_employees_deatils_by_name_surname(cls, name : str, surname : str):
-        return EmployeeDto.get_details_by_name_surname(name, surname)
 
     @classmethod
     def get_employees_full_details(cls, id : str):
