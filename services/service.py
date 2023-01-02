@@ -263,12 +263,8 @@ class Service:
     ## client ##
 
     @classmethod
-    def get_active_clients_by_name(cls, name : str):
-        return ClientDto.get_active_by_name(name)
-
-    @classmethod
-    def get_active_clients_by_vat(cls, vat : str):
-        return ClientDto.get_active_by_vat(vat)
+    def get_active_clients(cls, value : str):
+        return ClientDto.get_active(value)
 
     @classmethod
     def get_active_assignments(cls, vat : str):
@@ -279,12 +275,8 @@ class Service:
         return ClientDto.get_all_active()
 
     @classmethod
-    def get_active_clients_details_by_name(cls, name : str):
-        return ClientDto.get_active_details_by_name(name)
-
-    @classmethod
-    def get_active_clients_details_by_vat(cls, vat : str):
-        return ClientDto.get_active_details_by_vat(vat)
+    def get_active_clients_details(cls, value : str):
+        return ClientDto.get_active_details(value)
 
     @classmethod
     def get_assignment_details(cls, id : str):

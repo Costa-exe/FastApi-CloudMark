@@ -12,21 +12,10 @@ class ClientDto:
         return clients
 
     @classmethod
-    def get_active_by_name(cls, name : str):
+    def get_active(cls, value : str):
         clients = []
-        results1 = ClientDao.find_active_by_name(name)
-        results2 = ClientDao.find_inactive_by_name(name)
-        for result in results1:
-                clients.append(result)
-        for result in results2:
-                clients.append(result)
-        return clients
-
-    @classmethod
-    def get_active_by_vat(cls, vat : str):
-        clients = []
-        results1 = ClientDao.find_active_by_vat(vat)
-        results2 = ClientDao.find_inactive_by_vat(vat)
+        results1 = ClientDao.find_active(value)
+        results2 = ClientDao.find_inactive(value)
         for result in results1:
                 clients.append(result)
         for result in results2:
@@ -53,21 +42,10 @@ class ClientDto:
         return clients
     
     @classmethod
-    def get_active_details_by_name(cls, name : str):
+    def get_active_details(cls, value : str):
         clients = []
-        results1 = ClientDao.find_active_details_by_name(name)
-        results2 = ClientDao.find_inactive_details_by_name(name)
-        for result in results1:
-                clients.append(result)
-        for result in results2:
-                clients.append(result)
-        return clients
-
-    @classmethod
-    def get_active_details_by_vat(cls, vat : str):
-        clients = []
-        results1 = ClientDao.find_active_details_by_vat(vat)
-        results2 = ClientDao.find_inactive_details_by_vat(vat)
+        results1 = ClientDao.find_active_details(value)
+        results2 = ClientDao.find_inactive_details(value)
         for result in results1:
                 clients.append(result)
         for result in results2:

@@ -28,21 +28,12 @@ async def get_assignments_details(id_commessa : str):
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
 
-@router.get("/getActiveByName")
-async def get_active_by_name(nome : str):
-    if Service.get_active_clients_by_name(nome) == []:
+@router.get("/getByNameVat")
+async def get_active_clients(value : str):
+    if Service.get_active_clients(value) == []:
         raise HTTPException(status_code=404, detail=f"No Items Found")
     try:
-        return Service.get_active_clients_by_name(nome)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=e.msg)
-
-@router.get("/getActiveByVat")
-async def get_active_by_vat(p_iva: str):
-    if Service.get_active_clients_by_vat(p_iva) == []:
-        raise HTTPException(status_code=404, detail=f"No Items Found")
-    try:
-        return Service.get_active_clients_by_vat(p_iva)
+        return Service.get_active_clients(value)
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
 
@@ -55,7 +46,7 @@ async def get_active_assignments(p_iva: str):
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
 
-@router.get("/getAllActive")
+@router.get("/getAll")
 async def get_all_active():
     if Service.get_all_active_clients() == []:
         raise HTTPException(status_code=404, detail=f"No Items Found")
@@ -64,21 +55,12 @@ async def get_all_active():
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
 
-@router.get("/getActiveDetailsByVat")
-async def get_active_details_by_vat(p_iva: str):
-    if Service.get_active_clients_details_by_vat(p_iva) == []:
+@router.get("/etByNameVatDetails")
+async def get_active_details(p_iva: str):
+    if Service.get_active_clients_details(p_iva) == []:
         raise HTTPException(status_code=404, detail=f"No Items Found")
     try:
-        return Service.get_active_clients_details_by_vat(p_iva)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=e.msg)
-
-@router.get("/getActiveDetailsByName")
-async def get_active_details_by_name(name: str):
-    if Service.get_active_clients_details_by_name(name) == []:
-        raise HTTPException(status_code=404, detail=f"No Items Found")
-    try:
-        return Service.get_active_clients_details_by_name(name)
+        return Service.get_active_clients_details(p_iva)
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
 

@@ -4,14 +4,14 @@ from models.clientModel import Client
 class ClientDao:
 
     @classmethod
-    def find_active_by_name(cls, name : str):
+    def find_active(cls, value : str):
         MySql.open_connection()
         MySql.query(f"""
                         SELECT cl.nome, cl.p_iva, cl.email, count(*) as commesse_attive
                         FROM commessa c, cliente cl
                         WHERE c.id_cliente = cl.id_cliente
                         and DATEDIFF(c.data_fine, CURDATE()) > 0
-                        and cl.nome like '{name}%'
+                        and (cl.nome like '{value}%' or cl.p_iva like '{value}%')
                         GROUP BY cl.p_iva;
                     """)
         results = MySql.get_results()
@@ -19,7 +19,7 @@ class ClientDao:
         return results
 
     @classmethod
-    def find_inactive_by_name(cls, name : str):
+    def find_inactive(cls, value : str):
         MySql.open_connection()
         MySql.query(f"""
                         SELECT cl.nome, cl.p_iva, cl.email, if(1 > 0, 0, 0) as commesse_attive
@@ -29,39 +29,7 @@ class ClientDao:
                                                     WHERE c.id_cliente = cl.id_cliente
                                                     and DATEDIFF(c.data_fine, CURDATE()) > 0
                                                     GROUP BY cl.id_cliente)
-                        and cl.nome like '{name}%'
-                    """)
-        results = MySql.get_results()
-        MySql.close_connection()
-        return results
-
-    @classmethod
-    def find_active_by_vat(cls, vat : str):
-        MySql.open_connection()
-        MySql.query(f"""
-                        SELECT cl.nome, cl.p_iva, cl.email, count(*) as commesse_attive
-                        FROM commessa c, cliente cl
-                        WHERE c.id_cliente = cl.id_cliente
-                        and DATEDIFF(c.data_fine, CURDATE()) > 0
-                        and cl.p_iva like '{vat}%'
-                        GROUP BY cl.p_iva;
-                    """)
-        results = MySql.get_results()
-        MySql.close_connection()
-        return results
-
-    @classmethod
-    def find_inactive_by_vat(cls, vat : str):
-        MySql.open_connection()
-        MySql.query(f"""
-                        SELECT cl.nome, cl.p_iva, cl.email, if(1 > 0, 0, 0) as commesse_attive
-                        FROM cliente cl
-                        WHERE cl.id_cliente not in (SELECT cl.id_cliente
-                                                    FROM commessa c, cliente cl
-                                                    WHERE c.id_cliente = cl.id_cliente
-                                                    and DATEDIFF(c.data_fine, CURDATE()) > 0
-                                                    GROUP BY cl.id_cliente)
-                        and cl.p_iva like '{vat}%'
+                        and (cl.nome like '{value}%' or cl.p_iva like '{value}%')
                     """)
         results = MySql.get_results()
         MySql.close_connection()
@@ -112,14 +80,14 @@ class ClientDao:
         return results
 
     @classmethod
-    def find_active_details_by_name(cls, name : str):
+    def find_active_details(cls, value : str):
         MySql.open_connection()
         MySql.query(f"""
                         SELECT cl.nome, cl.cap, cl.email, cl.p_iva, cl.telefono, count(*) as commesse_attive, cl.indirizzo
                         FROM commessa c, cliente cl
                         WHERE c.id_cliente = cl.id_cliente
                         and DATEDIFF(c.data_fine, CURDATE()) > 0
-                        and cl.nome like '{name}%'
+                        and (cl.nome like '{value}%' or cl.p_iva like '{value}%')
                         GROUP BY cl.p_iva;
                     """)
         results = MySql.get_results()
@@ -127,22 +95,7 @@ class ClientDao:
         return results
 
     @classmethod
-    def find_active_details_by_vat(cls, vat : str):
-        MySql.open_connection()
-        MySql.query(f"""
-                        SELECT cl.nome, cl.cap, cl.email, cl.p_iva, cl.telefono, count(*) as commesse_attive, cl.indirizzo
-                        FROM commessa c, cliente cl
-                        WHERE c.id_cliente = cl.id_cliente
-                        and DATEDIFF(c.data_fine, CURDATE()) > 0
-                        and cl.p_iva like '{vat}%'
-                        GROUP BY cl.p_iva;
-                    """)
-        results = MySql.get_results()
-        MySql.close_connection()
-        return results
-
-    @classmethod
-    def find_inactive_details_by_name(cls, name : str):
+    def find_inactive_details(cls, value : str):
         MySql.open_connection()
         MySql.query(f"""
                         SELECT cl.nome, cl.cap, cl.email, cl.p_iva, cl.telefono, if(1 > 0, 0, 0) as commesse_attive, cl.indirizzo
@@ -152,24 +105,7 @@ class ClientDao:
                                                     where c.id_cliente = cl.id_cliente
                                                     and DATEDIFF(c.data_fine, CURDATE()) > 0
                                                     group by cl.id_cliente)
-                        and cl.nome like '{name}%'
-                    """)
-        results = MySql.get_results()
-        MySql.close_connection()
-        return results
-
-    @classmethod
-    def find_inactive_details_by_vat(cls, vat : str):
-        MySql.open_connection()
-        MySql.query(f"""
-                        SELECT cl.nome, cl.cap, cl.email, cl.p_iva, cl.telefono, if(1 > 0, 0, 0) as commesse_attive, cl.indirizzo
-                        FROM cliente cl
-                        WHERE cl.id_cliente not in (select cl.id_cliente
-                                                    from commessa c, cliente cl
-                                                    where c.id_cliente = cl.id_cliente
-                                                    and DATEDIFF(c.data_fine, CURDATE()) > 0
-                                                    group by cl.id_cliente)
-                        and cl.nome like '{vat}%'
+                        and (cl.nome like '{value}%' or cl.p_iva like '{value}%')
                     """)
         results = MySql.get_results()
         MySql.close_connection()
