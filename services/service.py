@@ -257,3 +257,35 @@ class Service:
     @classmethod
     def update_contract_type_service(cls, id1 : str, id2 : str, item : ContractType):
         return ContractTypeDto.put(id1, id2, item)
+
+    ###### business #####
+    
+    ## client ##
+
+    @classmethod
+    def get_active_clients_by_name(cls, name : str):
+        return ClientDto.get_active_by_name(name)
+
+    @classmethod
+    def get_active_clients_by_vat(cls, vat : str):
+        return ClientDto.get_active_by_vat(vat)
+
+    @classmethod
+    def get_active_assignments(cls, vat : str):
+        return ClientDto.get_active_assignments(vat)
+
+    @classmethod
+    def get_all_active_clients(cls):
+        return ClientDto.get_all_active()
+
+    @classmethod
+    def get_active_clients_details_by_name(cls, name : str):
+        return ClientDto.get_active_details_by_name(name)
+
+    @classmethod
+    def get_active_clients_details_by_vat(cls, vat : str):
+        return ClientDto.get_active_details_by_vat(vat)
+
+    @classmethod
+    def get_assignment_details(cls, id : str):
+        return ClientDto.get_assignment_details(id)
