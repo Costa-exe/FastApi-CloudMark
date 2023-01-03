@@ -12,6 +12,51 @@ class EmployeeDto:
         return Employees
 
     @classmethod
+    def get_by_name_surname(cls, name : str):
+        Employees = []
+        results = EmployeeDao.find_by_name_surname(name)
+        for result in results:
+                Employees.append(result)
+        return Employees
+
+    @classmethod
+    def get_by_multi(cls, value : str):
+        Employees = []
+        results = EmployeeDao.find_by_multi(value)
+        for result in results:
+                Employees.append(result)
+        return Employees
+
+    @classmethod
+    def get_all_inactive(cls):
+        Employees = []
+        results = EmployeeDao.find_all_inactive()
+        for result in results:
+                Employees.append(result)
+        return Employees
+
+    @classmethod
+    def get_all_active(cls):
+        Employees = []
+        results = EmployeeDao.find_all_active()
+        for result in results:
+                Employees.append(result)
+        return Employees
+
+    @classmethod
+    def get_full_details(cls, id : str):
+        Employees = []
+        results = EmployeeDao.find_full_details(id)
+        for result in results:
+                Employees.append(result)
+        return Employees
+
+    @classmethod
+    def get_info_assignments(cls, id : str):
+        result = EmployeeDao.find_info_assignments(id)
+        return result
+
+    @classmethod
     def get_by_id(cls, id : str):
         result = EmployeeDao.find_by_id(id)
         return result

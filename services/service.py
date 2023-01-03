@@ -257,3 +257,53 @@ class Service:
     @classmethod
     def update_contract_type_service(cls, id1 : str, id2 : str, item : ContractType):
         return ContractTypeDto.put(id1, id2, item)
+
+    ###### business #####
+    
+    ## client ##
+
+    @classmethod
+    def get_active_clients(cls, value : str):
+        return ClientDto.get_active(value)
+
+    @classmethod
+    def get_active_assignments(cls, vat : str):
+        return ClientDto.get_active_assignments(vat)
+
+    @classmethod
+    def get_all_active_clients(cls):
+        return ClientDto.get_all_active()
+
+    @classmethod
+    def get_active_clients_details(cls, value : str):
+        return ClientDto.get_active_details(value)
+
+    @classmethod
+    def get_assignment_details(cls, id : str):
+        return ClientDto.get_assignment_details(id)
+
+    ## employee ##
+
+    @classmethod
+    def get_employees_by_name_surname(cls, name : str):
+        return EmployeeDto.get_by_name_surname(name)
+
+    @classmethod
+    def get_employees_by_multi(cls, value : str):
+        return EmployeeDto.get_by_multi(value)
+
+    @classmethod
+    def get_employees_inactive(cls):
+        return EmployeeDto.get_all_inactive()
+
+    @classmethod
+    def get_employees_active(cls):
+        return EmployeeDto.get_all_active()
+
+    @classmethod
+    def get_employees_full_details(cls, id : str):
+        return EmployeeDto.get_full_details(id)
+
+    @classmethod
+    def get_employees_info_assignments(cls, id : str):
+        return EmployeeDto.get_info_assignments(id)
