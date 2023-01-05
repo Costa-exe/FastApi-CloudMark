@@ -55,12 +55,12 @@ async def get_all_active():
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
 
-@router.get("/etByNameVatDetails")
-async def get_active_details(p_iva: str):
-    if Service.get_active_clients_details(p_iva) == []:
+@router.get("/getByNameVatDetails")
+async def get_active_details(value: str):
+    if Service.get_active_clients_details(value) == []:
         raise HTTPException(status_code=404, detail=f"No Items Found")
     try:
-        return Service.get_active_clients_details(p_iva)
+        return Service.get_active_clients_details(value)
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
 

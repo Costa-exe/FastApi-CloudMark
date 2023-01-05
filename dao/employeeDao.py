@@ -29,10 +29,8 @@ class EmployeeDao:
     def find_all_inactive(cls):
         MySql.open_connection()
         MySql.query(f"""
-                    SELECT d.cognome, d.nome, d.id_dipendente as matricola, d.data_nascita 
-                    as matricola, tc.nome_tipo_contratto 
-                    as contratto, da.data_inizio_rapporto 
-                    as assunzione 
+                    SELECT d.cognome, d.nome, d.id_dipendente as matricola, tc.nome_tipo_contratto 
+                    as contratto, da.data_inizio_rapporto as assunzione 
                     FROM dipendente d, dipendente_azienda da, tipo_contratto tc 
                     WHERE d.id_dipendente = da.id_dipendente 
                     and d.id_tipo_contratto = tc.id_tipo_contratto
@@ -45,10 +43,8 @@ class EmployeeDao:
     def find_all_active(cls):
         MySql.open_connection()
         MySql.query(f"""
-                    SELECT d.cognome, d.nome, d.id_dipendente as matricola, d.data_nascita
-                    as matricola, tc.nome_tipo_contratto 
-                    as contratto, da.data_inizio_rapporto 
-                    as assunzione 
+                    SELECT d.cognome, d.nome, d.id_dipendente as matricola, tc.nome_tipo_contratto 
+                    as contratto, da.data_inizio_rapporto as assunzione 
                     FROM dipendente d, dipendente_azienda da, tipo_contratto tc 
                     WHERE d.id_dipendente = da.id_dipendente 
                     and d.id_tipo_contratto = tc.id_tipo_contratto 
