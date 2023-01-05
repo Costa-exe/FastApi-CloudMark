@@ -34,11 +34,21 @@ async def get_by_name_surname(nome_cognome: str):
 
 
 @router.get("/getByMultiFields")
-async def get_by_multi(value: str):
-    if Service.get_employees_by_multi(value) == []:
+async def get_by_multi(value: str, id_azienda: str):
+    if Service.get_employees_by_multi(value, id_azienda) == []:
         raise HTTPException(status_code=404, detail=f"No Items Found")
     try:
-        return Service.get_employees_by_multi(value)
+        return Service.get_employees_by_multi(value, id_azienda)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=e.msg)
+
+
+@router.get("/getByMultiFieldsActive")
+async def get_by_multi(value: str, id_azienda: str):
+    if Service.get_employees_by_multi_active(value, id_azienda) == []:
+        raise HTTPException(status_code=404, detail=f"No Items Found")
+    try:
+        return Service.get_employees_by_multi_active(value, id_azienda)
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
 

@@ -21,9 +21,17 @@ class EmployeeDto:
         return Employees
 
     @classmethod
-    def get_by_multi(cls, value: str):
+    def get_by_multi(cls, value: str, id: str):
         Employees = []
-        results = EmployeeDao.find_by_multi(value)
+        results = EmployeeDao.find_by_multi(value, id)
+        for result in results:
+            Employees.append(result)
+        return Employees
+
+    @classmethod
+    def get_by_multi_active(cls, value: str, id: str):
+        Employees = []
+        results = EmployeeDao.find_by_multi_active(value, id)
         for result in results:
             Employees.append(result)
         return Employees

@@ -289,8 +289,12 @@ class Service:
         return EmployeeDto.get_by_name_surname(name)
 
     @classmethod
-    def get_employees_by_multi(cls, value: str):
-        return EmployeeDto.get_by_multi(value)
+    def get_employees_by_multi(cls, value: str, id: str):
+        return EmployeeDto.get_by_multi(value, id)
+
+    @classmethod
+    def get_employees_by_multi_active(cls, value: str, id: str):
+        return EmployeeDto.get_by_multi_active(value, id)
 
     @classmethod
     def get_employees_inactive(cls, id: str):

@@ -58,7 +58,7 @@ class EmployeeDao:
         return results
 
     @classmethod
-    def find_by_multi(cls, value: str):
+    def find_by_multi(cls, value: str, id: str):
         MySql.open_connection()
         MySql.query(f"""
                     SELECT d.cognome, d.nome, d.id_dipendente as matricola, tc.nome_tipo_contratto as contratto,
@@ -68,6 +68,25 @@ class EmployeeDao:
                     and tc.id_tipo_contratto = d.id_tipo_contratto and (d.cognome like '{value}%' or concat(d.nome, ' ', d.cognome) like '{value}%'
                     or concat(d.cognome, ' ', d.nome) like '{value}%'
                     or d.cf like '{value}%' or d.id_dipendente like '{value}%')
+                    and da.id_azienda = '{id}'
+                    """)
+        results = MySql.get_results()
+        MySql.close_connection()
+        return results
+
+    @classmethod
+    def find_by_multi_active(cls, value: str, id: str):
+        MySql.open_connection()
+        MySql.query(f"""
+                    SELECT d.cognome, d.nome, d.id_dipendente as matricola, tc.nome_tipo_contratto as contratto,
+                    da.data_inizio_rapporto as assunzione
+                    FROM dipendente d, tipo_contratto tc, dipendente_azienda da
+                    WHERE d.id_dipendente = da.id_dipendente 
+                    and tc.id_tipo_contratto = d.id_tipo_contratto and (d.cognome like '{value}%' or concat(d.nome, ' ', d.cognome) like '{value}%'
+                    or concat(d.cognome, ' ', d.nome) like '{value}%'
+                    or d.cf like '{value}%' or d.id_dipendente like '{value}%')
+                    and da.id_azienda = '{id}'
+                    and da.data_fine_rapporto is null
                     """)
         results = MySql.get_results()
         MySql.close_connection()
