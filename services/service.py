@@ -263,20 +263,20 @@ class Service:
     ## client ##
 
     @classmethod
-    def get_active_clients(cls, value: str):
-        return ClientDto.get_active(value)
+    def get_active_clients(cls, value: str, id: str):
+        return ClientDto.get_active(value, id)
 
     @classmethod
     def get_active_assignments(cls, vat: str):
         return ClientDto.get_active_assignments(vat)
 
     @classmethod
-    def get_all_active_clients(cls):
-        return ClientDto.get_all_active()
+    def get_all_active_clients(cls, id: str):
+        return ClientDto.get_all_active(id)
 
     @classmethod
-    def get_active_clients_details(cls, value: str):
-        return ClientDto.get_active_details(value)
+    def get_active_clients_details(cls, value: str, id: str):
+        return ClientDto.get_active_details(value, id)
 
     @classmethod
     def get_assignment_details(cls, id: str):
@@ -293,12 +293,12 @@ class Service:
         return EmployeeDto.get_by_multi(value)
 
     @classmethod
-    def get_employees_inactive(cls):
-        return EmployeeDto.get_all_inactive()
+    def get_employees_inactive(cls, id: str):
+        return EmployeeDto.get_all_inactive(id)
 
     @classmethod
-    def get_employees_active(cls):
-        return EmployeeDto.get_all_active()
+    def get_employees_active(cls, id: str):
+        return EmployeeDto.get_all_active(id)
 
     @classmethod
     def get_employees_full_details(cls, id: str):

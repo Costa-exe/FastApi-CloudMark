@@ -1,6 +1,7 @@
 from utils.db import MySql
 from models.employeeModel import Employee
 
+
 class EmployeeDao:
 
     @classmethod
@@ -10,9 +11,9 @@ class EmployeeDao:
         results = MySql.get_results()
         MySql.close_connection()
         return results
-    
+
     @classmethod
-    def find_by_name_surname(cls, name : str):
+    def find_by_name_surname(cls, name: str):
         MySql.open_connection()
         MySql.query(f"""
                     SELECT cognome, nome, id_dipendente as matricola, data_nascita
@@ -26,7 +27,7 @@ class EmployeeDao:
         return results
 
     @classmethod
-    def find_all_inactive(cls):
+    def find_all_inactive(cls, id: str):
         MySql.open_connection()
         MySql.query(f"""
                     SELECT d.cognome, d.nome, d.id_dipendente as matricola, tc.nome_tipo_contratto 
@@ -34,13 +35,14 @@ class EmployeeDao:
                     FROM dipendente d, dipendente_azienda da, tipo_contratto tc 
                     WHERE d.id_dipendente = da.id_dipendente 
                     and d.id_tipo_contratto = tc.id_tipo_contratto
+                    and da.id_azienda = '{id}'
                     """)
         results = MySql.get_results()
         MySql.close_connection()
         return results
-    
+
     @classmethod
-    def find_all_active(cls):
+    def find_all_active(cls, id: str):
         MySql.open_connection()
         MySql.query(f"""
                     SELECT d.cognome, d.nome, d.id_dipendente as matricola, tc.nome_tipo_contratto 
@@ -49,13 +51,14 @@ class EmployeeDao:
                     WHERE d.id_dipendente = da.id_dipendente 
                     and d.id_tipo_contratto = tc.id_tipo_contratto 
                     and da.data_fine_rapporto is null
+                    and da.id_azienda = '{id}'
                     """)
         results = MySql.get_results()
         MySql.close_connection()
         return results
 
     @classmethod
-    def find_by_multi(cls, value : str):
+    def find_by_multi(cls, value: str):
         MySql.open_connection()
         MySql.query(f"""
                     SELECT d.cognome, d.nome, d.id_dipendente as matricola, tc.nome_tipo_contratto as contratto,
@@ -71,7 +74,7 @@ class EmployeeDao:
         return results
 
     @classmethod
-    def find_full_details(cls, id : str):
+    def find_full_details(cls, id: str):
         MySql.open_connection()
         MySql.query(f"""
                     SELECT d.cognome, d.nome, d.id_dipendente as matricola, tc.nome_tipo_contratto as contratto,
@@ -86,7 +89,7 @@ class EmployeeDao:
         return results
 
     @classmethod
-    def find_info_assignments(cls, id : str):
+    def find_info_assignments(cls, id: str):
         MySql.open_connection()
         MySql.query(f"""
                     SELECT cl.nome as nome_cliente, data_inizio
@@ -101,7 +104,7 @@ class EmployeeDao:
         return results
 
     @classmethod
-    def find_by_id(cls, id :str):
+    def find_by_id(cls, id: str):
         MySql.open_connection()
         MySql.query(f"SELECT * FROM dipendente WHERE id_dipendente = '{id}'")
         results = MySql.get_result()
@@ -109,13 +112,13 @@ class EmployeeDao:
         return results
 
     @classmethod
-    def remove_by_id(cls, id :str):
+    def remove_by_id(cls, id: str):
         MySql.open_connection()
         MySql.query(f"DELETE FROM dipendente WHERE id_dipendente = '{id}'")
         MySql.close_connection_commit()
 
     @classmethod
-    def update_by_id(cls, id :str, item : Employee):
+    def update_by_id(cls, id: str, item: Employee):
         MySql.open_connection()
         MySql.query(f"""
                     UPDATE dipendente
@@ -134,7 +137,7 @@ class EmployeeDao:
         MySql.close_connection_commit()
 
     @classmethod
-    def create(cls, item : Employee):
+    def create(cls, item: Employee):
         MySql.open_connection()
         MySql.query(f"""
                     INSERT INTO dipendente
@@ -161,4 +164,3 @@ class EmployeeDao:
                      '{item.data_nascita}')
                     """)
         MySql.close_connection_commit()
-    
