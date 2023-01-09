@@ -1,6 +1,7 @@
 from utils.db import MySql
 from models.companyModel import Company
 
+
 class CompanyDao:
 
     @classmethod
@@ -12,7 +13,15 @@ class CompanyDao:
         return results
 
     @classmethod
-    def find_by_id(cls, id : str):
+    def find_id_by_name(cls, name: str):
+        MySql.open_connection()
+        MySql.query(f"SELECT id_azienda FROM azienda WHERE nome = '{name}'")
+        result = MySql.get_result()
+        MySql.close_connection()
+        return result
+
+    @classmethod
+    def find_by_id(cls, id: str):
         MySql.open_connection()
         MySql.query(f"SELECT * FROM azienda WHERE id_azienda = '{id}'")
         results = MySql.get_result()
@@ -20,13 +29,13 @@ class CompanyDao:
         return results
 
     @classmethod
-    def remove_by_id(cls, id : str):
+    def remove_by_id(cls, id: str):
         MySql.open_connection()
         MySql.query(f"DELETE FROM azienda WHERE id_azienda = '{id}'")
         MySql.close_connection_commit()
 
     @classmethod
-    def update_by_id(cls, id : str, item : Company):
+    def update_by_id(cls, id: str, item: Company):
         MySql.open_connection()
         MySql.query(f"""
                     UPDATE azienda
@@ -46,7 +55,7 @@ class CompanyDao:
         MySql.close_connection_commit()
 
     @classmethod
-    def create(cls, item : Company):
+    def create(cls, item: Company):
         MySql.open_connection()
         MySql.query(f"""
                     INSERT INTO azienda
@@ -74,4 +83,3 @@ class CompanyDao:
                     IF('{item.fax}' = '', NULL, '{item.fax}'))
                     """)
         MySql.close_connection_commit()
-    
