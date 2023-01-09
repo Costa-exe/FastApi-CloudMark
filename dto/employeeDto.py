@@ -54,11 +54,8 @@ class EmployeeDto:
 
     @classmethod
     def get_full_details(cls, id: str):
-        Employees = []
         results = EmployeeDao.find_full_details(id)
-        for result in results:
-            Employees.append(result)
-        return Employees
+        return results
 
     @classmethod
     def get_info_assignments(cls, id: str):
