@@ -111,7 +111,7 @@ class EmployeeDao:
     def find_info_assignments(cls, id: str):
         MySql.open_connection()
         MySql.query(f"""
-                    SELECT cl.nome as nome_cliente, data_inizio
+                    SELECT cl.nome as nome_cliente, c.data_inizio, c.data_fine, c.descrizione
                     FROM dipendente d, commessa_dipendente cd, commessa c, cliente cl
                     WHERE d.id_dipendente = cd.id_dipendente
                     and cd.id_commessa = c.id_commessa 
