@@ -21,7 +21,6 @@ class ContractTypeDto:
         result = ContractTypeDao.find_by_name(name)
         return result
 
-
     @classmethod
     def get_specific(cls, id1 : str, id2 : str):
         result = ContractTypeDao.find_specific(id1, id2)

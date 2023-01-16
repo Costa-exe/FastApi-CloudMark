@@ -1,3 +1,4 @@
+import datetime
 from pydantic import BaseModel,validator
 from typing import Optional
 import datetime
@@ -60,4 +61,4 @@ class Employee(BaseModel):
     def validate_telefono(cls, v):
         if v:
             assert len(v) <= 45, "maximum length for 'telefono' is 45 characters."
-            return v
+            return v                 
