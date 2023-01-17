@@ -2,7 +2,6 @@ from dao.employeeDao import EmployeeDao
 from models.employeeModel import Employee
 import csv
 from models.customEmployeeModel import CustomEmployee
-from starlette.responses import FileResponse
 
 
 class EmployeeDto:
@@ -16,8 +15,6 @@ class EmployeeDto:
             writer.writeheader()
             for item in items:
                 writer.writerow(item.dict())
-        file_path = "./dipendenti.csv"
-        return FileResponse(path=file_path, media_type='text/csv')
 
     @classmethod
     def get_all(cls):

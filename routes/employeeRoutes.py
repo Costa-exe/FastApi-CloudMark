@@ -4,6 +4,7 @@ from models.employeeModel import Employee
 from models.employeeCompanyModel import EmployeeCompany
 import csv
 from models.customEmployeeModel import CustomEmployee
+from starlette.responses import FileResponse
 
 router = APIRouter(prefix="/employees", tags=["Employees API"])
 
@@ -86,6 +87,15 @@ async def get_full_details(id_dipendente: str):
 async def get_employees_csv(employees: list[CustomEmployee]):
     try:
         return Service.get_employees_csv(employees)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=e)
+
+
+@router.get("/downloadCsv")
+async def download_csv():
+    try:
+        file_path = "./dipendenti.csv"
+        return FileResponse(path=file_path, media_type='text/csv', filename=file_path)
     except Exception as e:
         raise HTTPException(status_code=500, detail=e)
 
