@@ -14,6 +14,7 @@ from models.assignmentEmployee import AssignmentEmployee
 from models.employeeModel import Employee
 from models.employeeCompanyModel import EmployeeCompany
 from models.contractTypeModel import ContractType
+from models.customEmployeeModel import CustomEmployee
 
 
 class Service:
@@ -311,6 +312,10 @@ class Service:
     @classmethod
     def get_employees_info_assignments(cls, id: str):
         return EmployeeDto.get_info_assignments(id)
+
+    @classmethod
+    def get_employees_csv(cls, items: list[CustomEmployee]):
+        return EmployeeDto.get_csv(items)
 
     ## company ##
 
