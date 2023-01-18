@@ -2,6 +2,7 @@ from dao.employeeDao import EmployeeDao
 from models.employeeModel import Employee
 import csv
 from models.customEmployeeModel import CustomEmployee
+import os
 
 
 class EmployeeDto:
@@ -15,6 +16,11 @@ class EmployeeDto:
             writer.writeheader()
             for item in items:
                 writer.writerow(item.dict())
+
+    @classmethod
+    def delete_csv(cls):
+        os.remove('./dipendenti.csv')
+        return 'File Scaricato Con Successo'
 
     @classmethod
     def get_all(cls):

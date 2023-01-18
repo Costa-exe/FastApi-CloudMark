@@ -100,6 +100,14 @@ async def download_csv():
         raise HTTPException(status_code=500, detail=e)
 
 
+@router.get("/deleteCsv")
+async def remove_csv():
+    try:
+        return Service.remove_employees_csv()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=e)
+
+
 @router.get("/getInfoAssignments")
 async def get_info_assignments(id_dipendente: str):
     if Service.get_employees_info_assignments(id_dipendente) == []:

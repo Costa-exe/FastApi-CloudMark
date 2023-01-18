@@ -317,6 +317,10 @@ class Service:
     def get_employees_csv(cls, items: list[CustomEmployee]):
         return EmployeeDto.get_csv(items)
 
+    @classmethod
+    def remove_employees_csv(cls):
+        return EmployeeDto.delete_csv()
+
     ## company ##
 
     @classmethod
