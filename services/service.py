@@ -283,6 +283,14 @@ class Service:
     def get_assignment_details(cls, id: str):
         return ClientDto.get_assignment_details(id)
 
+    @classmethod
+    def get_clients_csv(cls, items: list[CustomEmployee]):
+        return ClientDto.get_csv(items)
+
+    @classmethod
+    def remove_clients_csv(cls):
+        return ClientDto.delete_csv()
+
     ## employee ##
 
     @classmethod
