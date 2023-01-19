@@ -1,6 +1,8 @@
 from fastapi import APIRouter, HTTPException
 from services.service import Service
 from models.clientModel import Client
+from starlette.responses import FileResponse
+from models.customClientModel import CustomClient
 
 router = APIRouter(prefix="/clients", tags=["Clients API"])
 
@@ -20,6 +22,31 @@ async def get_clients(id_cliente: str | None = None):
         return Service.get_all_clients_service()
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
+
+
+@router.post("/getCsv")
+async def get_clients_csv(clients: list[CustomClient]):
+    try:
+        return Service.get_clients_csv(clients)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=e)
+
+
+@router.get("/downloadCsv")
+async def download_csv():
+    try:
+        file_path = "./clienti.csv"
+        return FileResponse(path=file_path, media_type='text/csv', filename=file_path)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=e)
+
+
+@router.get("/deleteCsv")
+async def remove_csv():
+    try:
+        return Service.remove_clients_csv()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=e)
 
 
 @router.get("/AssignmentDetails")

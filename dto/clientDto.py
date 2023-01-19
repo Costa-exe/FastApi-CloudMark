@@ -1,8 +1,26 @@
 from dao.clientDao import ClientDao
 from models.clientModel import Client
+import csv
+from models.customClientModel import CustomClient
+import os
 
 
 class ClientDto:
+
+    @classmethod
+    def get_csv(cls, items: list[CustomClient]):
+        fieldnames = ['nome', 'p_iva',
+                      'email', 'telefono', 'indirizzo', 'cap', 'commesse_attive']
+        with open('clienti.csv', 'w', encoding='UTF8', newline='') as file:
+            writer = csv.DictWriter(file, fieldnames=fieldnames)
+            writer.writeheader()
+            for item in items:
+                writer.writerow(item.dict())
+
+    @classmethod
+    def delete_csv(cls):
+        os.remove('./clienti.csv')
+        return 'File Scaricato Con Successo'
 
     @classmethod
     def get_all(cls):

@@ -1,8 +1,26 @@
 from dao.employeeDao import EmployeeDao
 from models.employeeModel import Employee
+import csv
+from models.customEmployeeModel import CustomEmployee
+import os
 
 
 class EmployeeDto:
+
+    @classmethod
+    def get_csv(cls, items: list[CustomEmployee]):
+        fieldnames = ['cognome', 'nome',
+                      'matricola', 'contratto', 'assunzione']
+        with open('dipendenti.csv', 'w', encoding='UTF8', newline='') as file:
+            writer = csv.DictWriter(file, fieldnames=fieldnames)
+            writer.writeheader()
+            for item in items:
+                writer.writerow(item.dict())
+
+    @classmethod
+    def delete_csv(cls):
+        os.remove('./dipendenti.csv')
+        return 'File Scaricato Con Successo'
 
     @classmethod
     def get_all(cls):
