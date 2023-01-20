@@ -167,15 +167,15 @@ class ClientDao:
                     UPDATE cliente
                     SET
                     id_cliente = '{item.id_cliente}',
-                    nome = IF('{item.nome}' = '', NULL, '{item.nome}'),
-                    p_iva = IF('{item.p_iva}' = '', NULL, '{item.p_iva}'),
-                    indirizzo = IF('{item.indirizzo}' = '', NULL, '{item.indirizzo}'),
-                    cap = IF('{item.cap}' = '', NULL, '{item.cap}'),
-                    iban = IF('{item.iban}' = '', NULL, '{item.iban}'),
-                    telefono = IF('{item.telefono}' = '', NULL, '{item.telefono}'),
-                    email = IF('{item.email}' = '', NULL, '{item.email}'),
-                    pec = IF('{item.pec}' = '', NULL, '{item.pec}'),
-                    fax = IF('{item.fax}' = '', NULL, '{item.fax}')
+                    nome = IF('{item.nome}' = 'None', NULL, '{item.nome}'),
+                    p_iva = IF('{item.p_iva}' = 'None', NULL, '{item.p_iva}'),
+                    indirizzo = IF('{item.indirizzo}' = 'None', NULL, '{item.indirizzo}'),
+                    cap = IF('{item.cap}' = 'None', NULL, '{item.cap}'),
+                    iban = IF('{item.iban}' = 'None', NULL, '{item.iban}'),
+                    telefono = IF('{item.telefono}' = 'None', NULL, '{item.telefono}'),
+                    email = IF('{item.email}' = 'None', NULL, '{item.email}'),
+                    pec = IF('{item.pec}' = 'None', NULL, '{item.pec}'),
+                    fax = IF('{item.fax}' = 'None', NULL, '{item.fax}')
                     WHERE id_cliente = '{id}'
                     """)
         MySql.close_connection_commit()

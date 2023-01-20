@@ -61,7 +61,7 @@ class ContractTypeDao:
                     SET
                     id_tipo_contratto = '{item.id_tipo_contratto}',
                     nome_tipo_contratto = '{item.nome_tipo_contratto}',
-                    descrizione = IF('{item.descrizione}' = 'NULL', NULL, '{item.descrizione}')
+                    descrizione = IF('{item.descrizione}' = 'None', NULL, '{item.descrizione}')
                     WHERE id_tipo_contratto = '{id1}' and nome_tipo_contratto = '{id2}'
                     """)
         MySql.close_connection_commit()
@@ -79,7 +79,7 @@ class ContractTypeDao:
                     VALUES
                     ('{item.id_tipo_contratto}',
                      '{item.nome_tipo_contratto}',
-                    IF('{item.descrizione}' = '', NULL, '{item.descrizione}'))
+                    IF('{item.descrizione}' = 'None', NULL, '{item.descrizione}'))
                     """)
         MySql.close_connection_commit()
     
