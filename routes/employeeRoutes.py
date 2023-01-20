@@ -14,10 +14,10 @@ async def get_employees(id: str | None = None):
     if id:
         if Service.get_employee_by_id(id) == None:
             raise HTTPException(
-                status_code=404, detail=f"Item with key 'id_dipendente'='{id}' not found")
+                status_code=404, detail=f"Dipendente con id 'id_dipendente'='{id}' non trovato")
     else:
         if Service.get_all_employees() == []:
-            raise HTTPException(status_code=404, detail=f"No Items Found")
+            raise HTTPException(status_code=404, detail=f"Nessun Dipendente trovato")
     try:
         if id:
             return Employee(**Service.get_employee_by_id(id))
@@ -29,7 +29,7 @@ async def get_employees(id: str | None = None):
 @router.get("/getByNameSurname")
 async def get_by_name_surname(nome_cognome: str):
     if Service.get_employees_by_name_surname(nome_cognome) == []:
-        raise HTTPException(status_code=404, detail=f"No Items Found")
+        raise HTTPException(status_code=404, detail=f"Nessun Dipendente trovato")
     try:
         return Service.get_employees_by_name_surname(nome_cognome)
     except Exception as e:
@@ -39,7 +39,7 @@ async def get_by_name_surname(nome_cognome: str):
 @router.get("/getByMultiFields")
 async def get_by_multi(value: str, id_azienda: str):
     if Service.get_employees_by_multi(value, id_azienda) == []:
-        raise HTTPException(status_code=404, detail=f"No Items Found")
+        raise HTTPException(status_code=404, detail=f"Nessun Dipendente trovato")
     try:
         return Service.get_employees_by_multi(value, id_azienda)
     except Exception as e:
@@ -49,7 +49,7 @@ async def get_by_multi(value: str, id_azienda: str):
 @router.get("/getByMultiFieldsActive")
 async def get_by_multi(value: str, id_azienda: str):
     if Service.get_employees_by_multi_active(value, id_azienda) == []:
-        raise HTTPException(status_code=404, detail=f"No Items Found")
+        raise HTTPException(status_code=404, detail=f"Nessun Dipendente trovato")
     try:
         return Service.get_employees_by_multi_active(value, id_azienda)
     except Exception as e:
@@ -60,10 +60,10 @@ async def get_by_multi(value: str, id_azienda: str):
 async def get_all(working: str, id_azienda: str):
     if working == "no":
         if Service.get_employees_inactive(id_azienda) == []:
-            raise HTTPException(status_code=404, detail=f"No Items Found")
+            raise HTTPException(status_code=404, detail=f"Nessun Dipendente trovato")
     elif working == "yes":
         if Service.get_employees_active(id_azienda) == []:
-            raise HTTPException(status_code=404, detail=f"No Items Found")
+            raise HTTPException(status_code=404, detail=f"Nessun Dipendente trovato")
     try:
         if working == "no":
             return Service.get_employees_inactive(id_azienda)
@@ -76,7 +76,7 @@ async def get_all(working: str, id_azienda: str):
 async def get_full_details(id_dipendente: str):
     if Service.get_employees_full_details(id_dipendente) == None:
         raise HTTPException(
-            status_code=404, detail=f"Item with key 'id_dipendente'='{id_dipendente}' not found")
+            status_code=404, detail=f"Dipendente con id 'id_dipendente'='{id_dipendente}' non trovato")
     try:
         return Service.get_employees_full_details(id_dipendente)
     except Exception as e:
@@ -111,7 +111,7 @@ async def remove_csv():
 @router.get("/getInfoAssignments")
 async def get_info_assignments(id_dipendente: str):
     if Service.get_employees_info_assignments(id_dipendente) == []:
-        raise HTTPException(status_code=404, detail=f"No Items Found")
+        raise HTTPException(status_code=404, detail=f"Nessun Dipendente trovato")
     try:
         return Service.get_employees_info_assignments(id_dipendente)
     except Exception as e:
@@ -122,12 +122,12 @@ async def get_info_assignments(id_dipendente: str):
 async def delete_employee(id: str):
     if Service.get_employee_by_id(id) == None:
         raise HTTPException(
-            status_code=404, detail=f"Item with key 'id_dipendente'='{id}' not found")
+            status_code=404, detail=f"Dipendente con id 'id_dipendente'='{id}' non trovato")
     try:
         Service.remove_employee_by_id(id)
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
-    raise HTTPException(status_code=201, detail="Item Deleted Successfully")
+    raise HTTPException(status_code=201, detail="Dipendente eliminato con successo")
 
 
 @router.post("")
@@ -136,7 +136,7 @@ async def add_employee(employee: Employee):
         Service.create_employee(employee)
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
-    raise HTTPException(status_code=201, detail="Item Added Successfully")
+    raise HTTPException(status_code=201, detail="Dipendente aggiunto con successo")
 
 
 @router.post("/insertEmployeeCompany")
@@ -146,16 +146,16 @@ async def add_employee_company(employee: Employee, employeeCompany: EmployeeComp
         Service.create_employee_company(employeeCompany)
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
-    raise HTTPException(status_code=201, detail="Item Added Successfully")
+    raise HTTPException(status_code=201, detail="Dipendente aggiunto con successo")
 
 
 @router.put("")
 async def update_employee(id: str, new_data: Employee):
     if Service.get_employee_by_id(id) == None:
         raise HTTPException(
-            status_code=404, detail=f"Item with key 'id_dipendente'='{id}' not found")
+            status_code=404, detail=f"Dipendente con id 'id_dipendente'='{id}' non trovato")
     try:
         Service.update_employee_by_id(id, new_data)
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
-    raise HTTPException(status_code=201, detail="Item Updated Successfully")
+    raise HTTPException(status_code=201, detail="Dipendente aggiornato con successo")

@@ -41,15 +41,15 @@ class CompanyDao:
                     UPDATE azienda
                     SET
                     id_azienda = '{item.id_azienda}',
-                    nome = IF('{item.nome}' = '', NULL,'{item.nome}'),
-                    p_iva = IF('{item.p_iva}' = '', NULL, '{item.p_iva}'),
-                    indirizzo = IF('{item.indirizzo}' = '', NULL, '{item.indirizzo}'),
-                    cap = IF('{item.cap}' = '', NULL, '{item.cap}'),
-                    iban = IF('{item.iban}' = '', NULL, '{item.iban}'),
-                    telefono = IF('{item.telefono}' = '', NULL, '{item.telefono}'),
-                    email = IF('{item.email}' = '', NULL, '{item.email}'),
-                    pec = IF('{item.pec}' = '', NULL, '{item.pec}'),
-                    fax = IF('{item.fax}' = '', NULL, '{item.fax}')
+                    nome = IF('{item.nome}' = 'None', NULL,'{item.nome}'),
+                    p_iva = IF('{item.p_iva}' = 'None', NULL, '{item.p_iva}'),
+                    indirizzo = IF('{item.indirizzo}' = 'None', NULL, '{item.indirizzo}'),
+                    cap = IF('{item.cap}' = 'None', NULL, '{item.cap}'),
+                    iban = IF('{item.iban}' = 'None', NULL, '{item.iban}'),
+                    telefono = IF('{item.telefono}' = 'None', NULL, '{item.telefono}'),
+                    email = IF('{item.email}' = 'None', NULL, '{item.email}'),
+                    pec = IF('{item.pec}' = 'None', NULL, '{item.pec}'),
+                    fax = IF('{item.fax}' = 'None', NULL, '{item.fax}')
                     WHERE id_azienda = '{id}'
                     """)
         MySql.close_connection_commit()
@@ -72,14 +72,14 @@ class CompanyDao:
                      fax)
                     VALUES
                     ('{item.id_azienda}',
-                    IF('{item.nome}' = '', NULL, '{item.nome}'),
-                    IF('{item.p_iva}' = '', NULL, '{item.p_iva}'),
-                    IF('{item.indirizzo}' = '', NULL, '{item.indirizzo}'),
-                    IF('{item.cap}' = '', NULL, '{item.cap}'),
-                    IF('{item.iban}' = '', NULL, '{item.iban}'),
-                    IF('{item.telefono}' = '', NULL, '{item.telefono}'),
-                    IF('{item.email}' = '', NULL, '{item.email}'),
-                    IF('{item.pec}' = '', NULL, '{item.pec}'),
-                    IF('{item.fax}' = '', NULL, '{item.fax}'))
+                    IF('{item.nome}' = 'None', NULL, '{item.nome}'),
+                    IF('{item.p_iva}' = 'None', NULL, '{item.p_iva}'),
+                    IF('{item.indirizzo}' = 'None', NULL, '{item.indirizzo}'),
+                    IF('{item.cap}' = 'None', NULL, '{item.cap}'),
+                    IF('{item.iban}' = 'None', NULL, '{item.iban}'),
+                    IF('{item.telefono}' = 'None', NULL, '{item.telefono}'),
+                    IF('{item.email}' = 'None', NULL, '{item.email}'),
+                    IF('{item.pec}' = 'None', NULL, '{item.pec}'),
+                    IF('{item.fax}' = 'None', NULL, '{item.fax}'))
                     """)
         MySql.close_connection_commit()

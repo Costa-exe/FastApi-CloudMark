@@ -9,10 +9,10 @@ router = APIRouter(prefix="/assignment", tags=["assignment"])
 async def get_assignments(id_commessa : str | None = None):
     if id_commessa:
         if Service.get_assignment_by_id_service(id_commessa) == None:
-            raise HTTPException(status_code=404, detail=f"Assignment with id: {id_commessa} not found")
+            raise HTTPException(status_code=404, detail=f"Commessa con id: {id_commessa} non trovata")
     else:
         if Service.get_all_assignments_service() == []:
-            raise HTTPException(status_code=404, detail=f"No Assignments found")
+            raise HTTPException(status_code=404, detail=f"Nessuna Commessa trovata")
     try:
         if id_commessa:
             return Assignment(**Service.get_assignment_by_id_service(id_commessa))
@@ -26,24 +26,24 @@ async def post_assignment(assignment : Assignment):
         Service.post_assignment_service(assignment)
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
-    raise HTTPException(status_code=201, detail="Assignment Created Successfully")
+    raise HTTPException(status_code=201, detail="Commessa creata con successo")
 
 @router.put("")
 async def put_assignment(id_commessa : str, assignment : Assignment):
     if Service.get_assignment_by_id_service(id_commessa) == None:
-        raise HTTPException(status_code=404, detail=f"Item with key 'id_commessa'='{id_commessa}' not found")
+        raise HTTPException(status_code=404, detail=f"Commessa con id 'id_commessa'='{id_commessa}' non trovata")
     try:
         Service.put_assignment_service(id_commessa, assignment)
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
-    raise HTTPException(status_code=201, detail="Assignment Updated Successfully")
+    raise HTTPException(status_code=201, detail="Commessa aggiornata con successo")
 
 @router.delete("")
 async def delete_assignment(id_commessa: str):
     if Service.get_assignment_by_id_service(id_commessa) == None:
-        raise HTTPException(status_code=404, detail=f"Item with key 'id_commessa'='{id_commessa}' not found")
+        raise HTTPException(status_code=404, detail=f"Commessa con id 'id_commessa'='{id_commessa}' non trovata")
     try:
         Service.delete_assignment_service(id_commessa)
     except Exception as e:
         raise HTTPException(status_code=500, detail=e.msg)
-    raise HTTPException(status_code=201, detail="Assignment Deleted Successfully")
+    raise HTTPException(status_code=201, detail="Commessa eliminata con successo")

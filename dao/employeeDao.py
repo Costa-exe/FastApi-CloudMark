@@ -143,12 +143,12 @@ class EmployeeDao:
                     UPDATE dipendente
                     SET                                                                 
                     id_dipendente = '{item.id_dipendente}',
-                    nome = IF('{item.nome}' = '', NULL, '{item.nome}'),
-                    cognome = IF('{item.cognome}' = '', NULL, '{item.cognome}'),
+                    nome = IF('{item.nome}' = 'None', NULL, '{item.nome}'),
+                    cognome = IF('{item.cognome}' = 'None', NULL, '{item.cognome}'),
                     cf = '{item.cf}',                   
                     iban = '{item.iban}',
-                    email = IF('{item.email}' = '', NULL, '{item.email}'),
-                    telefono = IF('{item.telefono}' = '', NULL, '{item.telefono}'),
+                    email = IF('{item.email}' = 'None', NULL, '{item.email}'),
+                    telefono = IF('{item.telefono}' = 'None', NULL, '{item.telefono}'),
                     id_tipo_contratto = '{item.id_tipo_contratto}',
                     data_nascita = '{item.data_nascita}'
                     WHERE id_dipendente = '{id}'
@@ -173,12 +173,12 @@ class EmployeeDao:
                      )
                     VALUES
                     ('{item.id_dipendente}',
-                    IF('{item.nome}' = '', NULL, '{item.nome}'),
-                    IF('{item.cognome}' = '', NULL, '{item.cognome}'),
+                    IF('{item.nome}' = 'None', NULL, '{item.nome}'),
+                    IF('{item.cognome}' = 'None', NULL, '{item.cognome}'),
                      '{item.cf}',
                      '{item.iban}',
-                    IF('{item.telefono}' = '', NULL, '{item.telefono}'),
-                    IF('{item.email}' = '', NULL, '{item.email}'),
+                    IF('{item.telefono}' = 'None', NULL, '{item.telefono}'),
+                    IF('{item.email}' = 'None', NULL, '{item.email}'),
                      '{item.id_tipo_contratto}',
                      '{item.data_nascita}')
                     """)
