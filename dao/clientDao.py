@@ -128,7 +128,7 @@ class ClientDao:
     def find_assignment_details(cls, id: str):
         MySql.open_connection()
         MySql.query(f"""
-                        SELECT c.descrizione, d.nome as nome_dipendente, d.cognome as cognome_dipendente, c.data_inizio, c.data_fine, cd.rate
+                        SELECT c.descrizione, concat(nome, ' ',cognome) as dipendente, c.data_inizio, c.data_fine, cd.rate
                         FROM commessa c, dipendente d, commessa_dipendente cd
                         WHERE c.id_commessa = cd.id_commessa
                         and d.id_dipendente = cd.id_dipendente
