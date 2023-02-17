@@ -58,7 +58,7 @@ class ClientDao:
     def find_all_active(cls, id: str):
         MySql.open_connection()
         MySql.query(f"""
-                        SELECT cl.nome, cl.cap, cl.email, cl.p_iva, cl.telefono, count(*) as commesse_attive, cl.indirizzo
+                        SELECT cl.id_cliente, cl.nome, cl.cap, cl.email, cl.p_iva, cl.telefono, count(*) as commesse_attive, cl.indirizzo
                         FROM commessa c, cliente cl, azienda_cliente az
                         WHERE c.id_cliente = cl.id_cliente
                         and DATEDIFF(c.data_fine, CURDATE()) > 0
@@ -74,7 +74,7 @@ class ClientDao:
     def find_all_inactive(cls, id: str):
         MySql.open_connection()
         MySql.query(f"""
-                        SELECT cl.nome, cl.cap, cl.email, cl.p_iva, cl.telefono, if(1 > 0, 0, 0) as commesse_attive, cl.indirizzo
+                        SELECT cl.id_cliente, cl.nome, cl.cap, cl.email, cl.p_iva, cl.telefono, if(1 > 0, 0, 0) as commesse_attive, cl.indirizzo
                         FROM cliente cl, azienda_cliente az
                         WHERE cl.id_cliente not in (SELECT cl.id_cliente
                                                     FROM commessa c, cliente cl
